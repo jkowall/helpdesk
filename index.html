@@ -316,8 +316,20 @@
         }
 
         .bar-label::before {
-            content: '🤖';
-            /* Robot icon */
+            content: '💬';
+        }
+
+        .ai-disclosure {
+            font-size: 0.7rem;
+            opacity: 0.6;
+            font-weight: 300;
+            margin-left: auto;
+            margin-right: 16px;
+            white-space: nowrap;
+        }
+
+        #embrace-widget-container.widget-fullscreen .ai-disclosure {
+            display: none;
         }
 
         /* Widget Buttons */
@@ -383,15 +395,24 @@
 
     <!-- Widget Container -->
     <div id="embrace-widget-container" class="widget-top-bar">
-        <div class="bar-label">AI Assistant Available</div>
+        <div class="bar-label">Chat with Support</div>
+        <div class="ai-disclosure">Powered by AI</div>
 
         <!-- Chat Component Wrapper -->
         <div class="chat-wrapper">
             <!-- 
                 NOTE: Replace attributes with real values. 
              -->
-            <embrace-chat org-id="YOUR_ORG_ID" client-id="YOUR_CLIENT_ID"
-                external-id="demo-widget-paessler-v2"></embrace-chat>
+            <embrace-chat org-id="YOUR_ORG_ID" client-id="YOUR_CLIENT_ID" external-id="demo-widget-paessler-v2">
+                <template>
+                    <div slot="initial-message"
+                        style="background: #fff8e1; border: 1px solid #ffe082; border-radius: 8px; padding: 10px 14px; margin: 8px 16px; font-size: 0.85rem; color: #6d5b00; display: flex; align-items: flex-start; gap: 8px;">
+                        <span style="font-size: 1.1rem;">⚠️</span>
+                        <span>You are chatting with an AI assistant. Responses may not always be accurate. For complex
+                            issues, please <strong>open a support ticket</strong>.</span>
+                    </div>
+                </template>
+            </embrace-chat>
         </div>
 
         <!-- Controls -->
@@ -433,7 +454,7 @@
         <!-- New: Ask AI Trigger -->
         <div class="hero-ai-trigger">
             <button class="btn-hero-ai" onclick="openFullscreenChat()">
-                <span>🤖</span> Start AI Conversation
+                <span>💬</span> Get Instant Help
             </button>
         </div>
     </section>
