@@ -129,6 +129,31 @@
             opacity: 0.8;
         }
 
+        /* New Hero CTA for AI */
+        .hero-ai-trigger {
+            margin-top: 15px;
+        }
+
+        .btn-hero-ai {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-hero-ai:hover {
+            background: #fff;
+            color: var(--production-blue);
+        }
+
         /* ── Cards Grid ─────────────────────────────── */
         .content-area {
             background-color: var(--production-bg);
@@ -432,6 +457,13 @@
         <h1>We're here to help you!</h1>
         <p>Our experts will assist you with anything you need.</p>
         <a href="https://helpdesk.paessler.com/en/support/tickets/new" class="btn-create-ticket-hero">Create Ticket</a>
+
+        <div class="hero-ai-trigger">
+            <button class="btn-hero-ai" onclick="openFullscreenChat()">
+                <span>💬</span> Get Instant Help
+            </button>
+        </div>
+
         <span class="register-link">Not yet registered? <a href="https://helpdesk.paessler.com/en/support/signup"
                 style="color: #fff; text-decoration: underline;">Register now.</a></span>
     </section>
@@ -550,6 +582,12 @@
                 expandBtn.textContent = 'Expand Chat';
                 ticketBtnWidget.style.display = 'none';
                 updateControlsForFullscreen(false);
+            }
+        }
+
+        window.openFullscreenChat = function () {
+            if (!container.classList.contains('widget-fullscreen')) {
+                toggleChat();
             }
         }
 

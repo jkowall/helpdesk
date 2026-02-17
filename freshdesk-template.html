@@ -108,6 +108,33 @@
             margin-bottom: 0;
         }
 
+        /* New Hero CTA for AI */
+        .hero-ai-trigger {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .btn-hero-ai {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn-hero-ai:hover {
+            background: #fff;
+            color: var(--paessler-blue);
+        }
+
         /* ── Search Form (inside hero) ──────────────── */
         .search-box {
             max-width: 680px;
@@ -500,6 +527,12 @@
                     <button type="submit">Search</button>
                 </div>
             </form>
+
+            <div class="hero-ai-trigger">
+                <button class="btn-hero-ai" onclick="openFullscreenChat()">
+                    <span>💬</span> Get Instant Help
+                </button>
+            </div>
         </div>
     </section>
 
@@ -661,6 +694,12 @@
                 expandBtn.textContent = 'Expand Chat';
                 ticketBtnWidget.style.display = 'none';
                 updateControlsForFullscreen(false);
+            }
+        }
+
+        window.openFullscreenChat = function () {
+            if (!container.classList.contains('widget-fullscreen')) {
+                toggleChat();
             }
         }
 

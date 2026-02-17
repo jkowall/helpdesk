@@ -107,6 +107,29 @@
         background: transparent;
     }
 
+    /* Hero AI Button Component */
+    .btn-hero-ai {
+        background: rgba(0, 75, 135, 0.1);
+        border: 1px solid var(--widget-bg);
+        color: var(--widget-bg);
+        padding: 10px 24px;
+        border-radius: 30px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        margin: 10px 0;
+    }
+
+    .btn-hero-ai:hover {
+        background: var(--widget-bg);
+        color: #fff;
+    }
+
     .chat-wrapper {
         flex: 1;
         width: 100%;
@@ -146,6 +169,16 @@
     </div>
 </div>
 
+<!-- 
+    OPTIONAL: "Get Instant Help" Button Component
+    Paste this anywhere in your portal (e.g. Hero section) to trigger the chat.
+-->
+<!--
+<button class="btn-hero-ai" onclick="openFullscreenChat()">
+    <span>💬</span> Get Instant Help
+</button>
+-->
+
 <!-- Essential Scripts -->
 <script type="module" src="https://js.dev.embrace.ai/v1/elements.js"></script>
 <script>
@@ -167,6 +200,12 @@
                 updateWidgetStyles(false);
             }
         });
+
+        window.openFullscreenChat = function () {
+            if (!container.classList.contains('widget-fullscreen')) {
+                expandBtn.click();
+            }
+        }
 
         function updateWidgetStyles(isFullscreen) {
             if (isFullscreen) {
