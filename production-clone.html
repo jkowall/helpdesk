@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paessler Knowledge Base</title>
+    <!-- Use the same fonts and styles as production -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Embrace AI Script -->
+    <script type="module" src="https://js.dev.embrace.ai/v1/elements.js"></script>
+
+    <style>
+        :root {
+            --production-blue: #00adef;
+            --production-orange: #f7941e;
+            --production-dark-blue: #0d1a2b;
+            --production-text: #444;
+            --production-bg: #f5f7f9;
+            --widget-height-collapsed: 50px;
+            --widget-bg: #004b87;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--production-text);
+            background-color: #fff;
+            padding-top: var(--widget-height-collapsed);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--production-blue);
+        }
+
+        /* ── Header ─────────────────────────────────── */
+        header {
+            background: #fff;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-area img {
+            height: 35px;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .btn-signin {
+            background-color: var(--production-orange);
+            color: #fff !important;
+            padding: 8px 20px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        /* ── Hero ───────────────────────────────────── */
+        .hero {
+            background: linear-gradient(135deg, #0d1a2b 0%, #005c9e 100%);
+            padding: 70px 20px 80px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 300;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        .btn-create-ticket-hero {
+            background-color: var(--production-blue);
+            color: #fff;
+            padding: 14px 40px;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .register-link {
+            display: block;
+            color: #fff;
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        /* ── Cards Grid ─────────────────────────────── */
+        .content-area {
+            background-color: var(--production-bg);
+            padding: 60px 20px;
+        }
+
+        .cards-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 40px 25px 30px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            height: 120px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 25px;
+            flex: 1;
+        }
+
+        .btn-action {
+            background-color: var(--production-blue);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            width: 100%;
+        }
+
+        /* ── Footer ─────────────────────────────────── */
+        footer {
+            background: #fff;
+            padding: 60px 20px 40px;
+            border-top: 1px solid #eee;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h4 {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .footer-col a {
+            color: #666;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            border-top: 1px solid #eee;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-legal a {
+            color: #999;
+        }
+
+        /* ── Back link ──────────────────────────────── */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin: 10px 0 0 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--production-blue);
+        }
+
+        /* ── Embrace Widget ─────────────────────────── */
+        #embrace-widget-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--widget-height-collapsed);
+            background-color: var(--widget-bg);
+            color: #fff;
+            z-index: 9999;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #embrace-widget-container.widget-fullscreen {
+            height: 100vh;
+            width: 100vw;
+            padding: 0;
+            flex-direction: column;
+            align-items: stretch;
+            background-color: #fff;
+        }
+
+        .widget-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            z-index: 10001;
+        }
+
+        #embrace-widget-container.widget-fullscreen .widget-controls {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+        }
+
+        .bar-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bar-label::before {
+            content: '💬';
+        }
+
+        .ai-disclosure {
+            font-size: 0.7rem;
+            opacity: 0.6;
+            font-weight: 300;
+            margin-left: auto;
+            margin-right: 16px;
+            white-space: nowrap;
+        }
+
+        #embrace-widget-container.widget-fullscreen .ai-disclosure {
+            display: none;
+        }
+
+        .widget-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .widget-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .widget-btn.primary {
+            background-color: #90c226;
+            /* Brand green */
+            color: #fff;
+        }
+
+        #btn-open-ticket-widget {
+            display: none;
+        }
+
+        .chat-wrapper {
+            flex: 1;
+            width: 100%;
+            height: 100%;
+            display: none;
+            position: relative;
+        }
+
+        #embrace-widget-container.widget-fullscreen .chat-wrapper {
+            display: block;
+            padding-top: 60px;
+        }
+
+        @media (max-width: 900px) {
+
+            .cards-grid,
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .cards-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Widget Container -->
+    <div id="embrace-widget-container" class="widget-top-bar">
+        <div class="bar-label">Get Instant Help</div>
+        <div class="ai-disclosure">Powered by AI</div>
+
+        <div class="chat-wrapper">
+            <embrace-chat org-id="YOUR_ORG_ID" client-id="YOUR_CLIENT_ID" external-id="demo-widget-paessler-prod-clone">
+                <template>
+                    <div slot="initial-message"
+                        style="background: #fff8e1; border: 1px solid #ffe082; border-radius: 8px; padding: 10px 14px; margin: 8px 16px; font-size: 0.85rem; color: #6d5b00; display: flex; align-items: flex-start; gap: 8px;">
+                        <span style="font-size: 1.1rem;">⚠️</span>
+                        <span>You are chatting with an AI assistant. Responses may not always be accurate. For complex
+                            issues, please <strong>open a support ticket</strong>.</span>
+                    </div>
+                </template>
+            </embrace-chat>
+        </div>
+
+        <div class="widget-controls">
+            <button id="btn-open-ticket-widget" class="widget-btn">Still need help? Open a Ticket</button>
+            <button id="btn-expand" class="widget-btn primary">Expand Chat</button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <a href="index.html" class="back-link">← All Mockups</a>
+                <img src="https://media.paessler.com/common/img/paessler-logo.svg" alt="Paessler Logo">
+                <span class="logo-text">Paessler Helpdesk</span>
+            </div>
+            <nav class="header-nav">
+                <a href="https://helpdesk.paessler.com/en/support/solutions">Knowledge Base</a>
+                <a href="https://helpdesk.paessler.com/en/support/signup">Register</a>
+                <a href="https://helpdesk.paessler.com/en/support/login" class="btn-signin">Sign in</a>
+                <a href="https://www.paessler.com">www.paessler.com</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>We're here to help you!</h1>
+        <p>Our experts will assist you with anything you need.</p>
+        <a href="https://helpdesk.paessler.com/en/support/tickets/new" class="btn-create-ticket-hero">Create Ticket</a>
+        <span class="register-link">Not yet registered? <a href="https://helpdesk.paessler.com/en/support/signup"
+                style="color: #fff; text-decoration: underline;">Register now.</a></span>
+    </section>
+
+    <!-- Cards Section -->
+    <section class="content-area">
+        <div class="cards-grid">
+            <!-- Card 1 -->
+            <div class="card">
+                <div class="card-icon">
+                    <img src="https://paessler.canto.global/direct/image/f68bb4m6k52sv0pch0jbcmcf3v/y9J2DOR_XcSkVfTS8OtNyWkBupY/original?content-type=image%2Fsvg%2Bxml"
+                        alt="Create Ticket" style="width: 100px;">
+                </div>
+                <h3>Create ticket</h3>
+                <p>We strive to respond to all requests within one business day (Monday to Friday).</p>
+                <a href="https://helpdesk.paessler.com/en/support/tickets/new" class="btn-action">Create ticket</a>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <div class="card-icon">
+                    <img src="https://paessler.canto.global/direct/image/7oi7f9t3g17v1a2q6ge7vuqf67/P_RX2hwNtJZkPS8nnqYBmtVSvyA/original?content-type=image%2Fsvg%2Bxml"
+                        alt="Knowledge Base" style="width: 100px;">
+                </div>
+                <h3>Knowledge Base</h3>
+                <p>Here you can find questions and answers about PRTG and network monitoring.</p>
+                <a href="https://helpdesk.paessler.com/en/support/solutions" class="btn-action">Knowledge Base</a>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="card-icon">
+                    <img src="https://paessler.canto.global/direct/image/ilih5m88v569f7ojatp4g2se7s/hm4Tni1cy9NJAXVx514Hck-DZXU/original?content-type=image%2Fsvg%2Bxml"
+                        alt="Other Resources" style="width: 100px;">
+                </div>
+                <h3>Other Resources</h3>
+                <p>Explore all our support resources, from FAQ, videos, manuals and Co.</p>
+                <a href="https://www.paessler.com/support" class="btn-action">Other Resources</a>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card">
+                <div class="card-icon">
+                    <img src="https://paessler.canto.global/direct/image/p00t8i1lc97nt0r3botvmpup4k/2-w4qEm7JG6DCSJCzgylqcsoh5c/original?content-type=image%2Fsvg%2Bxml"
+                        alt="Feature Request" style="width: 100px;">
+                </div>
+                <h3>Feature Request</h3>
+                <p>Got a feature you'd like to see? Make your voice count!</p>
+                <a href="https://uservoice.paessler.com/" class="btn-action">Feature Request</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="https://www.paessler.com/prtg">PRTG Network Monitor</a></li>
+                    <li><a href="https://www.paessler.com/prtg-enterprise-monitor">PRTG Enterprise Monitor</a></li>
+                    <li><a href="https://www.paessler.com/prtg-hosted-monitor">PRTG Hosted Monitor</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Monitoring with PRTG</h4>
+                <ul>
+                    <li><a href="https://www.paessler.com/manuals/prtg">PRTG Manual</a></li>
+                    <li><a href="https://www.paessler.com/blog">PRTG Blog</a></li>
+                    <li><a href="https://www.paessler.com/prtg/sensors">Available Sensors</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Useful Links</h4>
+                <ul>
+                    <li><a href="https://www.paessler.com/support">Support Overview</a></li>
+                    <li><a href="https://helpdesk.paessler.com/en/support/solutions">Knowledge Base</a></li>
+                    <li><a href="https://www.paessler.com/partners">Partner Program</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li>Nuremberg, Germany</li>
+                    <li>+49 911 93775-0</li>
+                    <li><a href="mailto:info@paessler.com">info@paessler.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Paessler GmbH</p>
+            <div class="footer-legal">
+                <a href="https://www.paessler.com/terms">Terms</a>
+                <a href="https://www.paessler.com/privacy">Privacy</a>
+                <a href="https://www.paessler.com/imprint">Imprint</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Widget Logic (consistent across mockups)
+        const container = document.getElementById('embrace-widget-container');
+        const expandBtn = document.getElementById('btn-expand');
+        const ticketBtnWidget = document.getElementById('btn-open-ticket-widget');
+        const barLabel = document.querySelector('.bar-label');
+
+        expandBtn.addEventListener('click', () => toggleChat());
+
+        function toggleChat() {
+            const isFullscreen = container.classList.toggle('widget-fullscreen');
+            if (isFullscreen) {
+                expandBtn.textContent = 'Collapse Chat';
+                ticketBtnWidget.style.display = 'inline-block';
+                updateControlsForFullscreen(true);
+            } else {
+                expandBtn.textContent = 'Expand Chat';
+                ticketBtnWidget.style.display = 'none';
+                updateControlsForFullscreen(false);
+            }
+        }
+
+        function updateControlsForFullscreen(isFullscreen) {
+            const controls = document.querySelectorAll('.widget-btn');
+            controls.forEach(btn => {
+                if (isFullscreen) {
+                    btn.style.color = '#333';
+                    btn.style.background = '#f0f0f0';
+                    btn.style.border = '1px solid #ccc';
+                    if (btn.classList.contains('primary')) {
+                        btn.style.background = '#90c226';
+                        btn.style.color = 'white';
+                        btn.style.border = 'none';
+                    }
+                    if (btn.id === 'btn-open-ticket-widget') {
+                        btn.style.border = '1px solid #00adef';
+                        btn.style.color = '#00adef';
+                        btn.style.background = 'transparent';
+                    }
+                    barLabel.style.display = 'none';
+                } else {
+                    btn.style.color = 'white';
+                    btn.style.background = 'rgba(255,255,255,0.15)';
+                    btn.style.border = 'none';
+                    if (btn.classList.contains('primary')) {
+                        btn.style.background = '#90c226';
+                    }
+                    barLabel.style.display = 'flex';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

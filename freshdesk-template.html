@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support : Paessler Helpdesk – Freshdesk Template</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Embrace AI Script -->
+    <script type="module" src="https://js.dev.embrace.ai/v1/elements.js"></script>
+
+    <style>
+        :root {
+            --paessler-blue: #005c9e;
+            --paessler-green: #90c226;
+            --paessler-dark: #333333;
+            --text-color: #4a4a4a;
+            --bg-light: #f9f9f9;
+            --blackblue: #1a2a3a;
+            --widget-height-collapsed: 50px;
+            --widget-bg: #004b87;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #fff;
+            padding-top: var(--widget-height-collapsed);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--paessler-blue);
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: #003f6b;
+        }
+
+        /* ── Topbar ─────────────────────────────────── */
+        .topbar {
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 12px 0;
+            margin-bottom: 0px !important;
+        }
+
+        .topbar-inner {
+            max-width: 1140px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--paessler-blue);
+        }
+
+        .logo span {
+            color: var(--paessler-green);
+        }
+
+        .topbar-nav {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .topbar-nav a {
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        /* ── Hero Unit (Dark Blue) ──────────────────── */
+        .hero-unit.background-blackblue {
+            background: linear-gradient(135deg, #0d1b2a 0%, #1b3a5c 50%, #005c9e 100%);
+            padding: 60px 20px 70px;
+            text-align: center;
+            color: #fff;
+            margin-top: 0 !important;
+        }
+
+        .hero-unit h1.white {
+            font-size: 2.4rem;
+            font-weight: 300;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .hero-unit h2.white {
+            font-size: 1.15rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 0;
+        }
+
+        /* ── Search Form (inside hero) ──────────────── */
+        .search-box {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .hc-search-form {
+            display: flex;
+            margin-top: 10px;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .hc-search-input {
+            flex: 1;
+        }
+
+        .hc-search-input input {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1.05rem;
+            border: none;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .hc-search-button button {
+            background: var(--paessler-green);
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: background 0.2s;
+        }
+
+        .hc-search-button button:hover {
+            background: #7da820;
+        }
+
+        /* ── Content Box Grid ───────────────────────── */
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 40px 15px 60px;
+        }
+
+        .container-inner {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .container-inner section {
+            display: contents;
+        }
+
+        .box-segment {
+            background: #fff;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            transition: transform 0.25s, box-shadow 0.25s;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #eee;
+            min-height: 380px;
+        }
+
+        .box-segment:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+        }
+
+        .box-segment a,
+        a .box-segment {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .box-image {
+            padding: 30px 30px 10px;
+            text-align: center;
+        }
+
+        .box-image img {
+            max-width: 120px;
+            height: auto;
+        }
+
+        .box-content {
+            padding: 10px 28px 28px;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box-content h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--paessler-dark);
+            margin-bottom: 12px;
+        }
+
+        .box-content p {
+            font-size: 0.92rem;
+            color: #666;
+            flex: 1;
+            margin-bottom: 18px;
+        }
+
+        /* ── Buttons ────────────────────────────────── */
+        .btn {
+            display: inline-block;
+            padding: 10px 22px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--paessler-blue);
+            color: #fff !important;
+        }
+
+        .btn-primary:hover {
+            background-color: #004577;
+        }
+
+        .btn.extralarge {
+            padding: 14px 36px;
+            font-size: 1.1rem;
+        }
+
+        /* ── Performance / Callback Service (full width) ── */
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 15px 60px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+            border-radius: 8px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            border: 1px solid #dde3ea;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+        }
+
+        .service-card img {
+            width: 100px;
+            flex-shrink: 0;
+        }
+
+        .service-card-body h3 {
+            font-size: 1.1rem;
+            color: var(--paessler-dark);
+            margin-bottom: 8px;
+        }
+
+        .service-card-body p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 14px;
+        }
+
+        /* ── Footer ─────────────────────────────────── */
+        footer {
+            background: #f0f0f0;
+            padding: 36px 0;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        footer .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 16px;
+        }
+
+        /* ── Back link ──────────────────────────────── */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin: 16px 0 0 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--paessler-blue);
+        }
+
+        /* ── Embrace Widget Container ───────────────── */
+        #embrace-widget-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--widget-height-collapsed);
+            background-color: var(--widget-bg);
+            color: #fff;
+            z-index: 9999;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #embrace-widget-container.widget-fullscreen {
+            height: 100vh;
+            width: 100vw;
+            padding: 0;
+            flex-direction: column;
+            align-items: stretch;
+            background-color: #fff;
+        }
+
+        .widget-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            z-index: 10001;
+        }
+
+        #embrace-widget-container.widget-fullscreen .widget-controls {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+        }
+
+        .bar-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bar-label::before {
+            content: '💬';
+        }
+
+        .ai-disclosure {
+            font-size: 0.7rem;
+            opacity: 0.6;
+            font-weight: 300;
+            margin-left: auto;
+            margin-right: 16px;
+            white-space: nowrap;
+        }
+
+        #embrace-widget-container.widget-fullscreen .ai-disclosure {
+            display: none;
+        }
+
+        .widget-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .widget-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .widget-btn.primary {
+            background-color: var(--paessler-green);
+            color: #fff;
+        }
+
+        .widget-btn.primary:hover {
+            background-color: #7da820;
+        }
+
+        #btn-open-ticket-widget {
+            display: none;
+        }
+
+        .chat-wrapper {
+            flex: 1;
+            width: 100%;
+            height: 100%;
+            display: none;
+            position: relative;
+        }
+
+        #embrace-widget-container.widget-fullscreen .chat-wrapper {
+            display: block;
+            padding-top: 60px;
+        }
+
+        /* ── Responsive ─────────────────────────────── */
+        @media (max-width: 768px) {
+            .hero-unit h1.white {
+                font-size: 1.6rem;
+            }
+
+            .container-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .service-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Widget Container -->
+    <div id="embrace-widget-container" class="widget-top-bar">
+        <div class="bar-label">Get Instant Help</div>
+        <div class="ai-disclosure">Powered by AI</div>
+
+        <div class="chat-wrapper">
+            <embrace-chat org-id="YOUR_ORG_ID" client-id="YOUR_CLIENT_ID" external-id="demo-widget-paessler-v2">
+                <template>
+                    <div slot="initial-message"
+                        style="background: #fff8e1; border: 1px solid #ffe082; border-radius: 8px; padding: 10px 14px; margin: 8px 16px; font-size: 0.85rem; color: #6d5b00; display: flex; align-items: flex-start; gap: 8px;">
+                        <span style="font-size: 1.1rem;">⚠️</span>
+                        <span>You are chatting with an AI assistant. Responses may not always be accurate. For complex
+                            issues, please <strong>open a support ticket</strong>.</span>
+                    </div>
+                </template>
+            </embrace-chat>
+        </div>
+
+        <div class="widget-controls">
+            <button id="btn-open-ticket-widget" class="widget-btn">Still need help? Open a Ticket</button>
+            <button id="btn-expand" class="widget-btn primary">Expand Chat</button>
+        </div>
+    </div>
+
+    <!-- Topbar / Header -->
+    <div class="topbar">
+        <div class="topbar-inner">
+            <div class="logo">PAESSLER <span>HELPDESK</span></div>
+            <nav class="topbar-nav">
+                <a href="index.html">← All Mockups</a>
+                <a href="#">Home</a>
+                <a href="#">Solutions</a>
+                <a href="#">Forums</a>
+                <span style="color: #ccc;">|</span>
+                <a href="#">My Tickets</a>
+                <a href="#">Login</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Dark Blue Hero Header Bar -->
+    <section class="hero-unit background-blackblue">
+        <div class="search-box">
+            <h1 class="white">How can we help you today, User?</h1>
+            <h2 class="white">Our experts will assist you with anything you need.<br><br></h2>
+            <form class="hc-search-form" autocomplete="off" action="#" method="get">
+                <div class="hc-search-input">
+                    <input placeholder="Enter your search term here..." type="text" name="q" autocomplete="off">
+                </div>
+                <div class="hc-search-button">
+                    <button type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Content Boxes -->
+    <div class="container">
+        <div class="container-inner">
+            <section>
+
+                <!-- NEW SUPPORT TICKET -->
+                <a href="https://helpdesk.paessler.com/en/support/tickets/new" class="box-segment">
+                    <div class="box-image">
+                        <img src="https://paessler.canto.global/direct/image/f68bb4m6k52sv0pch0jbcmcf3v/y9J2DOR_XcSkVfTS8OtNyWkBupY/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_New-Ticket.svg"
+                            alt="Create ticket">
+                    </div>
+                    <div class="box-content">
+                        <h3>Create ticket</h3>
+                        <p>We strive to respond to all requests within one business day (Monday to Friday).</p>
+                        <span class="btn btn-primary">Create ticket</span>
+                    </div>
+                </a>
+
+                <!-- TICKET OVERVIEW -->
+                <a href="https://helpdesk.paessler.com/en/support/tickets" class="box-segment">
+                    <div class="box-image">
+                        <img src="https://paessler.canto.global/direct/image/4nm8teekqh11p6uvadhjs4qg62/JEA7rMfXu_DfAyth4zncCcjqI8Q/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_Ticket-Overview.svg"
+                            alt="All your tickets">
+                    </div>
+                    <div class="box-content">
+                        <h3>All your tickets</h3>
+                        <p>Click for an overview of all your tickets to quickly see the previous conversations or their
+                            status.</p>
+                        <span class="btn btn-primary">My tickets</span>
+                    </div>
+                </a>
+
+                <!-- KNOWLEDGE BASE -->
+                <a href="https://helpdesk.paessler.com/en/support/solutions" class="box-segment">
+                    <div class="box-image">
+                        <img src="https://paessler.canto.global/direct/image/7oi7f9t3g17v1a2q6ge7vuqf67/P_RX2hwNtJZkPS8nnqYBmtVSvyA/original?content-type=image%2Fsvg%2Bxml&name=Preview_Category_KnowledgeBase.svg"
+                            alt="Knowledge Base">
+                    </div>
+                    <div class="box-content">
+                        <h3>Knowledge Base</h3>
+                        <p>Here you can find questions and answers about PRTG and network monitoring in general.</p>
+                        <span class="btn btn-primary">Knowledge Base</span>
+                    </div>
+                </a>
+
+                <!-- OTHER RESOURCES -->
+                <a href="https://www.paessler.com/support" target="_blank" class="box-segment">
+                    <div class="box-image">
+                        <img src="https://paessler.canto.global/direct/image/ilih5m88v569f7ojatp4g2se7s/hm4Tni1cy9NJAXVx514Hck-DZXU/original?content-type=image%2Fsvg%2Bxml&name=Preview_Resources-Support.svg"
+                            alt="Other Resources">
+                    </div>
+                    <div class="box-content">
+                        <h3>Other Resources</h3>
+                        <p>Explore all our support resources, from FAQ, videos, manuals and Co.</p>
+                        <span class="btn btn-primary">Other Resources</span>
+                    </div>
+                </a>
+
+                <!-- FEATURE REQUEST / USERVOICE -->
+                <a href="https://uservoice.paessler.com/" target="_blank" class="box-segment">
+                    <div class="box-image">
+                        <img src="https://paessler.canto.global/direct/image/p00t8i1lc97nt0r3botvmpup4k/2-w4qEm7JG6DCSJCzgylqcsoh5c/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_UserVoice.svg"
+                            alt="Feature Request">
+                    </div>
+                    <div class="box-content">
+                        <h3>Feature Request</h3>
+                        <p>Got a feature you'd like to see? Make your voice count!</p>
+                        <span class="btn btn-primary">Feature Request</span>
+                    </div>
+                </a>
+
+            </section>
+        </div>
+    </div>
+
+    <!-- Performance Check & Callback Service Cards (Conditional in Liquid) -->
+    <div class="service-cards">
+        <a href="https://helpdesk.paessler.com/en/support/tickets/new" class="service-card">
+            <img src="https://paessler.canto.global/direct/image/l8gbjkqkh55upeeq63l6t6d32e/eNmJCkqGp1aSYejjtBhBUeIxLdM/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_Performance.svg"
+                alt="Performance Check">
+            <div class="service-card-body">
+                <h3>Performance Check Service</h3>
+                <p>Let's take a closer look at all performance-related issues. Select Service | Performance Check when
+                    creating a new ticket.</p>
+                <span class="btn btn-primary">Request</span>
+            </div>
+        </a>
+
+        <a href="https://helpdesk.paessler.com/en/support/tickets/new" class="service-card" style="display: none;">
+            <!-- Hidden by default in this mockup as per logic -->
+            <img src="https://paessler.canto.global/direct/image/f68bb4m6k52sv0pch0jbcmcf3v/y9J2DOR_XcSkVfTS8OtNyWkBupY/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_New-Ticket.svg"
+                alt="Callback Service">
+            <div class="service-card-body">
+                <h3>Callback Service</h3>
+                <p>Need an expert? Our support engineers will happily assist you on the matter. Select Service |
+                    Callback
+                    when creating a new ticket.</p>
+                <span class="btn btn-primary">Request</span>
+            </div>
+        </a>
+    </div>
+
+    <!-- Community Forums Segment (Liquid: portal.has_forums) -->
+    <div class="container" style="margin-top: -30px;">
+        <section class="sidebar content community-sidebar rounded-6"
+            style="background: #fdfdfd; padding: 30px; border: 1px solid #eee; border-radius: 6px;">
+            <h2 class="heading" style="margin-bottom: 20px; font-size: 1.5rem; color: var(--paessler-dark);">Community
+                Forums</h2>
+            <p class="intro" style="color: #888; margin-bottom: 20px;">Showing recent updates</p>
+
+            <div class="forum-category" style="margin-bottom: 30px;">
+                <h4
+                    style="color: var(--paessler-blue); margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;">
+                    General Discussion</h4>
+                <div class="topic-item" style="padding: 10px 0; border-bottom: 1px dotted #eee;">
+                    <a href="https://helpdesk.paessler.com/en/support/discussions/topics/1"
+                        style="font-weight: 600;">How to monitor SNMP Traffic?</a>
+                    <p style="font-size: 0.8rem; color: #999;">Last post by Admin · 2 days ago</p>
+                </div>
+                <div class="topic-item" style="padding: 10px 0; border-bottom: 1px dotted #eee;">
+                    <a href="https://helpdesk.paessler.com/en/support/discussions/topics/2"
+                        style="font-weight: 600;">Using PRTG with cloud sensors</a>
+                    <p style="font-size: 0.8rem; color: #999;">Last post by User123 · 5 hours ago</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="https://www.paessler.com">Paessler Website</a>
+            <a href="#">Blog</a>
+            <a href="#">Manuals</a>
+            <a href="#">Videos</a>
+        </div>
+        <p>&copy; 2026 Paessler GmbH. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Widget Logic (same as full mockup)
+        const container = document.getElementById('embrace-widget-container');
+        const expandBtn = document.getElementById('btn-expand');
+        const ticketBtnWidget = document.getElementById('btn-open-ticket-widget');
+        const barLabel = document.querySelector('.bar-label');
+
+        expandBtn.addEventListener('click', () => toggleChat());
+
+        function toggleChat() {
+            const isFullscreen = container.classList.toggle('widget-fullscreen');
+            if (isFullscreen) {
+                expandBtn.textContent = 'Collapse Chat';
+                ticketBtnWidget.style.display = 'inline-block';
+                updateControlsForFullscreen(true);
+            } else {
+                expandBtn.textContent = 'Expand Chat';
+                ticketBtnWidget.style.display = 'none';
+                updateControlsForFullscreen(false);
+            }
+        }
+
+        window.openFullscreenChat = function () {
+            if (!container.classList.contains('widget-fullscreen')) {
+                toggleChat();
+            }
+        }
+
+        function updateControlsForFullscreen(isFullscreen) {
+            const controls = document.querySelectorAll('.widget-btn');
+            controls.forEach(btn => {
+                if (isFullscreen) {
+                    btn.style.color = '#333';
+                    btn.style.background = '#f0f0f0';
+                    btn.style.border = '1px solid #ccc';
+                    if (btn.classList.contains('primary')) {
+                        btn.style.background = 'var(--paessler-green)';
+                        btn.style.color = 'white';
+                        btn.style.border = 'none';
+                    }
+                    if (btn.id === 'btn-open-ticket-widget') {
+                        btn.style.border = '1px solid var(--paessler-blue)';
+                        btn.style.color = 'var(--paessler-blue)';
+                        btn.style.background = 'transparent';
+                    }
+                    barLabel.style.display = 'none';
+                } else {
+                    btn.style.color = 'white';
+                    btn.style.background = 'rgba(255,255,255,0.15)';
+                    btn.style.border = 'none';
+                    if (btn.classList.contains('primary')) {
+                        btn.style.background = 'var(--paessler-green)';
+                    }
+                    barLabel.style.display = 'flex';
+                }
+            });
+        }
+
+        ticketBtnWidget.addEventListener('click', () => {
+            alert('Opening Ticket Creation Flow...');
+        });
+    </script>
+</body>
+
+</html>
