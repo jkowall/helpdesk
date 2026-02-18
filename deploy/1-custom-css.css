@@ -1,0 +1,243 @@
+/* ============================================================
+   PAESSLER HELPDESK – AI WIDGET CUSTOM CSS
+   Paste into: Admin → Portals → Appearance → CSS / Stylesheet
+   ============================================================ */
+
+:root {
+    --fd-widget-height: 50px;
+    --fd-widget-bg: #004b87;
+    --fd-brand-green: #90c226;
+    --fd-brand-blue: #00adef;
+    --fd-brand-orange: #f59c00;
+}
+
+/* Push page content below the fixed widget bar */
+body {
+    padding-top: var(--fd-widget-height) !important;
+}
+
+/* ── Widget Top Bar (collapsed state) ──────────────────────── */
+#embrace-widget-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--fd-widget-height);
+    background-color: var(--fd-widget-bg);
+    color: #fff;
+    z-index: 10000;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    font-family: 'Open Sans', 'Roboto', sans-serif;
+}
+
+/* ── Widget Fullscreen (expanded chat) ─────────────────────── */
+#embrace-widget-container.widget-fullscreen {
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    flex-direction: column;
+    align-items: stretch;
+    background-color: #fff;
+    box-shadow: none;
+}
+
+/* ── Collapsed bar elements ────────────────────────────────── */
+.bar-label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.bar-label::before {
+    content: '💬';
+}
+
+.ai-disclosure {
+    font-size: 0.7rem;
+    opacity: 0.6;
+    font-weight: 300;
+    margin-left: auto;
+    margin-right: 16px;
+    white-space: nowrap;
+}
+
+#embrace-widget-container.widget-fullscreen .bar-label,
+#embrace-widget-container.widget-fullscreen .ai-disclosure {
+    display: none;
+}
+
+/* ── Collapsed controls ────────────────────────────────────── */
+.widget-controls-collapsed {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#embrace-widget-container.widget-fullscreen .widget-controls-collapsed {
+    display: none;
+}
+
+.widget-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    text-decoration: none;
+}
+
+.widget-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.widget-btn.primary {
+    background-color: var(--fd-brand-green);
+    color: #fff;
+}
+
+/* ── Fullscreen branded header (Embrace-style) ─────────────── */
+.fs-header {
+    display: none;
+    height: 56px;
+    background: #fff;
+    border-bottom: 1px solid #e8e8e8;
+    padding: 0 20px;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+
+#embrace-widget-container.widget-fullscreen .fs-header {
+    display: flex;
+}
+
+.fs-header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: #555;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.fs-header-left:hover {
+    color: #000;
+}
+
+.fs-header-left svg {
+    width: 16px;
+    height: 16px;
+}
+
+.fs-header-center {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #333;
+}
+
+.fs-header-center img {
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+}
+
+.fs-header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.fs-btn-new-chat {
+    background: none;
+    border: none;
+    color: #555;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.fs-btn-new-chat:hover {
+    background: #f5f5f5;
+}
+
+.fs-btn-create-ticket {
+    background: var(--fd-brand-orange);
+    color: #fff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background 0.2s;
+}
+
+.fs-btn-create-ticket:hover {
+    background: #e5850f;
+}
+
+/* ── Chat Wrapper (shown in fullscreen only) ───────────────── */
+.chat-wrapper {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: relative;
+}
+
+#embrace-widget-container.widget-fullscreen .chat-wrapper {
+    display: block;
+    padding-top: 0;
+}
+
+/* ── Hero "Get Instant Help" Button ────────────────────────── */
+.hero-ai-trigger {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.btn-hero-ai {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.btn-hero-ai:hover {
+    background: #fff;
+    color: var(--fd-brand-blue);
+}

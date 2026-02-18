@@ -1,0 +1,58 @@
+<!--
+  PAESSLER HELPDESK – AI WIDGET SCRIPT (FOOTER)
+  Paste into: Admin → Portals → Appearance → Pages → Footer
+  Place this BEFORE the {{ footer }} tag.
+
+  CSP NOTE: If using the Marina theme, add nonce="{{portal.nonce}}" to both
+  script tags below. Uncomment the nonce versions and remove the plain ones.
+-->
+
+<!-- Embrace AI Web Component Library -->
+<script type="module" src="https://js.dev.embrace.ai/v1/elements.js"></script>
+
+<!-- Widget Logic -->
+<script>
+    (function () {
+        var container = document.getElementById('embrace-widget-container');
+        var expandBtn = document.getElementById('btn-expand');
+        var backBtn = document.getElementById('btn-back-helpdesk');
+
+        if (!container || !expandBtn) return; // Safety check
+
+        expandBtn.addEventListener('click', function () {
+            toggleChat();
+        });
+
+        if (backBtn) {
+            backBtn.addEventListener('click', function () {
+                if (container.classList.contains('widget-fullscreen')) {
+                    toggleChat();
+                }
+            });
+        }
+
+        function toggleChat() {
+            container.classList.toggle('widget-fullscreen');
+        }
+
+        // Global function so the hero button can trigger chat
+        window.openFullscreenChat = function () {
+            if (container && !container.classList.contains('widget-fullscreen')) {
+                toggleChat();
+            }
+        };
+    })();
+</script>
+
+<!--
+  ── CSP/NONCE VERSIONS ──────────────────────────────────────────
+  If your Freshdesk portal enforces Content Security Policy (Marina theme),
+  replace the script tags above with these nonce-enabled versions:
+
+  <script type="module" src="https://js.dev.embrace.ai/v1/elements.js"
+          nonce="{{portal.nonce}}"></script>
+
+  <script nonce="{{portal.nonce}}">
+    // ... (same JS as above)
+  </script>
+-->

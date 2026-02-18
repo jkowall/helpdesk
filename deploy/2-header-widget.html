@@ -1,0 +1,57 @@
+<!--
+  PAESSLER HELPDESK – AI WIDGET (HEADER)
+  Paste into: Admin → Portals → Appearance → Pages → Header
+  Place this ABOVE the existing {{ header }} tag.
+  
+  IMPORTANT: Replace YOUR_ORG_ID and YOUR_CLIENT_ID with real values.
+-->
+
+<!-- AI Widget Top Bar -->
+<div id="embrace-widget-container" class="widget-top-bar">
+    <!-- Collapsed state: bar label + expand button -->
+    <div class="bar-label">Get Instant Help</div>
+    <div class="ai-disclosure">Powered by AI</div>
+
+    <!-- Fullscreen header (Embrace-style branded bar) -->
+    <div class="fs-header">
+        <div class="fs-header-left" id="btn-back-helpdesk">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 18l-6-6 6-6" />
+            </svg>
+            Back to Helpdesk
+        </div>
+        <div class="fs-header-center">
+            <img src="https://media.paessler.com/common/img/favicons/favicon-32x32.png" alt="Paessler">
+            Paessler Support
+        </div>
+        <div class="fs-header-right">
+            <button class="fs-btn-new-chat" title="Start new conversation">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                </svg>
+                New chat
+            </button>
+            <a href="/en/support/tickets/new" class="fs-btn-create-ticket">Create ticket</a>
+        </div>
+    </div>
+
+    <!-- Chat Component -->
+    <div class="chat-wrapper">
+        <!-- ⚠️ REPLACE org-id and client-id with your Embrace AI credentials -->
+        <embrace-chat org-id="YOUR_ORG_ID" client-id="YOUR_CLIENT_ID" external-id="paessler-freshdesk-portal">
+            <template>
+                <div slot="initial-message"
+                    style="background: #fff8e1; border: 1px solid #ffe082; border-radius: 8px; padding: 10px 14px; margin: 8px 16px; font-size: 0.85rem; color: #6d5b00; display: flex; align-items: flex-start; gap: 8px;">
+                    <span style="font-size: 1.1rem;">⚠️</span>
+                    <span>You are chatting with an AI assistant. Responses may not always be accurate.
+                        For complex issues, please <strong>open a support ticket</strong>.</span>
+                </div>
+            </template>
+        </embrace-chat>
+    </div>
+
+    <!-- Collapsed controls -->
+    <div class="widget-controls-collapsed">
+        <button id="btn-expand" class="widget-btn primary">Expand Chat</button>
+    </div>
+</div>

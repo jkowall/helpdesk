@@ -308,21 +308,10 @@
             flex-direction: column;
             align-items: stretch;
             background-color: #fff;
+            box-shadow: none;
         }
 
-        .widget-controls {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            z-index: 10001;
-        }
-
-        #embrace-widget-container.widget-fullscreen .widget-controls {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-        }
-
+        /* ── Collapsed bar elements ─────────────────────── */
         .bar-label {
             font-weight: 600;
             font-size: 0.9rem;
@@ -344,7 +333,19 @@
             white-space: nowrap;
         }
 
+        #embrace-widget-container.widget-fullscreen .bar-label,
         #embrace-widget-container.widget-fullscreen .ai-disclosure {
+            display: none;
+        }
+
+        /* ── Collapsed controls ─────────────────────────── */
+        .widget-controls-collapsed {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        #embrace-widget-container.widget-fullscreen .widget-controls-collapsed {
             display: none;
         }
 
@@ -366,14 +367,103 @@
 
         .widget-btn.primary {
             background-color: #90c226;
-            /* Brand green */
             color: #fff;
         }
 
-        #btn-open-ticket-widget {
+        /* ── Fullscreen branded header (Embrace-style) ──── */
+        .fs-header {
             display: none;
+            height: 56px;
+            background: #fff;
+            border-bottom: 1px solid #e8e8e8;
+            padding: 0 20px;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
         }
 
+        #embrace-widget-container.widget-fullscreen .fs-header {
+            display: flex;
+        }
+
+        .fs-header-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            color: #555;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .fs-header-left:hover {
+            color: #000;
+        }
+
+        .fs-header-left svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .fs-header-center {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .fs-header-center img {
+            height: 28px;
+            width: 28px;
+            border-radius: 50%;
+        }
+
+        .fs-header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .fs-btn-new-chat {
+            background: none;
+            border: none;
+            color: #555;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .fs-btn-new-chat:hover {
+            background: #f5f5f5;
+        }
+
+        .fs-btn-create-ticket {
+            background: var(--production-orange);
+            color: #fff;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            cursor: pointer;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: background 0.2s;
+        }
+
+        .fs-btn-create-ticket:hover {
+            background: #e5850f;
+        }
+
+        /* ── Chat Wrapper ───────────────────────────────── */
         .chat-wrapper {
             flex: 1;
             width: 100%;
@@ -384,7 +474,7 @@
 
         #embrace-widget-container.widget-fullscreen .chat-wrapper {
             display: block;
-            padding-top: 60px;
+            padding-top: 0;
         }
 
         @media (max-width: 900px) {
@@ -413,9 +503,35 @@
 
     <!-- Widget Container -->
     <div id="embrace-widget-container" class="widget-top-bar">
+        <!-- Collapsed state: bar label + expand button -->
         <div class="bar-label">Get Instant Help</div>
         <div class="ai-disclosure">Powered by AI</div>
 
+        <!-- Fullscreen header (Embrace-style branded bar) -->
+        <div class="fs-header">
+            <div class="fs-header-left" id="btn-back-helpdesk">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 18l-6-6 6-6" />
+                </svg>
+                Back to Helpdesk
+            </div>
+            <div class="fs-header-center">
+                <img src="https://media.paessler.com/common/img/favicons/favicon-32x32.png" alt="Paessler">
+                Paessler Support
+            </div>
+            <div class="fs-header-right">
+                <button class="fs-btn-new-chat" title="Start new conversation">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    </svg>
+                    New chat
+                </button>
+                <a href="https://helpdesk.paessler.com/en/support/tickets/new" class="fs-btn-create-ticket">Create
+                    ticket</a>
+            </div>
+        </div>
+
+        <!-- Chat Component -->
         <div class="chat-wrapper">
             <embrace-chat org-id="YOUR_ORG_ID" client-id="YOUR_CLIENT_ID" external-id="demo-widget-paessler-prod-clone">
                 <template>
@@ -429,8 +545,8 @@
             </embrace-chat>
         </div>
 
-        <div class="widget-controls">
-            <button id="btn-open-ticket-widget" class="widget-btn">Still need help? Open a Ticket</button>
+        <!-- Collapsed controls -->
+        <div class="widget-controls-collapsed">
             <button id="btn-expand" class="widget-btn primary">Expand Chat</button>
         </div>
     </div>
@@ -564,61 +680,27 @@
     </footer>
 
     <script>
-        // Widget Logic (consistent across mockups)
+        // Widget Logic
         const container = document.getElementById('embrace-widget-container');
         const expandBtn = document.getElementById('btn-expand');
-        const ticketBtnWidget = document.getElementById('btn-open-ticket-widget');
+        const backBtn = document.getElementById('btn-back-helpdesk');
         const barLabel = document.querySelector('.bar-label');
 
         expandBtn.addEventListener('click', () => toggleChat());
+        backBtn.addEventListener('click', () => {
+            if (container.classList.contains('widget-fullscreen')) {
+                toggleChat();
+            }
+        });
 
         function toggleChat() {
-            const isFullscreen = container.classList.toggle('widget-fullscreen');
-            if (isFullscreen) {
-                expandBtn.textContent = 'Collapse Chat';
-                ticketBtnWidget.style.display = 'inline-block';
-                updateControlsForFullscreen(true);
-            } else {
-                expandBtn.textContent = 'Expand Chat';
-                ticketBtnWidget.style.display = 'none';
-                updateControlsForFullscreen(false);
-            }
+            container.classList.toggle('widget-fullscreen');
         }
 
         window.openFullscreenChat = function () {
             if (!container.classList.contains('widget-fullscreen')) {
                 toggleChat();
             }
-        }
-
-        function updateControlsForFullscreen(isFullscreen) {
-            const controls = document.querySelectorAll('.widget-btn');
-            controls.forEach(btn => {
-                if (isFullscreen) {
-                    btn.style.color = '#333';
-                    btn.style.background = '#f0f0f0';
-                    btn.style.border = '1px solid #ccc';
-                    if (btn.classList.contains('primary')) {
-                        btn.style.background = '#90c226';
-                        btn.style.color = 'white';
-                        btn.style.border = 'none';
-                    }
-                    if (btn.id === 'btn-open-ticket-widget') {
-                        btn.style.border = '1px solid #00adef';
-                        btn.style.color = '#00adef';
-                        btn.style.background = 'transparent';
-                    }
-                    barLabel.style.display = 'none';
-                } else {
-                    btn.style.color = 'white';
-                    btn.style.background = 'rgba(255,255,255,0.15)';
-                    btn.style.border = 'none';
-                    if (btn.classList.contains('primary')) {
-                        btn.style.background = '#90c226';
-                    }
-                    barLabel.style.display = 'flex';
-                }
-            });
         }
     </script>
 </body>
