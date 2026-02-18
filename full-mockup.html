@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support : Paessler Helpdesk</title>
+    <!-- Use Open Sans for clean look similar to Paessler -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Embrace AI Script -->
+    <script type="module" src="https://js.dev.embrace.ai/v1/elements.js"></script>
+
+    <style>
+        :root {
+            --paessler-blue: #005c9e;
+            /* Paessler Brand Blue */
+            --paessler-green: #90c226;
+            /* Action Green */
+            --paessler-dark: #333333;
+            --text-color: #4a4a4a;
+            --bg-light: #f9f9f9;
+            --widget-height-collapsed: 50px;
+            /* Slightly smaller top bar */
+            --widget-bg: #004b87;
+            /* Darker blue for widget bar */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #fff;
+            padding-top: var(--widget-height-collapsed);
+            /* Space for the fixed widget */
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--paessler-blue);
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: #003f6b;
+        }
+
+        /* Header */
+        header {
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 15px 0;
+        }
+
+        .header-container {
+            max-width: 1140px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--paessler-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--paessler-green);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .btn-ticket {
+            padding: 8px 16px;
+            border: 1px solid var(--paessler-blue);
+            border-radius: 4px;
+            color: var(--paessler-blue) !important;
+            font-weight: 600;
+        }
+
+        .btn-ticket:hover {
+            background: var(--paessler-blue);
+            color: #fff !important;
+        }
+
+        /* Hero / Search Section */
+        .hero-section {
+            background-image: linear-gradient(135deg, #005c9e 0%, #0088cc 100%);
+            padding: 60px 0 80px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .search-container {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            outline: none;
+        }
+
+        .search-button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            bottom: 5px;
+            background: var(--paessler-green);
+            color: #fff;
+            border: none;
+            padding: 0 25px;
+            border-radius: 3px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        /* New Hero CTA for AI */
+        .hero-ai-trigger {
+            margin-top: 30px;
+        }
+
+        .btn-hero-ai {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-hero-ai:hover {
+            background: #fff;
+            color: var(--paessler-blue);
+        }
+
+        /* Content Grid */
+        .content-section {
+            padding: 60px 0;
+            background-color: var(--bg-light);
+        }
+
+        .grid-container {
+            max-width: 1140px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 0 15px;
+        }
+
+        .feature-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 4px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            border-top: 3px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-top-color: var(--paessler-green);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--paessler-blue);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--paessler-dark);
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .card-link {
+            color: var(--paessler-blue);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #f0f0f0;
+            padding: 40px 0;
+            border-top: 1px solid #e0e0e0;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1140px;
+            margin: 0 auto;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Embrace Widget Container Logic */
+        #embrace-widget-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--widget-height-collapsed);
+            background-color: var(--widget-bg);
+            /* Use brand darker blue */
+            color: #fff;
+            z-index: 9999;
+            /* Maintain top priority */
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Fullscreen State */
+        #embrace-widget-container.widget-fullscreen {
+            height: 100vh;
+            width: 100vw;
+            padding: 0;
+            flex-direction: column;
+            align-items: stretch;
+            background-color: #fff;
+            /* White background for full chat experience */
+        }
+
+        .widget-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            z-index: 10001;
+        }
+
+        #embrace-widget-container.widget-fullscreen .widget-controls {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+        }
+
+        .bar-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bar-label::before {
+            content: '💬';
+        }
+
+        .ai-disclosure {
+            font-size: 0.7rem;
+            opacity: 0.6;
+            font-weight: 300;
+            margin-left: auto;
+            margin-right: 16px;
+            white-space: nowrap;
+        }
+
+        #embrace-widget-container.widget-fullscreen .ai-disclosure {
+            display: none;
+        }
+
+        /* Widget Buttons */
+        .widget-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .widget-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .widget-btn.primary {
+            background-color: var(--paessler-green);
+            color: #fff;
+        }
+
+        .widget-btn.primary:hover {
+            background-color: #7da820;
+        }
+
+        /* Hidden by default in collapsed state, shown in fullscreen */
+        #btn-open-ticket-widget {
+            display: none;
+        }
+
+        /* Chat Wrapper */
+        .chat-wrapper {
+            flex: 1;
+            width: 100%;
+            height: 100%;
+            display: none;
+            /* Hidden in bar mode */
+            position: relative;
+        }
+
+        #embrace-widget-container.widget-fullscreen .chat-wrapper {
+            display: block;
+            padding-top: 60px;
+            /* Space for controls */
+        }
+
+        /* Reset button on main page */
+        .reset-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #999;
+            font-size: 0.8rem;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Widget Container -->
+    <div id="embrace-widget-container" class="widget-top-bar">
+        <div class="bar-label">Get Instant Help</div>
+        <div class="ai-disclosure">Powered by AI</div>
+
+        <!-- Chat Component Wrapper -->
+        <div class="chat-wrapper">
+            <!-- 
+                NOTE: Replace attributes with real values. 
+             -->
+            <embrace-chat org-id="YOUR_ORG_ID" client-id="YOUR_CLIENT_ID" external-id="demo-widget-paessler-v2">
+                <template>
+                    <div slot="initial-message"
+                        style="background: #fff8e1; border: 1px solid #ffe082; border-radius: 8px; padding: 10px 14px; margin: 8px 16px; font-size: 0.85rem; color: #6d5b00; display: flex; align-items: flex-start; gap: 8px;">
+                        <span style="font-size: 1.1rem;">⚠️</span>
+                        <span>You are chatting with an AI assistant. Responses may not always be accurate. For complex
+                            issues, please <strong>open a support ticket</strong>.</span>
+                    </div>
+                </template>
+            </embrace-chat>
+        </div>
+
+        <!-- Controls -->
+        <div class="widget-controls">
+            <!-- Open Ticket - Hidden initially, shown in Fullscreen mode -->
+            <button id="btn-open-ticket-widget" class="widget-btn">Still need help? Open a Ticket</button>
+            <button id="btn-expand" class="widget-btn primary">Expand Chat</button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                PAESSLER <span>HELPDESK</span>
+            </div>
+            <nav class="nav-links">
+                <a href="https://helpdesk.paessler.com/en/support/home">Home</a>
+                <a href="https://helpdesk.paessler.com/en/support/solutions">Solutions</a>
+                <a href="https://helpdesk.paessler.com/en/support/discussions">Forums</a>
+                <span style="color: #ccc;">|</span>
+                <a href="https://helpdesk.paessler.com/en/support/login">Login</a>
+                <a href="https://helpdesk.paessler.com/en/support/signup">Sign up</a>
+                <a href="https://helpdesk.paessler.com/en/support/tickets/new" class="btn-ticket">Submit a ticket</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1 class="hero-title">We're here to help you!</h1>
+        <p class="hero-subtitle">Our experts will assist you with anything you need.</p>
+
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search knowledge base...">
+            <button class="search-button">Search</button>
+        </div>
+
+        <!-- New: Ask AI Trigger -->
+        <div class="hero-ai-trigger">
+            <button class="btn-hero-ai" onclick="openFullscreenChat()">
+                <span>💬</span> Get Instant Help
+            </button>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="content-section">
+        <div class="grid-container">
+            <!-- Card 1 -->
+            <div class="feature-card">
+                <div class="card-icon">🎫</div>
+                <h3 class="card-title">Create Ticket</h3>
+                <p class="card-desc">We strive to respond to all requests within one business day (Monday to Friday).
+                </p>
+                <a href="https://helpdesk.paessler.com/en/support/tickets/new" class="card-link">Submit a request
+                    &rarr;</a>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="feature-card">
+                <div class="card-icon">📚</div>
+                <h3 class="card-title">Knowledge Base</h3>
+                <p class="card-desc">Here you can find questions and answers about PRTG and network monitoring.</p>
+                <a href="https://helpdesk.paessler.com/en/support/solutions" class="card-link">Browse Articles
+                    &rarr;</a>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="feature-card">
+                <div class="card-icon">📦</div>
+                <h3 class="card-title">Other Resources</h3>
+                <p class="card-desc">Explore all our support resources, from FAQ, videos, manuals and Co.</p>
+                <a href="https://www.paessler.com/support" class="card-link">View Resources &rarr;</a>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="feature-card">
+                <div class="card-icon">💡</div>
+                <h3 class="card-title">Feature Request</h3>
+                <p class="card-desc">Got a feature you'd like to see? Make your voice count!</p>
+                <a href="https://uservoice.paessler.com/" class="card-link">Suggest Idea &rarr;</a>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <span class="reset-link" onclick="resetDemo()">[Reset Demo State]</span>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="#">Paessler Website</a>
+                <a href="#">Blog</a>
+                <a href="#">Manuals</a>
+                <a href="#">Videos</a>
+            </div>
+            <p>&copy; 2026 Paessler GmbH. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Widget Logic
+        const container = document.getElementById('embrace-widget-container');
+        const expandBtn = document.getElementById('btn-expand');
+        const ticketBtnWidget = document.getElementById('btn-open-ticket-widget');
+        const barLabel = document.querySelector('.bar-label');
+
+        expandBtn.addEventListener('click', () => {
+            toggleChat();
+        });
+
+        // Toggle Function
+        function toggleChat() {
+            const isFullscreen = container.classList.toggle('widget-fullscreen');
+
+            if (isFullscreen) {
+                expandBtn.textContent = 'Collapse Chat';
+                ticketBtnWidget.style.display = 'inline-block'; // Show ticket button in fullscreen
+                updateControlsForFullscreen(true);
+            } else {
+                expandBtn.textContent = 'Expand Chat';
+                ticketBtnWidget.style.display = 'none'; // Hide ticket button in bar mode
+                updateControlsForFullscreen(false);
+            }
+        }
+
+        // Helper for Hero Button
+        window.openFullscreenChat = function () {
+            if (!container.classList.contains('widget-fullscreen')) {
+                toggleChat();
+            }
+        }
+
+        function updateControlsForFullscreen(isFullscreen) {
+            const controls = document.querySelectorAll('.widget-btn');
+            controls.forEach(btn => {
+                if (isFullscreen) {
+                    // In fullscreen (white bg), buttons need to be dark text or branded
+                    btn.style.color = '#333';
+                    btn.style.background = '#f0f0f0';
+                    btn.style.border = '1px solid #ccc';
+
+                    if (btn.classList.contains('primary')) {
+                        btn.style.background = 'var(--paessler-green)';
+                        btn.style.color = 'white';
+                        btn.style.border = 'none';
+                    }
+                    if (btn.id === 'btn-open-ticket-widget') {
+                        btn.style.border = '1px solid var(--paessler-blue)';
+                        btn.style.color = 'var(--paessler-blue)';
+                        btn.style.background = 'transparent';
+                    }
+
+                    barLabel.style.display = 'none';
+                } else {
+                    // Reset to Top Bar styles (Blue bg, White text)
+                    btn.style.color = 'white';
+                    btn.style.background = 'rgba(255,255,255,0.15)';
+                    btn.style.border = 'none';
+                    if (btn.classList.contains('primary')) {
+                        btn.style.background = 'var(--paessler-green)';
+                    }
+                    barLabel.style.display = 'flex';
+                }
+            });
+        }
+
+        ticketBtnWidget.addEventListener('click', () => {
+            alert('Opening Ticket Creation Flow (Embed in Chat)...');
+        });
+
+        // Demo Reset
+        window.resetDemo = function () {
+            if (container.classList.contains('widget-fullscreen')) {
+                toggleChat();
+            }
+        }
+    </script>
+</body>
+
+</html>
