@@ -16,8 +16,10 @@
         var container = document.getElementById('embrace-widget-container');
         var expandBtn = document.getElementById('btn-expand');
         var backBtn = document.getElementById('btn-back-helpdesk');
+        var heroChatField = document.getElementById('hero-chat-field');
+        var heroChatSubmit = document.getElementById('hero-chat-submit');
 
-        if (!container || !expandBtn) return; // Safety check
+        if (!container || !expandBtn) return;
 
         expandBtn.addEventListener('click', function () {
             toggleChat();
@@ -35,12 +37,55 @@
             container.classList.toggle('widget-fullscreen');
         }
 
-        // Global function so the hero button can trigger chat
-        window.openFullscreenChat = function () {
+        // Open fullscreen chat, optionally with a pre-filled message
+        window.openFullscreenChat = function (message) {
             if (container && !container.classList.contains('widget-fullscreen')) {
                 toggleChat();
             }
+            if (message) {
+                setTimeout(function () {
+                    var chatEl = document.querySelector('embrace-chat');
+                    if (chatEl && chatEl.shadowRoot) {
+                        var input = chatEl.shadowRoot.querySelector('textarea, input[type="text"]');
+                        if (input) {
+                            input.value = message;
+                            input.dispatchEvent(new Event('input', { bubbles: true }));
+                        }
+                    }
+                }, 600);
+            }
         };
+
+        // Hero chat input — opens fullscreen chat with typed message
+        if (heroChatSubmit) {
+            heroChatSubmit.addEventListener('click', function () {
+                var msg = heroChatField ? heroChatField.value.trim() : '';
+                if (msg) {
+                    openFullscreenChat(msg);
+                    heroChatField.value = '';
+                } else {
+                    openFullscreenChat();
+                }
+            });
+        }
+
+        if (heroChatField) {
+            heroChatField.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (heroChatSubmit) heroChatSubmit.click();
+                }
+            });
+        }
+
+        // Suggested topic pills — open fullscreen chat with topic text
+        var pills = document.querySelectorAll('.topic-pill');
+        for (var i = 0; i < pills.length; i++) {
+            pills[i].addEventListener('click', function () {
+                var topic = this.getAttribute('data-topic');
+                openFullscreenChat(topic);
+            });
+        }
     })();
 </script>
 

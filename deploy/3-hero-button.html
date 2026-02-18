@@ -1,13 +1,30 @@
 <!--
-  PAESSLER HELPDESK – "GET INSTANT HELP" HERO BUTTON
-  Paste into: Admin → Portals → Appearance → Pages → Home
-  Place this INSIDE the hero section, after the search form or CTA.
+  PAESSLER HELPDESK – HERO "GET INSTANT HELP" BUTTON
+  Paste into: Admin → Portals → Appearance → Pages  → Home Page
+  Place this INSIDE the hero/banner area.
 
-  This button triggers the AI chat to expand when clicked.
+  This replaces the default Create Ticket hero with a chat-first experience.
 -->
 
-<div class="hero-ai-trigger">
-    <button class="btn-hero-ai" onclick="openFullscreenChat()">
-        <span>💬</span> Get Instant Help
-    </button>
+<!-- Chat-first hero input -->
+<div class="hero-chat-input">
+  <input type="text" id="hero-chat-field" placeholder="Describe your issue here..." autocomplete="off">
+  <button id="hero-chat-submit" title="Send">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <path d="M5 12h14M12 5l7 7-7 7" />
+    </svg>
+  </button>
+</div>
+
+<!-- Suggested topic pills -->
+<div class="suggested-topics">
+  <button class="topic-pill" data-topic="How do I configure email notification?">How do I configure email
+    notification?</button>
+  <button class="topic-pill" data-topic="My sensor shows unknown status">My sensor shows unknown status</button>
+  <button class="topic-pill" data-topic="How do I set up SNMP sensors?">How do I set up SNMP sensors?</button>
+</div>
+
+<!-- Demoted create ticket -->
+<div class="hero-secondary-link">
+  Need more help? <a href="/en/support/tickets/new">Create ticket</a>
 </div>

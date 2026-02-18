@@ -108,31 +108,94 @@
             margin-bottom: 0;
         }
 
-        /* New Hero CTA for AI */
-        .hero-ai-trigger {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .btn-hero-ai {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid #fff;
-            color: #fff;
-            padding: 10px 24px;
-            border-radius: 30px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
+        /* Chat-first hero input */
+        .hero-chat-input {
+            max-width: 680px;
+            margin: 0 auto 25px;
+            display: flex;
             align-items: center;
-            gap: 10px;
-            margin-top: 15px;
+            background: #fff;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         }
 
-        .btn-hero-ai:hover {
-            background: #fff;
-            color: var(--paessler-blue);
+        .hero-chat-input input {
+            flex: 1;
+            border: none;
+            padding: 16px 24px;
+            font-size: 1rem;
+            font-family: inherit;
+            outline: none;
+            color: #333;
+        }
+
+        .hero-chat-input input::placeholder {
+            color: #999;
+        }
+
+        .hero-chat-input button {
+            background: var(--paessler-blue);
+            border: none;
+            color: #fff;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            margin-right: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            flex-shrink: 0;
+        }
+
+        .hero-chat-input button:hover {
+            background: #004577;
+        }
+
+        /* Suggested topic pills */
+        .suggested-topics {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            max-width: 780px;
+            margin: 0 auto 20px;
+        }
+
+        .topic-pill {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-family: inherit;
+        }
+
+        .topic-pill:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: #fff;
+        }
+
+        /* Demoted create ticket link */
+        .hero-secondary-link {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.9rem;
+        }
+
+        .hero-secondary-link a {
+            color: #fff;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+
+        .hero-secondary-link a:hover {
+            opacity: 0.9;
         }
 
         /* ── Search Form (inside hero) ──────────────── */
@@ -375,17 +438,19 @@
             background-color: #fff;
         }
 
-        .widget-controls {
+        #embrace-widget-container.widget-fullscreen .bar-label,
+        #embrace-widget-container.widget-fullscreen .ai-disclosure {
+            display: none;
+        }
+
+        .widget-controls-collapsed {
             display: flex;
             gap: 10px;
             align-items: center;
-            z-index: 10001;
         }
 
-        #embrace-widget-container.widget-fullscreen .widget-controls {
-            position: absolute;
-            top: 15px;
-            right: 20px;
+        #embrace-widget-container.widget-fullscreen .widget-controls-collapsed {
+            display: none;
         }
 
         .bar-label {
@@ -409,20 +474,18 @@
             white-space: nowrap;
         }
 
-        #embrace-widget-container.widget-fullscreen .ai-disclosure {
-            display: none;
-        }
-
         .widget-btn {
             background: rgba(255, 255, 255, 0.15);
             border: none;
             color: white;
-            padding: 6px 12px;
+            padding: 6px 14px;
             border-radius: 4px;
             font-size: 0.8rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: all 0.2s;
+            font-family: inherit;
+            text-transform: uppercase;
         }
 
         .widget-btn:hover {
@@ -434,12 +497,97 @@
             color: #fff;
         }
 
-        .widget-btn.primary:hover {
-            background-color: #7da820;
+        /* ── Fullscreen branded header (Embrace-style) ── */
+        .fs-header {
+            display: none;
+            height: 56px;
+            background: #fff;
+            border-bottom: 1px solid #e8e8e8;
+            padding: 0 20px;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
         }
 
-        #btn-open-ticket-widget {
-            display: none;
+        #embrace-widget-container.widget-fullscreen .fs-header {
+            display: flex;
+        }
+
+        .fs-header-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            color: #555;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .fs-header-left:hover {
+            color: #000;
+        }
+
+        .fs-header-left svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .fs-header-center {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .fs-header-center img {
+            height: 28px;
+            width: 28px;
+            border-radius: 50%;
+        }
+
+        .fs-header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .fs-btn-new-chat {
+            background: none;
+            border: none;
+            color: #555;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .fs-btn-new-chat:hover {
+            background: #f5f5f5;
+        }
+
+        .fs-btn-create-ticket {
+            background: #f59c00;
+            color: #fff;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            cursor: pointer;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: background 0.2s;
+        }
+
+        .fs-btn-create-ticket:hover {
+            background: #e5850f;
         }
 
         .chat-wrapper {
@@ -452,7 +600,7 @@
 
         #embrace-widget-container.widget-fullscreen .chat-wrapper {
             display: block;
-            padding-top: 60px;
+            padding-top: 0;
         }
 
         /* ── Responsive ─────────────────────────────── */
@@ -479,6 +627,31 @@
         <div class="bar-label">Get Instant Help</div>
         <div class="ai-disclosure">Powered by AI</div>
 
+        <!-- Fullscreen header (Embrace-style branded bar) -->
+        <div class="fs-header">
+            <div class="fs-header-left" id="btn-back-helpdesk">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 18l-6-6 6-6" />
+                </svg>
+                Back to Helpdesk
+            </div>
+            <div class="fs-header-center">
+                <img src="https://media.paessler.com/common/img/favicons/favicon-32x32.png" alt="Paessler">
+                Paessler Support
+            </div>
+            <div class="fs-header-right">
+                <button class="fs-btn-new-chat" title="Start new conversation">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    </svg>
+                    New chat
+                </button>
+                <a href="https://helpdesk.paessler.com/en/support/tickets/new" class="fs-btn-create-ticket">Create
+                    ticket</a>
+            </div>
+        </div>
+
+        <!-- Chat Component -->
         <div class="chat-wrapper">
             <embrace-chat org-id="YOUR_ORG_ID" client-id="YOUR_CLIENT_ID" external-id="demo-widget-paessler-v2">
                 <template>
@@ -492,8 +665,8 @@
             </embrace-chat>
         </div>
 
-        <div class="widget-controls">
-            <button id="btn-open-ticket-widget" class="widget-btn">Still need help? Open a Ticket</button>
+        <!-- Collapsed controls -->
+        <div class="widget-controls-collapsed">
             <button id="btn-expand" class="widget-btn primary">Expand Chat</button>
         </div>
     </div>
@@ -519,19 +692,31 @@
         <div class="search-box">
             <h1 class="white">How can we help you today, User?</h1>
             <h2 class="white">Our experts will assist you with anything you need.<br><br></h2>
-            <form class="hc-search-form" autocomplete="off" action="#" method="get">
-                <div class="hc-search-input">
-                    <input placeholder="Enter your search term here..." type="text" name="q" autocomplete="off">
-                </div>
-                <div class="hc-search-button">
-                    <button type="submit">Search</button>
-                </div>
-            </form>
 
-            <div class="hero-ai-trigger">
-                <button class="btn-hero-ai" onclick="openFullscreenChat()">
-                    <span>💬</span> Get Instant Help
+            <!-- Chat-first input -->
+            <div class="hero-chat-input">
+                <input type="text" id="hero-chat-field" placeholder="Describe your issue here..." autocomplete="off">
+                <button id="hero-chat-submit" title="Send">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
                 </button>
+            </div>
+
+            <!-- Suggested topic pills -->
+            <div class="suggested-topics">
+                <button class="topic-pill" data-topic="How do I configure email notification?">How do I configure email
+                    notification?</button>
+                <button class="topic-pill" data-topic="My sensor shows unknown status">My sensor shows unknown
+                    status</button>
+                <button class="topic-pill" data-topic="How do I set up SNMP sensors?">How do I set up SNMP
+                    sensors?</button>
+            </div>
+
+            <!-- Demoted create ticket -->
+            <div class="hero-secondary-link">
+                Need more help? <a href="https://helpdesk.paessler.com/en/support/tickets/new">Create ticket</a>
             </div>
         </div>
     </section>
@@ -676,71 +861,67 @@
     </footer>
 
     <script>
-        // Widget Logic (same as full mockup)
+        // Widget Logic
         const container = document.getElementById('embrace-widget-container');
         const expandBtn = document.getElementById('btn-expand');
-        const ticketBtnWidget = document.getElementById('btn-open-ticket-widget');
-        const barLabel = document.querySelector('.bar-label');
+        const backBtn = document.getElementById('btn-back-helpdesk');
+        const heroChatField = document.getElementById('hero-chat-field');
+        const heroChatSubmit = document.getElementById('hero-chat-submit');
 
         expandBtn.addEventListener('click', () => toggleChat());
+        backBtn.addEventListener('click', () => {
+            if (container.classList.contains('widget-fullscreen')) {
+                toggleChat();
+            }
+        });
 
         function toggleChat() {
-            const isFullscreen = container.classList.toggle('widget-fullscreen');
-            if (isFullscreen) {
-                expandBtn.textContent = 'Collapse Chat';
-                ticketBtnWidget.style.display = 'inline-block';
-                updateControlsForFullscreen(true);
+            container.classList.toggle('widget-fullscreen');
+        }
+
+        window.openFullscreenChat = function (message) {
+            if (!container.classList.contains('widget-fullscreen')) {
+                toggleChat();
+            }
+            // Attempt to inject message into the Embrace chat input
+            if (message) {
+                setTimeout(function () {
+                    const chatEl = document.querySelector('embrace-chat');
+                    if (chatEl && chatEl.shadowRoot) {
+                        const input = chatEl.shadowRoot.querySelector('textarea, input[type="text"]');
+                        if (input) {
+                            input.value = message;
+                            input.dispatchEvent(new Event('input', { bubbles: true }));
+                        }
+                    }
+                }, 600);
+            }
+        };
+
+        // Hero chat input — opens fullscreen chat with typed message
+        heroChatSubmit.addEventListener('click', function () {
+            const msg = heroChatField.value.trim();
+            if (msg) {
+                openFullscreenChat(msg);
+                heroChatField.value = '';
             } else {
-                expandBtn.textContent = 'Expand Chat';
-                ticketBtnWidget.style.display = 'none';
-                updateControlsForFullscreen(false);
+                openFullscreenChat();
             }
-        }
+        });
 
-        window.openFullscreenChat = function () {
-            if (!container.classList.contains('widget-fullscreen')) {
-                toggleChat();
+        heroChatField.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                heroChatSubmit.click();
             }
-        }
+        });
 
-        window.openFullscreenChat = function () {
-            if (!container.classList.contains('widget-fullscreen')) {
-                toggleChat();
-            }
-        }
-
-        function updateControlsForFullscreen(isFullscreen) {
-            const controls = document.querySelectorAll('.widget-btn');
-            controls.forEach(btn => {
-                if (isFullscreen) {
-                    btn.style.color = '#333';
-                    btn.style.background = '#f0f0f0';
-                    btn.style.border = '1px solid #ccc';
-                    if (btn.classList.contains('primary')) {
-                        btn.style.background = 'var(--paessler-green)';
-                        btn.style.color = 'white';
-                        btn.style.border = 'none';
-                    }
-                    if (btn.id === 'btn-open-ticket-widget') {
-                        btn.style.border = '1px solid var(--paessler-blue)';
-                        btn.style.color = 'var(--paessler-blue)';
-                        btn.style.background = 'transparent';
-                    }
-                    barLabel.style.display = 'none';
-                } else {
-                    btn.style.color = 'white';
-                    btn.style.background = 'rgba(255,255,255,0.15)';
-                    btn.style.border = 'none';
-                    if (btn.classList.contains('primary')) {
-                        btn.style.background = 'var(--paessler-green)';
-                    }
-                    barLabel.style.display = 'flex';
-                }
+        // Suggested topic pills — open fullscreen chat with topic text
+        document.querySelectorAll('.topic-pill').forEach(function (pill) {
+            pill.addEventListener('click', function () {
+                const topic = this.getAttribute('data-topic');
+                openFullscreenChat(topic);
             });
-        }
-
-        ticketBtnWidget.addEventListener('click', () => {
-            alert('Opening Ticket Creation Flow...');
         });
     </script>
 </body>

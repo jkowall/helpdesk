@@ -107,51 +107,97 @@
             font-size: 1.2rem;
             font-weight: 300;
             opacity: 0.9;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
-        .btn-create-ticket-hero {
-            background-color: var(--production-blue);
-            color: #fff;
-            padding: 14px 40px;
-            border-radius: 4px;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 1.1rem;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-
-        .register-link {
-            display: block;
-            color: #fff;
-            font-size: 0.95rem;
-            opacity: 0.8;
-        }
-
-        /* New Hero CTA for AI */
-        .hero-ai-trigger {
-            margin-top: 15px;
-        }
-
-        .btn-hero-ai {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid #fff;
-            color: #fff;
-            padding: 10px 24px;
-            border-radius: 30px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
+        /* Chat-first hero input */
+        .hero-chat-input {
+            max-width: 680px;
+            margin: 0 auto 25px;
+            display: flex;
             align-items: center;
-            gap: 10px;
+            background: #fff;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         }
 
-        .btn-hero-ai:hover {
-            background: #fff;
-            color: var(--production-blue);
+        .hero-chat-input input {
+            flex: 1;
+            border: none;
+            padding: 16px 24px;
+            font-size: 1rem;
+            font-family: inherit;
+            outline: none;
+            color: #333;
+        }
+
+        .hero-chat-input input::placeholder {
+            color: #999;
+        }
+
+        .hero-chat-input button {
+            background: var(--production-blue);
+            border: none;
+            color: #fff;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            margin-right: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            flex-shrink: 0;
+        }
+
+        .hero-chat-input button:hover {
+            background: #0090c4;
+        }
+
+        /* Suggested topic pills */
+        .suggested-topics {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            max-width: 780px;
+            margin: 0 auto 20px;
+        }
+
+        .topic-pill {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-family: inherit;
+        }
+
+        .topic-pill:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: #fff;
+        }
+
+        /* Demoted create ticket link */
+        .hero-secondary-link {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.9rem;
+        }
+
+        .hero-secondary-link a {
+            color: #fff;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+
+        .hero-secondary-link a:hover {
+            opacity: 0.9;
         }
 
         /* ── Cards Grid ─────────────────────────────── */
@@ -571,17 +617,31 @@
     <!-- Hero -->
     <section class="hero">
         <h1>We're here to help you!</h1>
-        <p>Our experts will assist you with anything you need.</p>
-        <a href="https://helpdesk.paessler.com/en/support/tickets/new" class="btn-create-ticket-hero">Create Ticket</a>
+        <p>Our experts will assist you with anything you need</p>
 
-        <div class="hero-ai-trigger">
-            <button class="btn-hero-ai" onclick="openFullscreenChat()">
-                <span>💬</span> Get Instant Help
+        <!-- Chat-first input -->
+        <div class="hero-chat-input">
+            <input type="text" id="hero-chat-field" placeholder="Describe your issue here..." autocomplete="off">
+            <button id="hero-chat-submit" title="Send">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
             </button>
         </div>
 
-        <span class="register-link">Not yet registered? <a href="https://helpdesk.paessler.com/en/support/signup"
-                style="color: #fff; text-decoration: underline;">Register now.</a></span>
+        <!-- Suggested topic pills -->
+        <div class="suggested-topics">
+            <button class="topic-pill" data-topic="How do I configure email notification?">How do I configure email
+                notification?</button>
+            <button class="topic-pill" data-topic="My sensor shows unknown status">My sensor shows unknown
+                status</button>
+            <button class="topic-pill" data-topic="How do I set up SNMP sensors?">How do I set up SNMP sensors?</button>
+        </div>
+
+        <!-- Demoted create ticket -->
+        <div class="hero-secondary-link">
+            Need more help? <a href="https://helpdesk.paessler.com/en/support/tickets/new">Create ticket</a>
+        </div>
     </section>
 
     <!-- Cards Section -->
@@ -684,7 +744,8 @@
         const container = document.getElementById('embrace-widget-container');
         const expandBtn = document.getElementById('btn-expand');
         const backBtn = document.getElementById('btn-back-helpdesk');
-        const barLabel = document.querySelector('.bar-label');
+        const heroChatField = document.getElementById('hero-chat-field');
+        const heroChatSubmit = document.getElementById('hero-chat-submit');
 
         expandBtn.addEventListener('click', () => toggleChat());
         backBtn.addEventListener('click', () => {
@@ -697,11 +758,50 @@
             container.classList.toggle('widget-fullscreen');
         }
 
-        window.openFullscreenChat = function () {
+        window.openFullscreenChat = function (message) {
             if (!container.classList.contains('widget-fullscreen')) {
                 toggleChat();
             }
-        }
+            // Attempt to inject message into the Embrace chat input
+            if (message) {
+                setTimeout(function () {
+                    const chatEl = document.querySelector('embrace-chat');
+                    if (chatEl && chatEl.shadowRoot) {
+                        const input = chatEl.shadowRoot.querySelector('textarea, input[type="text"]');
+                        if (input) {
+                            input.value = message;
+                            input.dispatchEvent(new Event('input', { bubbles: true }));
+                        }
+                    }
+                }, 600);
+            }
+        };
+
+        // Hero chat input — opens fullscreen chat with typed message
+        heroChatSubmit.addEventListener('click', function () {
+            const msg = heroChatField.value.trim();
+            if (msg) {
+                openFullscreenChat(msg);
+                heroChatField.value = '';
+            } else {
+                openFullscreenChat();
+            }
+        });
+
+        heroChatField.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                heroChatSubmit.click();
+            }
+        });
+
+        // Suggested topic pills — open fullscreen chat with topic text
+        document.querySelectorAll('.topic-pill').forEach(function (pill) {
+            pill.addEventListener('click', function () {
+                const topic = this.getAttribute('data-topic');
+                openFullscreenChat(topic);
+            });
+        });
     </script>
 </body>
 
