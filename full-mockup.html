@@ -379,6 +379,25 @@
             /* Space for controls */
         }
 
+        /* ── Refinement #2: Hide Embrace branding row ── */
+        embrace-chat::part(initial-header) {
+            display: none;
+        }
+
+        /* ── Refinement #3: Chat max-width constraint ── */
+        embrace-chat {
+            display: block;
+            max-width: 1000px;
+            margin: 0 auto;
+            height: 100%;
+        }
+
+        @media (max-width: 1000px) {
+            embrace-chat {
+                padding: 0 16px;
+            }
+        }
+
         /* Reset button on main page */
         .reset-link {
             display: inline-block;
