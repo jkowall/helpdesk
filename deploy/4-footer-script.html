@@ -86,6 +86,45 @@
                 openFullscreenChat(topic);
             });
         }
+
+        // ── JS fallback: hide Embrace branding inside shadow DOM ──
+        // The CSS ::part(initial-header) rule handles this, but as a
+        // belt-and-suspenders fallback we also inject styles via JS.
+        function injectShadowStyles() {
+            var chatEl = document.querySelector('embrace-chat');
+            if (!chatEl) return;
+
+            function tryInject() {
+                var sr = chatEl.shadowRoot;
+                if (!sr) return false;
+                if (sr.querySelector('#paessler-shadow-overrides')) return true;
+
+                var style = document.createElement('style');
+                style.id = 'paessler-shadow-overrides';
+                style.textContent =
+                    '[part="initial-header"] { display: none !important; }' +
+                    '[part="chat"] { border: none !important; box-shadow: none !important; border-radius: 0 !important; }';
+                sr.appendChild(style);
+                return true;
+            }
+
+            if (!tryInject()) {
+                var observer = new MutationObserver(function () {
+                    if (tryInject()) observer.disconnect();
+                });
+                observer.observe(chatEl, { childList: true, subtree: true });
+                // Also retry on a short delay for shadow root attachment
+                setTimeout(tryInject, 500);
+                setTimeout(tryInject, 1500);
+            }
+        }
+
+        // Run after DOM is ready and Embrace component loads
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', injectShadowStyles);
+        } else {
+            injectShadowStyles();
+        }
     })();
 </script>
 
