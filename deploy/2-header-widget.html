@@ -45,11 +45,14 @@
         <!-- ⚠️ REPLACE org-id and client-id with your Embrace AI credentials -->
         <embrace-chat org-id="YOUR_ORG_ID" client-id="YOUR_CLIENT_ID" external-id="paessler-freshdesk-portal">
             <template>
-<div slot="initial-message"
-                    style="background: #fff8e1; border: 1px solid #ffe082; border-radius: 8px; padding: 10px 14px; margin: 8px 16px; font-size: 0.85rem; color: #6d5b00; display: flex; align-items: flex-start; gap: 8px;">
-                    <span style="font-size: 1.1rem;">⚠️</span>
-                    <span>You are chatting with an AI assistant. Responses may not always be accurate.
-                        For complex issues, please <strong>open a support ticket</strong>.</span>
+                <div slot="initial-message"
+                    style="text-align: center; padding: 0 16px;">
+                    <div style="font-size: 32px; line-height: 120%; font-weight: 500; margin-bottom: 24px; color: #333;">
+                        Hi there! I'm Max, your AI support guide.
+                    </div>
+                    <div style="font-size: 20px; line-height: 140%; font-weight: 400; color: #555; max-width: 600px; margin: 0 auto;">
+                        I'm here to help keep your monitoring running smoothly. I can answer questions, troubleshoot common issues, and connect you to a support engineer when needed.
+                    </div>
                 </div>
             </template>
         </embrace-chat>
