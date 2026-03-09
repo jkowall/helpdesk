@@ -279,6 +279,80 @@ embrace-chat {
     }
 }
 
+/* ── Hero Chat Input ──────────────────────────────────────── */
+.hero-chat-input {
+    max-width: 680px;
+    margin: 0 auto 25px;
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.hero-chat-input input {
+    flex: 1;
+    border: none;
+    padding: 16px 24px;
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+    color: #333;
+}
+
+.hero-chat-input input::placeholder {
+    color: #999;
+}
+
+.hero-chat-input button {
+    background: var(--fd-widget-bg);
+    border: none;
+    color: #fff;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    margin-right: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+
+.hero-chat-input button:hover {
+    background: #004577;
+}
+
+/* ── Suggested Topic Pills ───────────────────────────────── */
+.suggested-topics {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    max-width: 780px;
+    margin: 0 auto 20px;
+}
+
+.topic-pill {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.25s;
+    font-family: inherit;
+}
+
+.topic-pill:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: #fff;
+}
+
 /* ── Hero "Get Instant Help" Button ────────────────────────── */
 .hero-ai-trigger {
     margin-top: 15px;
