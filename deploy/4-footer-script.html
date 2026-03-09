@@ -48,8 +48,29 @@
                     if (chatEl && chatEl.shadowRoot) {
                         var input = chatEl.shadowRoot.querySelector('textarea, input[type="text"]');
                         if (input) {
-                            input.value = message;
+                            // Set value using native setter so frameworks detect the change
+                            var nativeSetter = Object.getOwnPropertyDescriptor(
+                                window.HTMLTextAreaElement.prototype, 'value'
+                            ) || Object.getOwnPropertyDescriptor(
+                                window.HTMLInputElement.prototype, 'value'
+                            );
+                            if (nativeSetter && nativeSetter.set) {
+                                nativeSetter.set.call(input, message);
+                            } else {
+                                input.value = message;
+                            }
                             input.dispatchEvent(new Event('input', { bubbles: true }));
+
+                            // Try to click the send button inside the shadow DOM
+                            var sendBtn = chatEl.shadowRoot.querySelector('button[type="submit"], button[aria-label*="send" i], button[aria-label*="Send"], form button:last-of-type');
+                            if (sendBtn) {
+                                setTimeout(function () { sendBtn.click(); }, 150);
+                            } else {
+                                // Fallback: simulate pressing Enter to submit
+                                input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', code: 'Enter', keyCode: 13, bubbles: true }));
+                                input.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter', code: 'Enter', keyCode: 13, bubbles: true }));
+                                input.dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter', code: 'Enter', keyCode: 13, bubbles: true }));
+                            }
                         }
                     }
                 }, 600);
