@@ -305,3 +305,21 @@ embrace-chat {
     background: #fff;
     color: var(--fd-brand-blue);
 }
+
+/* ── Demoted "Create ticket" link below hero ─────────────── */
+.hero-secondary-link {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.9rem;
+    margin-top: 12px;
+    text-align: center;
+}
+
+.hero-secondary-link a {
+    color: #fff;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.hero-secondary-link a:hover {
+    opacity: 0.9;
+}
