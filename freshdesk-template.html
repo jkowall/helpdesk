@@ -192,13 +192,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <embrace-chat org-id="__EMBRACE_ORG_ID__" client-id="__EMBRACE_CLIENT_ID__" data-fd_email='{{portal.user.email}}'>
       <template>
         <div slot="initial-message"
-          style="background: #fff8e1; border: 1px solid #ffe082; border-radius: 8px; padding: 10px 14px; margin: 8px 16px; color: #6d5b00; display: flex; align-items: flex-start; gap: 8px;">
-          <div>
-            <h2 style='font-size: 18px; font-weight: bold; margin-bottom: 15px !important;'>&#128075; Hi there! I'm Max, your AI support guide.</h2>
-            <p style="margin-bottom: 0;">I'm here to help keep your monitoring running smoothly. I can answer questions, troubleshoot common issues, and connect you to a support engineer when needed.</p>
+          style="text-align: center; padding: 0 16px;">
+          <div style="display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 24px;">
+            <div style="font-size: 32px; line-height: 120%; font-weight: 600; color: #333;">
+              Hi, I'm Max! Your AI support guide.
+            </div>
+            <div style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; border: 2px solid #b8ef49; background: linear-gradient(180deg, #f5ffd8 0%, #ddf7a8 100%); color: #4a7600; font-size: 0.95rem; font-weight: 700; white-space: nowrap; box-shadow: 0 0 0 1px rgba(184, 239, 73, 0.2), 0 0 18px rgba(144, 194, 38, 0.28); animation: statusGlow 1.8s ease-in-out infinite;">
+              <span style="width: 10px; height: 10px; border-radius: 50%; background: #90c226; display: inline-block; box-shadow: 0 0 0 4px rgba(184, 239, 73, 0.18), 0 0 12px rgba(144, 194, 38, 0.7); animation: statusPulse 1.8s ease-in-out infinite;"></span>
+              Online and ready to help
+            </div>
+          </div>
+          <div style="font-size: 20px; line-height: 140%; font-weight: 400; color: #555; max-width: 600px; margin: 0 auto;">
+            I can help you with PRTG setup, troubleshooting, and answer your questions instantly. Available 24/7.
           </div>
         </div>
-        <div slot="input-placeholder">Chat with Max</div>
+        <div slot="input-placeholder">Ask Max a question...</div>
       </template>
     </embrace-chat>
   </div>
@@ -540,8 +548,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- PORTAL_HOME -->
 {% if portal.current_language.name == "German" %}
 {% assign here_to_help = "Wir sind da um zu helfen!" %}
-{% assign how_can_we_help = "Wie können wir heute weiterhelfen" %}
-{% assign claim = "Unsere Experten beraten Sie gern bei Ihren Anliegen." %}
+{% assign ai_hero_title = "Hi, ich bin Max! Dein KI-Support-Guide." %}
+{% assign ai_hero_claim = "Ich helfe dir bei PRTG-Setup, Troubleshooting und beantworte deine Fragen sofort. Verfügbar 24/7." %}
+{% assign ai_online_status = "Online und bereit zu helfen" %}
+{% assign ai_get_started = "Starte hier:" %}
 {% assign search = "Suchen" %}
 {% assign search_placeholder = "Geben Sie einen Suchbegriff ein..." %}
 {% assign new_ticket = "Neues Ticket" %}
@@ -565,13 +575,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 {% assign callback_service_desc = "Brauchen Sie Rat von einem Experten? <br />Wir helfen gern. Wählen Sie Service | Rückruf beim Ticket erstellen" %}
 {% assign callback_service_btn = "Beantragen" %}
 {% assign table_of_content = "Inhalt" %}
-{% assign ai_pill_email_notification = "Wie konfiguriere ich Email-Benachrichtigungen?" %}
-{% assign ai_pill_unknown_status = "Meine Sensoren sind im Status UNKNOWN?" %}
-{% assign ai_pill_setup_snmp_sensors = "Ich m&auml;chte SNMP-Sensoren einrichten" %}
+{% assign ai_group_setup = "Setup" %}
+{% assign ai_group_troubleshooting = "Fehlerbehebung" %}
+{% assign ai_group_account = "Konto & Zugriff" %}
+{% assign ai_pill_install_prtg = "Wie installiere ich PRTG?" %}
+{% assign ai_pill_install_requirements = "Was sind die Installationsvoraussetzungen?" %}
+{% assign ai_pill_first_device = "Wie richte ich mein erstes Gerät ein?" %}
+{% assign ai_pill_probe_connecting = "Warum verbindet sich meine Probe nicht?" %}
+{% assign ai_pill_sensor_down = "Warum hat mein Sensor den Status 'Down'?" %}
+{% assign ai_pill_core_server = "Wie behebe ich Core-Server-Probleme?" %}
+{% assign ai_pill_add_users = "Wie füge ich neue Benutzer hinzu?" %}
+{% assign ai_pill_reset_password = "Wie setze ich ein Benutzerpasswort zurück?" %}
 {% else %}
 {% assign here_to_help = "We're here to help you!" %}
-{% assign how_can_we_help = "How can we help you today" %}
-{% assign claim = "Our experts will assist you with anything you need." %}
+{% assign ai_hero_title = "Hi, I'm Max! Your AI support guide." %}
+{% assign ai_hero_claim = "I can help you with PRTG setup, troubleshooting, and answer your questions instantly. Available 24/7." %}
+{% assign ai_online_status = "Online and ready to help" %}
+{% assign ai_get_started = "Get started:" %}
 {% assign search = "Search" %}
 {% assign search_placeholder = "Enter your search term here..." %}
 {% assign new_ticket = "Create ticket" %}
@@ -595,9 +615,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 {% assign feature_request = "Feature Request" %}
 {% assign feature_request_desc = "Got a feature you'd like to see? Make your voice count!" %}
 {% assign table_of_content = "Content" %}
-{% assign ai_pill_email_notification = "How do I configure email notifications?" %}
-{% assign ai_pill_unknown_status = "My sensors are in an unknown state" %}
-{% assign ai_pill_setup_snmp_sensors = "I want to set up SNMP sensors" %}
+{% assign ai_group_setup = "Setup" %}
+{% assign ai_group_troubleshooting = "Troubleshooting" %}
+{% assign ai_group_account = "Account & Access" %}
+{% assign ai_pill_install_prtg = "How do I install PRTG?" %}
+{% assign ai_pill_install_requirements = "What are the installation requirements?" %}
+{% assign ai_pill_first_device = "How do I set up my first device?" %}
+{% assign ai_pill_probe_connecting = "Why is my probe not connecting?" %}
+{% assign ai_pill_sensor_down = "Why is my sensor showing 'Down' status?" %}
+{% assign ai_pill_core_server = "How do I troubleshoot core server issues?" %}
+{% assign ai_pill_add_users = "How do I add new users?" %}
+{% assign ai_pill_reset_password = "How do I reset a user password?" %}
 {% endif %}
 
 {% if portal.current_tab %}
@@ -605,11 +633,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="hero-unit background-blackblue" data-hero-unit>
   <div class="container-inner search-box search-box--hero-unit" data-search-box>
     {% if portal.user.id %}
-      <h1 class="white">{{how_can_we_help}}, {{ portal.user.first_name }}?</h1>
-      <h2 class="white">{{claim}}<br><br></h2>
+      <div class="hero-title-row">
+        <h1 class="white">{{ ai_hero_title }}</h1>
+        <div class="hero-status-pill">
+          <span class="hero-status-dot"></span>
+          {{ ai_online_status }}
+        </div>
+      </div>
+      <h2 class="white">{{ ai_hero_claim }}</h2>
+      <br>
 
       <div class="hero-chat-input">
-        <input type="text" id="hero-chat-field" placeholder="Describe your issue here..." autocomplete="off">
+        <input type="text" id="hero-chat-field" placeholder="Ask Max a question..." autocomplete="off">
         <button type="button" id="hero-chat-submit" title="Send">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M5 12h14M12 5l7 7-7 7" />
@@ -617,18 +652,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </button>
       </div>
 
+      <div class="hero-get-started">{{ ai_get_started }}</div>
+
       <div class="suggested-topics">
-        <button type="button" class="topic-pill" data-topic="{{ai_pill_email_notification}}">{{ai_pill_email_notification}}</button>
-        <button type="button" class="topic-pill" data-topic="{{ai_pill_unknown_status}}">{{ai_pill_unknown_status}}</button>
-        <button type="button" class="topic-pill" data-topic="{{ai_pill_setup_snmp_sensors}}">{{ai_pill_setup_snmp_sensors}}</button>
+        <div class="topic-group">
+          <div class="topic-group-label">{{ ai_group_setup }}</div>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_install_prtg}}">{{ai_pill_install_prtg}}</button>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_install_requirements}}">{{ai_pill_install_requirements}}</button>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_first_device}}">{{ai_pill_first_device}}</button>
+        </div>
+        <div class="topic-group">
+          <div class="topic-group-label">{{ ai_group_troubleshooting }}</div>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_probe_connecting}}">{{ai_pill_probe_connecting}}</button>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_sensor_down}}">{{ai_pill_sensor_down}}</button>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_core_server}}">{{ai_pill_core_server}}</button>
+        </div>
+        <div class="topic-group">
+          <div class="topic-group-label">{{ ai_group_account }}</div>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_add_users}}">{{ai_pill_add_users}}</button>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_reset_password}}">{{ai_pill_reset_password}}</button>
+        </div>
       </div>
 
       <div class="hero-secondary-link">
-        Need more help? <a href="{{ portal.new_ticket_url }}">Create ticket.</a>
+        Still need help? You can also <a href="{{ portal.new_ticket_url }}">create a ticket</a>.
       </div>
     {% else %}
       <h1 class="white">{{ here_to_help }}</h1>
-      <h2 class="white">{{ claim }}<br><br></h2>
+      <h2 class="white">{{ new_ticket_desc }}<br><br></h2>
       <div style="text-align: center;">
         <a class="btn btn-primary extralarge" href="/login">{{ loginmsg }}</a>
       </div>
@@ -900,11 +951,83 @@ div.home {
   margin-bottom: 48px;
 }
 
+.hero-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+@keyframes statusGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 1px rgba(184, 239, 73, 0.12), 0 0 18px rgba(144, 194, 38, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 1px rgba(184, 239, 73, 0.28), 0 0 28px rgba(184, 239, 73, 0.46);
+  }
+}
+
+@keyframes statusPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 4px rgba(184, 239, 73, 0.2), 0 0 14px rgba(184, 239, 73, 0.85);
+  }
+  50% {
+    transform: scale(1.18);
+    box-shadow: 0 0 0 7px rgba(184, 239, 73, 0.12), 0 0 20px rgba(184, 239, 73, 1);
+  }
+}
+
 section h1.white,
 section h2.white,
 section p.white {
   color: #ffffff !important;
   text-align: center !important;
+}
+
+.hero-unit h1.white {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.hero-unit h2.white {
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.85) !important;
+  margin: 0 auto;
+  max-width: 880px;
+}
+
+.hero-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 2px solid #b8ef49;
+  background: linear-gradient(180deg, rgba(152, 214, 44, 0.32) 0%, rgba(98, 154, 16, 0.28) 100%);
+  color: #f4ffd8;
+  font-size: 0.95rem;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 0 0 1px rgba(184, 239, 73, 0.12), 0 0 18px rgba(144, 194, 38, 0.3);
+  text-shadow: 0 0 10px rgba(184, 239, 73, 0.2);
+  animation: statusGlow 1.8s ease-in-out infinite;
+}
+
+.hero-status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #b8ef49;
+  display: inline-block;
+  box-shadow: 0 0 0 4px rgba(184, 239, 73, 0.2), 0 0 14px rgba(184, 239, 73, 0.85);
+  animation: statusPulse 1.8s ease-in-out infinite;
 }
 
 .hero-chat-input {
@@ -953,13 +1076,39 @@ section p.white {
   background: #004577;
 }
 
+.hero-get-started {
+  max-width: 880px;
+  margin: 0 auto 12px;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
 .suggested-topics {
+  max-width: 880px;
+  margin: 0 auto 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: stretch;
+}
+
+.topic-group {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 10px;
-  max-width: 780px;
-  margin: 0 auto 20px;
+  align-items: center;
+}
+
+.topic-group-label {
+  flex-basis: 100%;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: left;
 }
 
 .topic-pill {
@@ -981,9 +1130,8 @@ section p.white {
 }
 
 .hero-secondary-link {
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 0.9rem;
-  margin-top: 12px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.95rem;
   text-align: center;
 }
 

@@ -7,13 +7,21 @@
     <embrace-chat org-id="__EMBRACE_ORG_ID__" client-id="__EMBRACE_CLIENT_ID__" data-fd_email='{{portal.user.email}}'>
       <template>
         <div slot="initial-message"
-          style="background: #fff8e1; border: 1px solid #ffe082; border-radius: 8px; padding: 10px 14px; margin: 8px 16px; color: #6d5b00; display: flex; align-items: flex-start; gap: 8px;">
-          <div>
-            <h2 style='font-size: 18px; font-weight: bold; margin-bottom: 15px !important;'>&#128075; Hi there! I'm Max, your AI support guide.</h2>
-            <p style="margin-bottom: 0;">I'm here to help keep your monitoring running smoothly. I can answer questions, troubleshoot common issues, and connect you to a support engineer when needed.</p>
+          style="text-align: center; padding: 0 16px;">
+          <div style="display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 24px;">
+            <div style="font-size: 32px; line-height: 120%; font-weight: 600; color: #333;">
+              Hi, I'm Max! Your AI support guide.
+            </div>
+            <div style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; border: 2px solid #b8ef49; background: linear-gradient(180deg, #f5ffd8 0%, #ddf7a8 100%); color: #4a7600; font-size: 0.95rem; font-weight: 700; white-space: nowrap; box-shadow: 0 0 0 1px rgba(184, 239, 73, 0.2), 0 0 18px rgba(144, 194, 38, 0.28); animation: statusGlow 1.8s ease-in-out infinite;">
+              <span style="width: 10px; height: 10px; border-radius: 50%; background: #90c226; display: inline-block; box-shadow: 0 0 0 4px rgba(184, 239, 73, 0.18), 0 0 12px rgba(144, 194, 38, 0.7); animation: statusPulse 1.8s ease-in-out infinite;"></span>
+              Online and ready to help
+            </div>
+          </div>
+          <div style="font-size: 20px; line-height: 140%; font-weight: 400; color: #555; max-width: 600px; margin: 0 auto;">
+            I can help you with PRTG setup, troubleshooting, and answer your questions instantly. Available 24/7.
           </div>
         </div>
-        <div slot="input-placeholder">Chat with Max</div>
+        <div slot="input-placeholder">Ask Max a question...</div>
       </template>
     </embrace-chat>
   </div>
