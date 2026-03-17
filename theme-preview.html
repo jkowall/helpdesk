@@ -421,15 +421,6 @@
       flex-shrink: 0;
     }
 
-    .hero-get-started {
-      max-width: 880px;
-      margin: 0 auto 12px;
-      text-align: left;
-      color: rgba(255, 255, 255, 0.92);
-      font-size: 1rem;
-      font-weight: 600;
-    }
-
     .suggested-topics {
       max-width: 880px;
       margin: 0 auto 18px;
@@ -721,8 +712,6 @@
         </button>
       </form>
 
-      <div class="hero-get-started" id="hero-get-started">Get started:</div>
-
       <div class="suggested-topics">
         <div class="topic-group">
           <button type="button" class="topic-pill" data-copy-var="ai_pill_install_prtg" data-topic="Install PRTG">Install PRTG</button>
@@ -846,7 +835,6 @@
     const heroTitle = document.getElementById('hero-title');
     const heroStatus = document.getElementById('hero-status');
     const heroClaim = document.getElementById('hero-claim');
-    const heroGetStarted = document.getElementById('hero-get-started');
     const previewChatTitle = document.getElementById('preview-chat-title');
     const previewChatStatus = document.getElementById('preview-chat-status');
     const previewChatClaim = document.getElementById('preview-chat-claim');
@@ -890,10 +878,6 @@
         if (assigns.ai_hero_claim) {
           heroClaim.textContent = assigns.ai_hero_claim;
           previewChatClaim.textContent = assigns.ai_hero_claim;
-        }
-
-        if (assigns.ai_get_started) {
-          heroGetStarted.textContent = assigns.ai_get_started;
         }
 
         document.querySelectorAll('[data-copy-var]').forEach(function (node) {

@@ -278,15 +278,6 @@ section p.white {
   background: #004577;
 }
 
-.hero-get-started {
-  max-width: 880px;
-  margin: 0 auto 12px;
-  text-align: left;
-  color: rgba(255, 255, 255, 0.92);
-  font-size: 1rem;
-  font-weight: 600;
-}
-
 .suggested-topics {
   max-width: 880px;
   margin: 0 auto 20px;
