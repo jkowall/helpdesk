@@ -73,6 +73,30 @@
       text-decoration: underline;
     }
 
+    @keyframes statusGlow {
+      0%,
+      100% {
+        box-shadow: 0 0 0 1px rgba(184, 239, 73, 0.12), 0 0 18px rgba(144, 194, 38, 0.3);
+      }
+
+      50% {
+        box-shadow: 0 0 0 1px rgba(184, 239, 73, 0.28), 0 0 28px rgba(184, 239, 73, 0.46);
+      }
+    }
+
+    @keyframes statusPulse {
+      0%,
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 4px rgba(184, 239, 73, 0.2), 0 0 14px rgba(184, 239, 73, 0.85);
+      }
+
+      50% {
+        transform: scale(1.18);
+        box-shadow: 0 0 0 7px rgba(184, 239, 73, 0.12), 0 0 20px rgba(184, 239, 73, 1);
+      }
+    }
+
     .preview-widget {
       position: fixed;
       top: 0;
@@ -161,17 +185,56 @@
 
     .preview-chat-card {
       max-width: 700px;
-      background: #fff8e1;
-      border: 1px solid #ffe082;
+      background: #fff;
+      border: 1px solid #dce7f1;
       border-radius: 12px;
       padding: 18px 20px;
-      color: #6d5b00;
+      color: #24435f;
+      box-shadow: 0 10px 24px rgba(14, 42, 68, 0.08);
+    }
+
+    .preview-chat-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+      text-align: center;
     }
 
     .preview-chat-card h3 {
-      margin-bottom: 12px;
-      color: #6d5b00;
-      font-size: 1.25rem;
+      margin: 0;
+      color: #24435f;
+      font-size: 1.6rem;
+      line-height: 1.2;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 2px solid #b8ef49;
+      background: linear-gradient(180deg, rgba(152, 214, 44, 0.32) 0%, rgba(98, 154, 16, 0.28) 100%);
+      color: #f4ffd8;
+      font-size: 0.95rem;
+      font-weight: 700;
+      white-space: nowrap;
+      box-shadow: 0 0 0 1px rgba(184, 239, 73, 0.12), 0 0 18px rgba(144, 194, 38, 0.3);
+      text-shadow: 0 0 10px rgba(184, 239, 73, 0.2);
+      animation: statusGlow 1.8s ease-in-out infinite;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #b8ef49;
+      display: inline-block;
+      box-shadow: 0 0 0 4px rgba(184, 239, 73, 0.2), 0 0 14px rgba(184, 239, 73, 0.85);
+      animation: statusPulse 1.8s ease-in-out infinite;
     }
 
     .preview-chat-thread {
@@ -299,17 +362,27 @@
       margin: 0 auto;
     }
 
+    .hero-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
     .hero h1 {
-      font-size: 2.6rem;
-      font-weight: 300;
-      margin-bottom: 12px;
+      font-size: 3rem;
+      font-weight: 700;
+      margin: 0;
     }
 
     .hero p {
       font-size: 1.12rem;
-      font-weight: 300;
+      font-weight: 400;
       opacity: 0.9;
-      margin-bottom: 28px;
+      margin: 0 auto 28px;
+      max-width: 880px;
     }
 
     .hero-chat-input {
@@ -347,13 +420,39 @@
       flex-shrink: 0;
     }
 
+    .hero-get-started {
+      max-width: 880px;
+      margin: 0 auto 12px;
+      text-align: left;
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
     .suggested-topics {
+      max-width: 880px;
+      margin: 0 auto 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .topic-group {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
       gap: 10px;
-      max-width: 780px;
-      margin: 0 auto 18px;
+      align-items: center;
+    }
+
+    .topic-group-label {
+      flex-basis: 100%;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-align: left;
     }
 
     .topic-pill {
@@ -367,8 +466,8 @@
     }
 
     .hero-secondary-link {
-      color: rgba(255, 255, 255, 0.78);
-      font-size: 0.92rem;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 0.95rem;
     }
 
     .hero-secondary-link a {
@@ -513,6 +612,10 @@
         font-size: 2rem;
       }
 
+      .status-pill {
+        font-size: 0.86rem;
+      }
+
       .preview-widget {
         padding: 0 14px;
       }
@@ -532,7 +635,7 @@
 <body>
   <div class="preview-widget">
     <div class="preview-widget-label">Get Instant Help</div>
-    <div class="preview-widget-meta">Static Preview</div>
+    <div class="preview-widget-meta">Canonical Theme Preview</div>
     <button class="preview-widget-btn" type="button" id="open-preview-chat">Expand Chat</button>
   </div>
 
@@ -544,14 +647,20 @@
       </div>
       <div class="preview-chat-body" id="preview-chat-body">
         <div class="preview-chat-card">
-          <h3>&#128075; Hi there! I'm Max, your AI support guide.</h3>
-          <p>You're viewing a GitHub Pages-safe static preview of the current helpdesk layout. The real Freshdesk theme still lives in the separate Liquid source files for copy/paste deployment.</p>
+          <div class="preview-chat-title-row">
+            <h3 id="preview-chat-title">Hi, I'm Max! Your AI support guide.</h3>
+            <div class="status-pill">
+              <span class="status-dot"></span>
+              <span id="preview-chat-status">Online and ready to help</span>
+            </div>
+          </div>
+          <p id="preview-chat-claim">I can help you with PRTG setup, troubleshooting, and answer your questions instantly. Available 24/7.</p>
         </div>
         <div class="preview-chat-thread" id="preview-chat-thread"></div>
       </div>
       <div class="preview-chat-input">
         <form id="preview-chat-form">
-          <input type="text" id="preview-chat-input-field" placeholder="Describe your issue here..." aria-label="Preview chat input">
+          <input type="text" id="preview-chat-input-field" placeholder="Ask Max a question..." aria-label="Preview chat input">
           <button class="preview-chat-send" type="submit">Send</button>
         </form>
       </div>
@@ -588,11 +697,17 @@
 
   <section class="hero">
     <div class="hero-inner">
-      <h1>How can we help you today, Jordan?</h1>
-      <p>Our experts will assist you with anything you need.</p>
+      <div class="hero-title-row">
+        <h1 id="hero-title">Hi, I'm Max! Your AI support guide.</h1>
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          <span id="hero-status">Online and ready to help</span>
+        </div>
+      </div>
+      <p id="hero-claim">I can help you with PRTG setup, troubleshooting, and answer your questions instantly. Available 24/7.</p>
 
       <form class="hero-chat-input" id="hero-preview-form">
-        <input type="text" id="hero-preview-field" placeholder="Describe your issue here..." autocomplete="off">
+        <input type="text" id="hero-preview-field" placeholder="Ask Max a question..." autocomplete="off">
         <button type="submit" title="Send" id="hero-preview-submit">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M5 12h14M12 5l7 7-7 7" />
@@ -600,14 +715,30 @@
         </button>
       </form>
 
+      <div class="hero-get-started" id="hero-get-started">Get started:</div>
+
       <div class="suggested-topics">
-        <button type="button" class="topic-pill" data-topic="How do I configure email notifications?">How do I configure email notifications?</button>
-        <button type="button" class="topic-pill" data-topic="My sensors are in an unknown state">My sensors are in an unknown state</button>
-        <button type="button" class="topic-pill" data-topic="I want to set up SNMP sensors">I want to set up SNMP sensors</button>
+        <div class="topic-group">
+          <div class="topic-group-label" data-copy-var="ai_group_setup">Setup</div>
+          <button type="button" class="topic-pill" data-copy-var="ai_pill_install_prtg" data-topic="How do I install PRTG?">How do I install PRTG?</button>
+          <button type="button" class="topic-pill" data-copy-var="ai_pill_install_requirements" data-topic="What are the installation requirements?">What are the installation requirements?</button>
+          <button type="button" class="topic-pill" data-copy-var="ai_pill_first_device" data-topic="How do I set up my first device?">How do I set up my first device?</button>
+        </div>
+        <div class="topic-group">
+          <div class="topic-group-label" data-copy-var="ai_group_troubleshooting">Troubleshooting</div>
+          <button type="button" class="topic-pill" data-copy-var="ai_pill_probe_connecting" data-topic="Why is my probe not connecting?">Why is my probe not connecting?</button>
+          <button type="button" class="topic-pill" data-copy-var="ai_pill_sensor_down" data-topic="Why is my sensor showing 'Down' status?">Why is my sensor showing 'Down' status?</button>
+          <button type="button" class="topic-pill" data-copy-var="ai_pill_core_server" data-topic="How do I troubleshoot core server issues?">How do I troubleshoot core server issues?</button>
+        </div>
+        <div class="topic-group">
+          <div class="topic-group-label" data-copy-var="ai_group_account">Account &amp; Access</div>
+          <button type="button" class="topic-pill" data-copy-var="ai_pill_add_users" data-topic="How do I add new users?">How do I add new users?</button>
+          <button type="button" class="topic-pill" data-copy-var="ai_pill_reset_password" data-topic="How do I reset a user password?">How do I reset a user password?</button>
+        </div>
       </div>
 
       <div class="hero-secondary-link">
-        Need more help? <a href="#">Create ticket.</a>
+        Still need help? You can also <a href="#">create a ticket</a>.
       </div>
     </div>
   </section>
@@ -713,6 +844,72 @@
     const chatThread = document.getElementById('preview-chat-thread');
     const chatBody = document.getElementById('preview-chat-body');
     const topicPills = document.querySelectorAll('.topic-pill');
+    const heroTitle = document.getElementById('hero-title');
+    const heroStatus = document.getElementById('hero-status');
+    const heroClaim = document.getElementById('hero-claim');
+    const heroGetStarted = document.getElementById('hero-get-started');
+    const previewChatTitle = document.getElementById('preview-chat-title');
+    const previewChatStatus = document.getElementById('preview-chat-status');
+    const previewChatClaim = document.getElementById('preview-chat-claim');
+
+    function decodeHtml(value) {
+      const textarea = document.createElement('textarea');
+      textarea.innerHTML = value;
+      return textarea.value;
+    }
+
+    async function syncFromCanonicalTheme() {
+      try {
+        const response = await fetch('theme/portal_home.html');
+        if (!response.ok) return;
+        const source = await response.text();
+        const assigns = {};
+        const assignRegex = /{%\s*assign\s+([a-zA-Z0-9_]+)\s*=\s*"([^"]*)"\s*%}/g;
+        let match;
+
+        while ((match = assignRegex.exec(source)) !== null) {
+          assigns[match[1]] = decodeHtml(match[2]);
+        }
+
+        const heroPlaceholderMatch = source.match(/id="hero-chat-field"\s+placeholder="([^"]+)"/);
+        if (heroPlaceholderMatch) {
+          const placeholder = decodeHtml(heroPlaceholderMatch[1]);
+          heroField.placeholder = placeholder;
+          chatField.placeholder = placeholder;
+        }
+
+        if (assigns.ai_hero_title) {
+          heroTitle.textContent = assigns.ai_hero_title;
+          previewChatTitle.textContent = assigns.ai_hero_title;
+        }
+
+        if (assigns.ai_online_status) {
+          heroStatus.textContent = assigns.ai_online_status;
+          previewChatStatus.textContent = assigns.ai_online_status;
+        }
+
+        if (assigns.ai_hero_claim) {
+          heroClaim.textContent = assigns.ai_hero_claim;
+          previewChatClaim.textContent = assigns.ai_hero_claim;
+        }
+
+        if (assigns.ai_get_started) {
+          heroGetStarted.textContent = assigns.ai_get_started;
+        }
+
+        document.querySelectorAll('[data-copy-var]').forEach(function (node) {
+          const variableName = node.getAttribute('data-copy-var');
+          const value = assigns[variableName];
+          if (!value) return;
+          node.textContent = value;
+          if (node.classList.contains('topic-pill')) {
+            node.setAttribute('data-topic', value);
+          }
+        });
+      } catch (error) {
+        console.warn('Could not sync preview text from canonical theme files.', error);
+      }
+    }
 
     function openModal() {
       modal.classList.add('is-open');
@@ -742,10 +939,12 @@
       window.setTimeout(function () {
         appendMessage(
           'assistant',
-          'Preview response: in Freshdesk this would hand the message to the live widget. For the GitHub Pages demo, we are just confirming the submit flow is wired correctly.'
+          'Preview response: on the live helpdesk this message would be passed to the real Max widget. This GitHub Pages preview mirrors the same hero and widget experience without the Freshdesk runtime.'
         );
       }, 180);
     }
+
+    syncFromCanonicalTheme();
 
     openBtn.addEventListener('click', function () {
       if (modal.classList.contains('is-open')) {
