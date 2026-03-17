@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh api repos/jkowall/helpdesk/pages)",
+      "Bash(gh run list --limit 5)"
+    ]
+  }
+}
