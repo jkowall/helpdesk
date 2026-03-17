@@ -1,231 +1,178 @@
-<!-- 
-  PAESSLER HELPDESK - AI WIDGET SNIPPET
-  --------------------------------------
-  Paste this snippet into your Freshdesk Portal (e.g., Footer or Header)
-  to add the "Get Instant Help" AI widget bar.
-  This version is synced with the production (production-clone.html) styling.
+<!--
+  PAESSLER HELPDESK – AI WIDGET SNIPPET
+  Canonical standalone snippet. Secrets are injected locally from .env when rendered to dist/.
 -->
 
 <style>
-    :root {
-        --fd-widget-height: 50px;
-        --fd-widget-bg: #004b87;
-        --fd-brand-green: #90c226;
-        --fd-brand-blue: #00adef;
-    }
+  :root {
+    --fd-widget-height: 50px;
+    --fd-widget-bg: #004b87;
+    --fd-brand-green: #90c226;
+    --fd-brand-blue: #00aeef;
+  }
 
-    #embrace-widget-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: var(--fd-widget-height);
-        background-color: var(--fd-widget-bg);
-        color: #fff;
-        z-index: 10000;
-        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 24px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        font-family: 'Open Sans', 'Roboto', sans-serif;
-    }
+  body {
+    padding-top: var(--fd-widget-height) !important;
+  }
 
-    /* Shift body down to accommodate top bar */
-    body {
-        padding-top: var(--fd-widget-height) !important;
-    }
+  #embrace-widget-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--fd-widget-height);
+    background-color: var(--fd-widget-bg);
+    color: #fff;
+    z-index: 10000;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    font-family: "Roboto", sans-serif;
+  }
 
-    #embrace-widget-container.widget-fullscreen {
-        height: 100vh;
-        width: 100vw;
-        padding: 0;
-        flex-direction: column;
-        align-items: stretch;
-        background-color: #fff;
-    }
+  #embrace-widget-container.widget-fullscreen {
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    flex-direction: column;
+    align-items: stretch;
+    background-color: #fff;
+  }
 
-    .widget-controls {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-        z-index: 10001;
-    }
+  .bar-label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 
-    #embrace-widget-container.widget-fullscreen .widget-controls {
-        position: absolute;
-        top: 15px;
-        right: 20px;
-    }
+  .ai-disclosure {
+    font-size: 0.7rem;
+    opacity: 0.6;
+    font-weight: 300;
+    margin-left: auto;
+    margin-right: 16px;
+    white-space: nowrap;
+  }
 
-    .bar-label {
-        font-weight: 600;
-        font-size: 0.9rem;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
+  .widget-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    z-index: 10001;
+  }
 
-    .bar-label::before {
-        content: '💬';
-    }
+  #embrace-widget-container.widget-fullscreen .widget-controls {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+  }
 
-    .ai-disclosure {
-        font-size: 0.7rem;
-        opacity: 0.6;
-        font-weight: 300;
-        margin-left: auto;
-        margin-right: 16px;
-        white-space: nowrap;
-    }
+  #embrace-widget-container.widget-fullscreen .ai-disclosure {
+    display: none;
+  }
 
-    #embrace-widget-container.widget-fullscreen .ai-disclosure {
-        display: none;
-    }
+  .widget-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    text-decoration: none;
+  }
 
-    .widget-btn {
-        background: rgba(255, 255, 255, 0.15);
-        border: none;
-        color: white;
-        padding: 6px 14px;
-        border-radius: 4px;
-        font-size: 0.8rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        cursor: pointer;
-        transition: all 0.2s;
-        font-family: inherit;
-        text-decoration: none;
-    }
+  .widget-btn.primary {
+    background-color: var(--fd-brand-green);
+    color: #fff;
+  }
 
-    .widget-btn:hover {
-        background: rgba(255, 255, 255, 0.25);
-    }
+  .widget-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+  }
 
-    .widget-btn.primary {
-        background-color: var(--fd-brand-green);
-        color: #fff;
-    }
+  #btn-open-ticket-widget {
+    display: none;
+    border: 1px solid var(--fd-brand-blue);
+    color: var(--fd-brand-blue);
+    background: transparent;
+  }
 
-    #btn-open-ticket-widget {
-        display: none;
-        border: 1px solid var(--fd-brand-blue);
-        color: var(--fd-brand-blue);
-        background: transparent;
-    }
+  .chat-wrapper {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: relative;
+  }
 
-    /* Hero AI Button Component */
-    .btn-hero-ai {
-        background: rgba(0, 75, 135, 0.1);
-        /* Branded transparent blue */
-        border: 1px solid var(--fd-widget-bg);
-        color: var(--fd-widget-bg);
-        padding: 10px 24px;
-        border-radius: 30px;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s;
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        text-decoration: none;
-        margin: 10px 0;
-    }
-
-    .btn-hero-ai:hover {
-        background: var(--fd-widget-bg);
-        color: #fff;
-    }
-
-    .chat-wrapper {
-        flex: 1;
-        width: 100%;
-        height: 100%;
-        display: none;
-        position: relative;
-    }
-
-    #embrace-widget-container.widget-fullscreen .chat-wrapper {
-        display: block;
-        padding-top: 60px;
-    }
+  #embrace-widget-container.widget-fullscreen .chat-wrapper {
+    display: block;
+    padding-top: 60px;
+  }
 </style>
 
-<!-- Widget HTML -->
 <div id="embrace-widget-container" class="widget-top-bar">
-    <div class="bar-label">Get Instant Help</div>
-    <div class="ai-disclosure">Powered by AI</div>
+  <div class="bar-label">Get Instant Help</div>
+  <div class="ai-disclosure">Powered by AI</div>
 
-    <div class="chat-wrapper">
-        <embrace-chat org-id="YOUR_ORG_ID" client-id="YOUR_CLIENT_ID" external-id="paessler-freshdesk-portal">
-            <template>
-                <div slot="initial-message"
-                    style="background: #fff8e1; border: 1px solid #ffe082; border-radius: 8px; padding: 10px 14px; margin: 8px 16px; font-size: 0.85rem; color: #6d5b00; display: flex; align-items: flex-start; gap: 8px;">
-                    <span style="font-size: 1.1rem;">⚠️</span>
-                    <span>You are chatting with an AI assistant. Responses may not always be accurate. For complex
-                        issues, please <strong>open a support ticket</strong>.</span>
-                </div>
-            </template>
-        </embrace-chat>
-    </div>
+  <div class="chat-wrapper">
+    <embrace-chat org-id="__EMBRACE_ORG_ID__" client-id="__EMBRACE_CLIENT_ID__" external-id="paessler-freshdesk-portal">
+      <template>
+        <div slot="initial-message"
+          style="background: #fff8e1; border: 1px solid #ffe082; border-radius: 8px; padding: 10px 14px; margin: 8px 16px; color: #6d5b00; display: flex; align-items: flex-start; gap: 8px;">
+          <div>
+            <h2 style='font-size: 18px; font-weight: bold; margin-bottom: 15px !important;'>&#128075; Hi there! I'm Max, your AI support guide.</h2>
+            <p style="margin-bottom: 0;">I'm here to help keep your monitoring running smoothly. I can answer questions, troubleshoot common issues, and connect you to a support engineer when needed.</p>
+          </div>
+        </div>
+        <div slot="input-placeholder">Chat with Max</div>
+      </template>
+    </embrace-chat>
+  </div>
 
-    <div class="widget-controls">
-        <a href="/en/support/tickets/new" id="btn-open-ticket-widget" class="widget-btn">Still need help? Open a
-            Ticket</a>
-        <button id="btn-expand" class="widget-btn primary">Expand Chat</button>
-    </div>
+  <div class="widget-controls">
+    <a href="/en/support/tickets/new" id="btn-open-ticket-widget" class="widget-btn">Still need help? Open a Ticket</a>
+    <button type="button" id="btn-expand" class="widget-btn primary">Expand Chat</button>
+  </div>
 </div>
 
-<!-- 
-    OPTIONAL: "Get Instant Help" Button Component
-    Paste this anywhere in your portal (e.g. Hero section) to trigger the chat.
--->
-<!--
-<button class="btn-hero-ai" onclick="openFullscreenChat()">
-    <span>💬</span> Get Instant Help
-</button>
--->
-
-<!-- Essential Scripts -->
-<script type="module" src="https://js.dev.embrace.ai/v1/elements.js"></script>
+<script type="module" src="https://js.embrace.ai/v1/elements.js"></script>
 <script>
-    (function () {
-        const container = document.getElementById('embrace-widget-container');
-        const expandBtn = document.getElementById('btn-expand');
-        const ticketBtnSnippet = document.getElementById('btn-open-ticket-widget');
-        const barLabel = document.querySelector('.bar-label');
+  (function () {
+    var container = document.getElementById('embrace-widget-container');
+    var expandBtn = document.getElementById('btn-expand');
+    var ticketBtnSnippet = document.getElementById('btn-open-ticket-widget');
+    var barLabel = document.querySelector('.bar-label');
 
-        expandBtn.addEventListener('click', () => {
-            const isFullscreen = container.classList.toggle('widget-fullscreen');
-            if (isFullscreen) {
-                expandBtn.textContent = 'Collapse Chat';
-                ticketBtnSnippet.style.display = 'inline-block';
-                updateWidgetStyles(true);
-            } else {
-                expandBtn.textContent = 'Expand Chat';
-                ticketBtnSnippet.style.display = 'none';
-                updateWidgetStyles(false);
-            }
-        });
+    if (!container || !expandBtn) return;
 
-        window.openFullscreenChat = function () {
-            if (!container.classList.contains('widget-fullscreen')) {
-                expandBtn.click();
-            }
-        }
+    expandBtn.addEventListener('click', function () {
+      var isFullscreen = container.classList.toggle('widget-fullscreen');
+      if (isFullscreen) {
+        expandBtn.textContent = 'Collapse Chat';
+        if (ticketBtnSnippet) ticketBtnSnippet.style.display = 'inline-block';
+        if (barLabel) barLabel.style.display = 'none';
+      } else {
+        expandBtn.textContent = 'Expand Chat';
+        if (ticketBtnSnippet) ticketBtnSnippet.style.display = 'none';
+        if (barLabel) barLabel.style.display = 'flex';
+      }
+    });
 
-        function updateWidgetStyles(isFullscreen) {
-            if (isFullscreen) {
-                expandBtn.style.color = '#fff';
-                expandBtn.style.background = 'var(--fd-brand-green)';
-                barLabel.style.display = 'none';
-            } else {
-                expandBtn.style.color = 'white';
-                expandBtn.style.background = 'var(--fd-brand-green)';
-                barLabel.style.display = 'flex';
-            }
-        }
-    })();
+    window.openFullscreenChat = function () {
+      if (!container.classList.contains('widget-fullscreen')) {
+        expandBtn.click();
+      }
+    };
+  })();
 </script>

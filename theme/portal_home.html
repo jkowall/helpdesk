@@ -1,0 +1,249 @@
+{% if portal.current_language.name == "German" %}
+{% assign here_to_help = "Wir sind da um zu helfen!" %}
+{% assign ai_hero_title = "Hi, ich bin Max! Dein KI-Support-Guide." %}
+{% assign ai_hero_claim = "Ich helfe dir bei PRTG-Setup, Troubleshooting und beantworte deine Fragen sofort. Verfügbar 24/7." %}
+{% assign ai_online_status = "Online und bereit zu helfen" %}
+{% assign ai_get_started = "Starte hier:" %}
+{% assign search = "Suchen" %}
+{% assign search_placeholder = "Geben Sie einen Suchbegriff ein..." %}
+{% assign new_ticket = "Neues Ticket" %}
+{% assign my_tickets = "Meine Tickets" %}
+{% assign not_registered_yet = "Sie haben noch keinen Account?" %}
+{% assign register = "Jetzt anmelden" %}
+{% assign loginmsg = "Jetzt anmelden und loslegen!" %}
+{% assign new_ticket_desc = "Wir werden Ihr Anliegen schnellstmöglich bearbeiten." %}
+{% assign all_your_tickets = "Ihre Tickets" %}
+{% assign all_your_tickets_desc = "Klicken Sie hier, um eine Übersicht Ihrer Tickets zu sehen." %}
+{% assign other_ressources = "Support-Dokumente" %}
+{% assign other_ressources_desc = "Alle Support-Dokumente, Videos, FAQ uvm." %}
+{% assign feature_request = "Feature Request" %}
+{% assign feature_request_desc = "Sie haben eine Idee oder Wunsch für PRTG? Ihre Stimme zählt!" %}
+{% assign knowledge_base = "Knowledge Base" %}
+{% assign knowledge_base_desc = "Fragen und Antworten rund um PRTG und Monitoring" %}
+{% assign performance_check_service = "Performance Check Service" %}
+{% assign performance_check_service_desc = "Wir helfen bei Performance-Problemen. <br />Wählen Sie Service | Performance-Check beim Ticket erstellen" %}
+{% assign performance_check_btn = "Beantragen" %}
+{% assign callback_service = "Rückruf-Service" %}
+{% assign callback_service_desc = "Brauchen Sie Rat von einem Experten? <br />Wir helfen gern. Wählen Sie Service | Rückruf beim Ticket erstellen" %}
+{% assign callback_service_btn = "Beantragen" %}
+{% assign table_of_content = "Inhalt" %}
+{% assign ai_group_setup = "Setup" %}
+{% assign ai_group_troubleshooting = "Fehlerbehebung" %}
+{% assign ai_group_account = "Konto & Zugriff" %}
+{% assign ai_pill_install_prtg = "Wie installiere ich PRTG?" %}
+{% assign ai_pill_install_requirements = "Was sind die Installationsvoraussetzungen?" %}
+{% assign ai_pill_first_device = "Wie richte ich mein erstes Gerät ein?" %}
+{% assign ai_pill_probe_connecting = "Warum verbindet sich meine Probe nicht?" %}
+{% assign ai_pill_sensor_down = "Warum hat mein Sensor den Status 'Down'?" %}
+{% assign ai_pill_core_server = "Wie behebe ich Core-Server-Probleme?" %}
+{% assign ai_pill_add_users = "Wie füge ich neue Benutzer hinzu?" %}
+{% assign ai_pill_reset_password = "Wie setze ich ein Benutzerpasswort zurück?" %}
+{% else %}
+{% assign here_to_help = "We're here to help you!" %}
+{% assign ai_hero_title = "Hi, I'm Max! Your AI support guide." %}
+{% assign ai_hero_claim = "I can help you with PRTG setup, troubleshooting, and answer your questions instantly. Available 24/7." %}
+{% assign ai_online_status = "Online and ready to help" %}
+{% assign ai_get_started = "Get started:" %}
+{% assign search = "Search" %}
+{% assign search_placeholder = "Enter your search term here..." %}
+{% assign new_ticket = "Create ticket" %}
+{% assign my_tickets = "My tickets" %}
+{% assign not_registered_yet = "Not yet registered?" %}
+{% assign register = "Login" %}
+{% assign loginmsg = "Sign in to start!" %}
+{% assign new_ticket_desc = "We strive to respond to all requests within one business day (Monday to Friday)." %}
+{% assign all_your_tickets = "All Your Tickets" %}
+{% assign all_your_tickets_desc = "Click for an overview of all your tickets to quickly see the previous conversations or their status." %}
+{% assign other_ressources = "Other Resources" %}
+{% assign other_ressources_desc = "Explore all our support resources, from FAQ, videos, manuals and Co.<br />" %}
+{% assign knowledge_base = "Knowledge Base" %}
+{% assign knowledge_base_desc = "Here you can find questions and answers about PRTG and network monitoring in general." %}
+{% assign performance_check_service = "Performance Check Service" %}
+{% assign performance_check_service_desc = "Let's take a closer look at all performance-related issues. Select Service | Performance Check when creating a new ticket." %}
+{% assign performance_check_btn = "Request" %}
+{% assign callback_service = "Callback Service" %}
+{% assign callback_service_desc = "Need an expert? Our support engineers will happily assist you on the matter. Select Service | Callback when creating a new ticket." %}
+{% assign callback_service_btn = "Request" %}
+{% assign feature_request = "Feature Request" %}
+{% assign feature_request_desc = "Got a feature you'd like to see? Make your voice count!" %}
+{% assign table_of_content = "Content" %}
+{% assign ai_group_setup = "Setup" %}
+{% assign ai_group_troubleshooting = "Troubleshooting" %}
+{% assign ai_group_account = "Account & Access" %}
+{% assign ai_pill_install_prtg = "How do I install PRTG?" %}
+{% assign ai_pill_install_requirements = "What are the installation requirements?" %}
+{% assign ai_pill_first_device = "How do I set up my first device?" %}
+{% assign ai_pill_probe_connecting = "Why is my probe not connecting?" %}
+{% assign ai_pill_sensor_down = "Why is my sensor showing 'Down' status?" %}
+{% assign ai_pill_core_server = "How do I troubleshoot core server issues?" %}
+{% assign ai_pill_add_users = "How do I add new users?" %}
+{% assign ai_pill_reset_password = "How do I reset a user password?" %}
+{% endif %}
+
+{% if portal.current_tab %}
+{% if portal.current_page == 'portal_home' or portal.current_page == 'search' %}
+<section class="hero-unit background-blackblue" data-hero-unit>
+  <div class="container-inner search-box search-box--hero-unit" data-search-box>
+    {% if portal.user.id %}
+      <div class="hero-title-row">
+        <h1 class="white">{{ ai_hero_title }}</h1>
+        <div class="hero-status-pill">
+          <span class="hero-status-dot"></span>
+          {{ ai_online_status }}
+        </div>
+      </div>
+      <h2 class="white">{{ ai_hero_claim }}</h2>
+      <br>
+
+      <div class="hero-chat-input">
+        <input type="text" id="hero-chat-field" placeholder="Ask Max a question..." autocomplete="off">
+        <button type="button" id="hero-chat-submit" title="Send">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="hero-get-started">{{ ai_get_started }}</div>
+
+      <div class="suggested-topics">
+        <div class="topic-group">
+          <div class="topic-group-label">{{ ai_group_setup }}</div>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_install_prtg}}">{{ai_pill_install_prtg}}</button>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_install_requirements}}">{{ai_pill_install_requirements}}</button>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_first_device}}">{{ai_pill_first_device}}</button>
+        </div>
+        <div class="topic-group">
+          <div class="topic-group-label">{{ ai_group_troubleshooting }}</div>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_probe_connecting}}">{{ai_pill_probe_connecting}}</button>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_sensor_down}}">{{ai_pill_sensor_down}}</button>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_core_server}}">{{ai_pill_core_server}}</button>
+        </div>
+        <div class="topic-group">
+          <div class="topic-group-label">{{ ai_group_account }}</div>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_add_users}}">{{ai_pill_add_users}}</button>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_reset_password}}">{{ai_pill_reset_password}}</button>
+        </div>
+      </div>
+
+      <div class="hero-secondary-link">
+        Still need help? You can also <a href="{{ portal.new_ticket_url }}">create a ticket</a>.
+      </div>
+    {% else %}
+      <h1 class="white">{{ here_to_help }}</h1>
+      <h2 class="white">{{ new_ticket_desc }}<br><br></h2>
+      <div style="text-align: center;">
+        <a class="btn btn-primary extralarge" href="/login">{{ loginmsg }}</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<div class="container">
+  <div class="container-inner clearfix">
+    {% if portal.user.id %}
+    <section style='width: 100%; margin-left: auto; margin-right: auto;'>
+    {% else %}
+    <section style='width: 100%; margin-left: auto; margin-right: auto;padding-left: 19%;'>
+    {% endif %}
+
+      {% if portal.user.id %}
+      <a href="/support/tickets">
+        <div class="box-segment column column--sm-3">
+          <div class="box-image">
+            <img src="https://paessler.canto.global/direct/image/4nm8teekqh11p6uvadhjs4qg62/JEA7rMfXu_DfAyth4zncCcjqI8Q/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_Ticket-Overview.svg" alt="">
+          </div>
+          <div class="box-content">
+            <h3>{{all_your_tickets}}</h3>
+            <p style='min-height: 100px !important;'>{{all_your_tickets_desc}}</p>
+            <span class="btn btn-primary">{{ my_tickets }}</span>
+          </div>
+        </div>
+      </a>
+      {% endif %}
+
+      <div class="box-segment column column--sm-3">
+        <a href="https://helpdesk.paessler.com/en/support/solutions">
+          <div class="box-image">
+            <img src="https://paessler.canto.global/direct/image/7oi7f9t3g17v1a2q6ge7vuqf67/P_RX2hwNtJZkPS8nnqYBmtVSvyA/original?content-type=image%2Fsvg%2Bxml&name=Preview_Category_KnowledgeBase.svg" alt="">
+          </div>
+          <div class="box-content">
+            <h3>{{knowledge_base}}</h3>
+            <p style='min-height: 100px !important;'>{{knowledge_base_desc}}</p>
+            <span class="btn btn-primary">{{knowledge_base}}</span>
+          </div>
+        </a>
+      </div>
+
+      <a href="https://www.paessler.com/support" target='_blank'>
+        <div class="box-segment column column--sm-3">
+          <div class="box-image">
+            <img src="https://paessler.canto.global/direct/image/ilih5m88v569f7ojatp4g2se7s/hm4Tni1cy9NJAXVx514Hck-DZXU/original?content-type=image%2Fsvg%2Bxml&name=Preview_Resources-Support.svg" alt="">
+          </div>
+          <div class="box-content">
+            <h3>{{other_ressources}}</h3>
+            <p style='min-height: 100px !important;'>{{other_ressources_desc}}{% if portal.user.id %}<br>{% endif %}</p>
+            <span class="btn btn-primary">{{other_ressources}}</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://uservoice.paessler.com/" target='_blank'>
+        <div class="box-segment column column--sm-3">
+          <div class="box-image">
+            <img src="https://paessler.canto.global/direct/image/p00t8i1lc97nt0r3botvmpup4k/2-w4qEm7JG6DCSJCzgylqcsoh5c/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_UserVoice.svg" alt="">
+          </div>
+          <div class="box-content">
+            <h3>{{feature_request}}</h3>
+            <p style='min-height: 100px !important;'>{{feature_request_desc}}{% if portal.user.id %}<br><br />{% endif %}</p>
+            <span class="btn btn-primary">{{feature_request}}</span>
+          </div>
+        </div>
+      </a>
+
+      {% if portal.user.account_tier == "PPEM" %}
+      <a href="{{ portal.new_ticket_url }}">
+        <div class="box-segment column column--sm-3" style='margin-top: 50px;'>
+          <div class="box-image">
+            <img src="https://paessler.canto.global/direct/image/l8gbjkqkh55upeeq63l6t6d32e/eNmJCkqGp1aSYejjtBhBUeIxLdM/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_Performance.svg" alt="">
+          </div>
+          <div class="box-content">
+            <h3>{{performance_check_service}}</h3>
+            <p style='min-height: 100px !important;'>{{performance_check_service_desc}}</p>
+            <span class="btn btn-primary">{{performance_check_btn}}</span>
+          </div>
+        </div>
+      </a>
+      {% endif %}
+    </section>
+  </div>
+</div>
+{% endif %}
+
+{% if portal.has_forums %}
+<section class="sidebar content community-sidebar rounded-6 min-height-on-desktop fc-community-sidebar" id="home-community-sidebar">
+  <h2 class="heading">{% translate portal.community_forums %}</h2>
+  {% if portal.topics_count > 0 %}
+    <p class="intro">{% translate portal.showing_recent_updates %}</p>
+    {% for category in portal.forum_categories %}
+      {% if category.forums_count > 0 %}
+      <div class="cs-s">
+        <div class="cs-g-c">
+          {% for forum in category.forums %}
+          <section class="cs-g topic-list">
+            <div class="list-lead badge-{{ forum.type_class }}">
+              {{ forum | link_to_forum_with_count }}
+            </div>
+            {{ forum | topic_list:3 }}
+          </section>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    {% endfor %}
+  {% else %}
+    {{ portal | filler_for_forums }}
+  {% endif %}
+</section>
+{% endif %}
+{% endif %}

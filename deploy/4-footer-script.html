@@ -2,148 +2,129 @@
   PAESSLER HELPDESK – AI WIDGET SCRIPT (FOOTER)
   Paste into: Admin → Portals → Appearance → Pages → Footer
   Place this BEFORE the {{ footer }} tag.
-
-  Uses {{portal.nonce}} for CSP compliance (required by Marina theme).
 -->
 
-<!-- Embrace AI Web Component Library -->
-<script type="module" src="https://js.dev.embrace.ai/v1/elements.js" nonce="{{portal.nonce}}"></script>
+<script type="module" src="https://js.embrace.ai/v1/elements.js" nonce="{{portal.nonce}}"></script>
 
-<!-- Widget Logic -->
 <script nonce="{{portal.nonce}}">
-    (function () {
-        var container = document.getElementById('embrace-widget-container');
-        var expandBtn = document.getElementById('btn-expand');
-        var backBtn = document.getElementById('btn-back-helpdesk');
-        var heroChatField = document.getElementById('hero-chat-field');
-        var heroChatSubmit = document.getElementById('hero-chat-submit');
+  (function () {
+    var container = document.getElementById('embrace-widget-container');
+    var expandBtn = document.getElementById('btn-expand');
+    var heroChatField = document.getElementById('hero-chat-field');
+    var heroChatSubmit = document.getElementById('hero-chat-submit');
+    var ticketBtnSnippet = document.getElementById('btn-open-ticket-widget');
+    var barLabel = document.querySelector('.bar-label');
 
-        if (!container || !expandBtn) return;
+    if (!container || !expandBtn) return;
 
-        expandBtn.addEventListener('click', function () {
-            toggleChat();
-        });
+    expandBtn.addEventListener('click', function () {
+      var isFullscreen = container.classList.toggle('widget-fullscreen');
+      if (isFullscreen) {
+        expandBtn.textContent = 'Collapse Chat';
+        if (ticketBtnSnippet) ticketBtnSnippet.style.display = 'inline-block';
+        if (barLabel) barLabel.style.display = 'none';
+      } else {
+        expandBtn.textContent = 'Expand Chat';
+        if (ticketBtnSnippet) ticketBtnSnippet.style.display = 'none';
+        if (barLabel) barLabel.style.display = 'flex';
+      }
+    });
 
-        if (backBtn) {
-            backBtn.addEventListener('click', function () {
-                if (container.classList.contains('widget-fullscreen')) {
-                    toggleChat();
-                }
-            });
-        }
+    window.openFullscreenChat = function (message) {
+      if (!container.classList.contains('widget-fullscreen')) {
+        expandBtn.click();
+      }
 
-        function toggleChat() {
-            container.classList.toggle('widget-fullscreen');
-        }
+      if (!message) return;
 
-        // Open fullscreen chat, optionally with a pre-filled message
-        window.openFullscreenChat = function (message) {
-            if (container && !container.classList.contains('widget-fullscreen')) {
-                toggleChat();
+      setTimeout(function () {
+        var chatEl = document.querySelector('embrace-chat');
+        if (chatEl && chatEl.shadowRoot) {
+          var input = chatEl.shadowRoot.querySelector('textarea, input[type="text"]');
+          if (input) {
+            var nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, 'value') ||
+              Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value');
+            if (nativeSetter && nativeSetter.set) {
+              nativeSetter.set.call(input, message);
+            } else {
+              input.value = message;
             }
-            if (message) {
-                setTimeout(function () {
-                    var chatEl = document.querySelector('embrace-chat');
-                    if (chatEl && chatEl.shadowRoot) {
-                        var input = chatEl.shadowRoot.querySelector('textarea, input[type="text"]');
-                        if (input) {
-                            // Set value using native setter so frameworks detect the change
-                            var nativeSetter = Object.getOwnPropertyDescriptor(
-                                window.HTMLTextAreaElement.prototype, 'value'
-                            ) || Object.getOwnPropertyDescriptor(
-                                window.HTMLInputElement.prototype, 'value'
-                            );
-                            if (nativeSetter && nativeSetter.set) {
-                                nativeSetter.set.call(input, message);
-                            } else {
-                                input.value = message;
-                            }
-                            input.dispatchEvent(new Event('input', { bubbles: true }));
+            input.dispatchEvent(new Event('input', { bubbles: true }));
 
-                            // Try to click the send button inside the shadow DOM
-                            var sendBtn = chatEl.shadowRoot.querySelector('button[type="submit"], button[aria-label*="send" i], button[aria-label*="Send"], form button:last-of-type');
-                            if (sendBtn) {
-                                setTimeout(function () { sendBtn.click(); }, 150);
-                            } else {
-                                // Fallback: simulate pressing Enter to submit
-                                input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', code: 'Enter', keyCode: 13, bubbles: true }));
-                                input.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter', code: 'Enter', keyCode: 13, bubbles: true }));
-                                input.dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter', code: 'Enter', keyCode: 13, bubbles: true }));
-                            }
-                        }
-                    }
-                }, 600);
+            var sendBtn = chatEl.shadowRoot.querySelector('button[type="submit"], button[aria-label*="send" i], button[aria-label*="Send"], form button:last-of-type');
+            if (sendBtn) {
+              setTimeout(function () { sendBtn.click(); }, 150);
+            } else {
+              input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', code: 'Enter', keyCode: 13, bubbles: true }));
+              input.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter', code: 'Enter', keyCode: 13, bubbles: true }));
+              input.dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter', code: 'Enter', keyCode: 13, bubbles: true }));
             }
-        };
-
-        // Hero chat input — opens fullscreen chat with typed message
-        if (heroChatSubmit) {
-            heroChatSubmit.addEventListener('click', function () {
-                var msg = heroChatField ? heroChatField.value.trim() : '';
-                if (msg) {
-                    openFullscreenChat(msg);
-                    heroChatField.value = '';
-                } else {
-                    openFullscreenChat();
-                }
-            });
+          }
         }
+      }, 600);
+    };
 
-        if (heroChatField) {
-            heroChatField.addEventListener('keydown', function (e) {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    if (heroChatSubmit) heroChatSubmit.click();
-                }
-            });
-        }
-
-        // Suggested topic pills — open fullscreen chat with topic text
-        var pills = document.querySelectorAll('.topic-pill');
-        for (var i = 0; i < pills.length; i++) {
-            pills[i].addEventListener('click', function () {
-                var topic = this.getAttribute('data-topic');
-                openFullscreenChat(topic);
-            });
-        }
-
-        // ── JS fallback: hide Embrace branding inside shadow DOM ──
-        // The CSS ::part(initial-header) rule handles this, but as a
-        // belt-and-suspenders fallback we also inject styles via JS.
-        function injectShadowStyles() {
-            var chatEl = document.querySelector('embrace-chat');
-            if (!chatEl) return;
-
-            function tryInject() {
-                var sr = chatEl.shadowRoot;
-                if (!sr) return false;
-                if (sr.querySelector('#paessler-shadow-overrides')) return true;
-
-                var style = document.createElement('style');
-                style.id = 'paessler-shadow-overrides';
-                style.textContent =
-                    '[part="initial-header"] { display: none !important; }' +
-                    '[part="chat"] { border: none !important; box-shadow: none !important; border-radius: 0 !important; }';
-                sr.appendChild(style);
-                return true;
-            }
-
-            if (!tryInject()) {
-                var observer = new MutationObserver(function () {
-                    if (tryInject()) observer.disconnect();
-                });
-                observer.observe(chatEl, { childList: true, subtree: true });
-                // Also retry on a short delay for shadow root attachment
-                setTimeout(tryInject, 500);
-                setTimeout(tryInject, 1500);
-            }
-        }
-
-        // Run after DOM is ready and Embrace component loads
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', injectShadowStyles);
+    if (heroChatSubmit) {
+      heroChatSubmit.addEventListener('click', function () {
+        var msg = heroChatField ? heroChatField.value.trim() : '';
+        if (msg) {
+          openFullscreenChat(msg);
+          heroChatField.value = '';
         } else {
-            injectShadowStyles();
+          openFullscreenChat();
         }
-    })();
+      });
+    }
+
+    if (heroChatField) {
+      heroChatField.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          if (heroChatSubmit) heroChatSubmit.click();
+        }
+      });
+    }
+
+    var pills = document.querySelectorAll('.topic-pill');
+    for (var i = 0; i < pills.length; i++) {
+      pills[i].addEventListener('click', function () {
+        var topic = this.getAttribute('data-topic');
+        openFullscreenChat(topic);
+      });
+    }
+
+    function injectShadowStyles() {
+      var chatEl = document.querySelector('embrace-chat');
+      if (!chatEl) return;
+
+      function tryInject() {
+        var sr = chatEl.shadowRoot;
+        if (!sr) return false;
+        if (sr.querySelector('#paessler-shadow-overrides')) return true;
+
+        var style = document.createElement('style');
+        style.id = 'paessler-shadow-overrides';
+        style.textContent =
+          '[part="initial-header"] { display: none !important; }' +
+          '[part="chat"] { border: none !important; box-shadow: none !important; border-radius: 0 !important; }';
+        sr.appendChild(style);
+        return true;
+      }
+
+      if (!tryInject()) {
+        var observer = new MutationObserver(function () {
+          if (tryInject()) observer.disconnect();
+        });
+        observer.observe(chatEl, { childList: true, subtree: true });
+        setTimeout(tryInject, 500);
+        setTimeout(tryInject, 1500);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', injectShadowStyles);
+    } else {
+      injectShadowStyles();
+    }
+  })();
 </script>

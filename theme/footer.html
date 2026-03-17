@@ -1,0 +1,231 @@
+<div id="fallback-footer">
+  <footer class="footer-container container" style='margin-top: 146px !important; width: 100% !important;'>
+    <div class="container-inner footer-container__inner">
+      <div class="row clearfix">
+        <div class="column column--sm-4">
+          <div class="col-about col-icons">
+            <h4>About Paessler GmbH</h4>
+            <p>Since 1997, we offer monitoring solutions for businesses across all industries and all sizes, from SMB to large enterprises. We believe monitoring plays a vital part in reducing humankind's consumption of resources. Our products help our customers optimize their IT, OT and IoT infrastructures, and reduce their energy consumption or emissions – for our future and our environment.</p>
+            <ul>
+              <li class="about"><a href="https://www.paessler.com/company/about-us">Learn more about Paessler</a></li>
+              <li class="newsletter"><a href="https://blog.paessler.com/subscribe-to-our-blog">Subscribe to our blog newsletter</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="column column--sm-2">
+          <div class="col-products">
+            <h4>Products</h4>
+            <ul>
+              <li><a href="https://www.paessler.com/prtg">PRTG Network Monitor</a></li>
+              <li><a href="https://www.paessler.com/prtg-enterprise-monitor">PRTG Enterprise Monitor</a></li>
+              <li><a href="https://www.paessler.com/prtg-hosted-monitor">PRTG Hosted Monitor</a></li>
+              <li><a href="https://www.paessler.com/prtg-desktop">PRTG Desktop</a></li>
+              <li><a href="https://www.paessler.com/apps">PRTG Apps</a></li>
+              <li><a href="https://www.paessler.com/paessler-building-monitor">Paessler Building Monitor</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="column column--sm-2">
+          <div class="col-useful">
+            <h4>Useful links</h4>
+            <ul>
+              <li><a href="https://www.paessler.com/company/casestudies">Case Studies</a></li>
+              <li><a href="https://www.paessler.com/manuals/prtg">PRTG Manual</a></li>
+              <li><a href="https://kb.paessler.com/en/">Knowledge Base</a></li>
+              <li><a href="https://www.paessler.com/support/contact">Contact Support</a></li>
+              <li><a href="https://blog.paessler.com">Blog</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="column column--sm-3">
+          <div class="col-contact col-icons">
+            <h4>Contact</h4>
+            <ul>
+              <li class="home"><a href="https://www.paessler.com/company/directions">Thurn-und-Taxis-Str. 14, <br><span>90411 Nuremberg, Germany</span></a></li>
+              <li class="email"><a href="mailto:info@paessler.com">info@paessler.com</a></li>
+              <li class="phone">+49 911 93775-0</li>
+              <li class="fax">+49 911 93775-409</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="bottom-container">
+    <div class="container-inner footer-container__inner">
+      <div class="row clearfix">
+        <div class="column column--sm-9">
+          <div class="legal">
+            ©2022 Paessler AG<span class="footer-spacer"></span>&nbsp;·
+            <a href="https://www.paessler.com/company/terms">Terms&nbsp;&amp;&nbsp;Conditions</a>&nbsp;·
+            <a href="https://www.paessler.com/company/privacypolicy">Privacy Policy</a>&nbsp;·
+            <a href="https://www.paessler.com/company/contact#imprint">Legal Notice</a>&nbsp;·
+            <a href='https://helpdesk.paessler.com/en/support/solutions/articles/76000045095-cookies'>Cookie Policy</a>&nbsp;·
+            <a href="https://www.paessler.com/download-install">Download&nbsp;&amp;&nbsp;Install</a>
+          </div>
+        </div>
+        <div class="column column--sm-3">
+          <div class="social-wrapper">
+            <a class="social" href="https://www.facebook.com/PaesslerAG" rel="external">Facebook</a>
+            <a class="social" href="https://www.youtube.com/user/PaesslerAG" rel="external">YouTube</a>
+            <a class="social" href="https://www.instagram.com/paesslerag/" rel="external">Instagram</a>
+            <a class="social" href="https://twitter.com/paesslerag" rel="external">Twitter</a>
+            <a class="social" href="http://www.linkedin.com/company/409588" rel="external">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if current_user.email contains "@paessler.com" %}
+  {% comment %} if the user has a paessler.com mail address, don't load the cookie consent banner {% endcomment %}
+{% else %}
+  <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" type="text/javascript" charset="UTF-8" data-domain-script="36d52041-4818-40f8-a238-6135ebae43be"></script>
+{% endif %}
+
+<script>
+  fetch('https://neos.paessler.com/components/footer')
+    .then(function (response) {
+      return response.text();
+    })
+    .then(function (footerHtml) {
+      var oldFooter = document.getElementById('fallback-footer');
+      var newFooter = document.createElement('div');
+      newFooter.innerHTML = footerHtml;
+
+      var absoluteDomain = 'https://www.paessler.com';
+      var relativeLinks = newFooter.querySelectorAll('a[href^="/"]');
+      for (var i = 0; i < relativeLinks.length; i++) {
+        relativeLinks[i].setAttribute('href', absoluteDomain + relativeLinks[i].getAttribute('href'));
+      }
+
+      oldFooter.replaceWith(newFooter);
+    });
+</script>
+
+<script nonce="{{portal.nonce}}">
+  (function () {
+    var container = document.getElementById('embrace-widget-container');
+    var expandBtn = document.getElementById('btn-expand');
+    var heroChatField = document.getElementById('hero-chat-field');
+    var heroChatSubmit = document.getElementById('hero-chat-submit');
+    var ticketBtnSnippet = document.getElementById('btn-open-ticket-widget');
+    var barLabel = document.querySelector('.bar-label');
+
+    if (!container || !expandBtn) return;
+
+    expandBtn.addEventListener('click', function () {
+      var isFullscreen = container.classList.toggle('widget-fullscreen');
+      if (isFullscreen) {
+        expandBtn.textContent = 'Collapse Chat';
+        if (ticketBtnSnippet) ticketBtnSnippet.style.display = 'inline-block';
+        if (barLabel) barLabel.style.display = 'none';
+      } else {
+        expandBtn.textContent = 'Expand Chat';
+        if (ticketBtnSnippet) ticketBtnSnippet.style.display = 'none';
+        if (barLabel) barLabel.style.display = 'flex';
+      }
+    });
+
+    window.openFullscreenChat = function (message) {
+      if (!container.classList.contains('widget-fullscreen')) {
+        expandBtn.click();
+      }
+
+      if (!message) return;
+
+      setTimeout(function () {
+        var chatEl = document.querySelector('embrace-chat');
+        if (chatEl && chatEl.shadowRoot) {
+          var input = chatEl.shadowRoot.querySelector('textarea, input[type="text"]');
+          if (input) {
+            var nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, 'value') ||
+              Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value');
+            if (nativeSetter && nativeSetter.set) {
+              nativeSetter.set.call(input, message);
+            } else {
+              input.value = message;
+            }
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+
+            var sendBtn = chatEl.shadowRoot.querySelector('button[type="submit"], button[aria-label*="send" i], button[aria-label*="Send"], form button:last-of-type');
+            if (sendBtn) {
+              setTimeout(function () { sendBtn.click(); }, 150);
+            } else {
+              input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', code: 'Enter', keyCode: 13, bubbles: true }));
+              input.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter', code: 'Enter', keyCode: 13, bubbles: true }));
+              input.dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter', code: 'Enter', keyCode: 13, bubbles: true }));
+            }
+          }
+        }
+      }, 600);
+    };
+
+    if (heroChatSubmit) {
+      heroChatSubmit.addEventListener('click', function () {
+        var msg = heroChatField ? heroChatField.value.trim() : '';
+        if (msg) {
+          openFullscreenChat(msg);
+          heroChatField.value = '';
+        } else {
+          openFullscreenChat();
+        }
+      });
+    }
+
+    if (heroChatField) {
+      heroChatField.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          if (heroChatSubmit) heroChatSubmit.click();
+        }
+      });
+    }
+
+    var pills = document.querySelectorAll('.topic-pill');
+    for (var i = 0; i < pills.length; i++) {
+      pills[i].addEventListener('click', function () {
+        var topic = this.getAttribute('data-topic');
+        openFullscreenChat(topic);
+      });
+    }
+
+    function injectShadowStyles() {
+      var chatEl = document.querySelector('embrace-chat');
+      if (!chatEl) return;
+
+      function tryInject() {
+        var sr = chatEl.shadowRoot;
+        if (!sr) return false;
+        if (sr.querySelector('#paessler-shadow-overrides')) return true;
+
+        var style = document.createElement('style');
+        style.id = 'paessler-shadow-overrides';
+        style.textContent =
+          '[part="initial-header"] { display: none !important; }' +
+          '[part="chat"] { border: none !important; box-shadow: none !important; border-radius: 0 !important; }';
+        sr.appendChild(style);
+        return true;
+      }
+
+      if (!tryInject()) {
+        var observer = new MutationObserver(function () {
+          if (tryInject()) observer.disconnect();
+        });
+        observer.observe(chatEl, { childList: true, subtree: true });
+        setTimeout(tryInject, 500);
+        setTimeout(tryInject, 1500);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', injectShadowStyles);
+    } else {
+      injectShadowStyles();
+    }
+  })();
+</script>

@@ -1,12 +1,9 @@
 <!--
-  PAESSLER HELPDESK – HERO "GET INSTANT HELP" BUTTON
-  Paste into: Admin → Portals → Appearance → Pages  → Home Page
-  Place this INSIDE the hero/banner area.
-
-  This replaces the default Create Ticket hero with a chat-first experience.
+  PAESSLER HELPDESK – HERO CHAT BLOCK
+  Paste into: Admin → Portals → Appearance → Pages → Home
+  Place this inside the logged-in hero area on portal_home.
 -->
 
-<!-- Chat-first hero input -->
 <div class="hero-chat-input">
   <input type="text" id="hero-chat-field" placeholder="Describe your issue here..." autocomplete="off">
   <button type="button" id="hero-chat-submit" title="Send">
@@ -16,15 +13,12 @@
   </button>
 </div>
 
-<!-- Suggested topic pills -->
 <div class="suggested-topics">
-  <button type="button" class="topic-pill" data-topic="How do I configure email notification?">How do I configure email
-    notification?</button>
-  <button type="button" class="topic-pill" data-topic="My sensor shows unknown status">My sensor shows unknown status</button>
-  <button type="button" class="topic-pill" data-topic="How do I set up SNMP sensors?">How do I set up SNMP sensors?</button>
+  <button type="button" class="topic-pill" data-topic="{{ai_pill_email_notification}}">{{ai_pill_email_notification}}</button>
+  <button type="button" class="topic-pill" data-topic="{{ai_pill_unknown_status}}">{{ai_pill_unknown_status}}</button>
+  <button type="button" class="topic-pill" data-topic="{{ai_pill_setup_snmp_sensors}}">{{ai_pill_setup_snmp_sensors}}</button>
 </div>
 
-<!-- Demoted create ticket -->
 <div class="hero-secondary-link">
-  Need more help? <a href="/en/support/tickets/new">Create ticket</a>
+  Need more help? <a href="{{ portal.new_ticket_url }}">Create ticket.</a>
 </div>
