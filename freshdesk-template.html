@@ -94,18 +94,77 @@
             margin-top: 0 !important;
         }
 
+        .hero-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+        }
+
+        @keyframes statusGlow {
+            0%,
+            100% {
+                box-shadow: 0 0 0 1px rgba(184, 239, 73, 0.12), 0 0 18px rgba(144, 194, 38, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 0 1px rgba(184, 239, 73, 0.28), 0 0 28px rgba(184, 239, 73, 0.46);
+            }
+        }
+
+        @keyframes statusPulse {
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 4px rgba(184, 239, 73, 0.2), 0 0 14px rgba(184, 239, 73, 0.85);
+            }
+            50% {
+                transform: scale(1.18);
+                box-shadow: 0 0 0 7px rgba(184, 239, 73, 0.12), 0 0 20px rgba(184, 239, 73, 1);
+            }
+        }
+
         .hero-unit h1.white {
-            font-size: 2.4rem;
-            font-weight: 300;
+            font-size: 3rem;
+            font-weight: 700;
             color: #fff;
-            margin-bottom: 10px;
+            margin: 0;
+        }
+
+        .hero-status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 999px;
+            border: 2px solid #b8ef49;
+            background: linear-gradient(180deg, rgba(152, 214, 44, 0.32) 0%, rgba(98, 154, 16, 0.28) 100%);
+            color: #f4ffd8;
+            font-size: 0.95rem;
+            font-weight: 700;
+            white-space: nowrap;
+            box-shadow: 0 0 0 1px rgba(184, 239, 73, 0.12), 0 0 18px rgba(144, 194, 38, 0.3);
+            text-shadow: 0 0 10px rgba(184, 239, 73, 0.2);
+            animation: statusGlow 1.8s ease-in-out infinite;
+        }
+
+        .hero-status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #b8ef49;
+            display: inline-block;
+            box-shadow: 0 0 0 4px rgba(184, 239, 73, 0.2), 0 0 14px rgba(184, 239, 73, 0.85);
+            animation: statusPulse 1.8s ease-in-out infinite;
         }
 
         .hero-unit h2.white {
             font-size: 1.15rem;
-            font-weight: 300;
+            font-weight: 400;
             color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 0;
+            margin: 0 auto;
+            max-width: 880px;
         }
 
         /* Chat-first hero input */
@@ -155,13 +214,39 @@
         }
 
         /* Suggested topic pills */
+        .hero-get-started {
+            max-width: 880px;
+            margin: 0 auto 12px;
+            text-align: left;
+            color: rgba(255, 255, 255, 0.92);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
         .suggested-topics {
+            max-width: 880px;
+            margin: 0 auto 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            align-items: stretch;
+        }
+
+        .topic-group {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
             gap: 10px;
-            max-width: 780px;
-            margin: 0 auto 20px;
+            align-items: center;
+        }
+
+        .topic-group-label {
+            flex-basis: 100%;
+            color: rgba(255, 255, 255, 0.72);
+            font-size: 0.86rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            text-align: left;
         }
 
         .topic-pill {
@@ -184,8 +269,8 @@
 
         /* Demoted create ticket link */
         .hero-secondary-link {
-            color: rgba(255, 255, 255, 0.75);
-            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.82);
+            font-size: 0.95rem;
         }
 
         .hero-secondary-link a {
@@ -726,11 +811,17 @@
                 <template>
                     <div slot="initial-message"
                         style="text-align: center; padding: 0 16px;">
-                        <div style="font-size: 32px; line-height: 120%; font-weight: 500; margin-bottom: 24px; color: #333;">
-                            Hi there! I'm Max, your AI support guide.
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 24px;">
+                            <div style="font-size: 32px; line-height: 120%; font-weight: 600; color: #333;">
+                                Hi, I'm Max! Your AI support guide.
+                            </div>
+                            <div style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; border: 2px solid #b8ef49; background: linear-gradient(180deg, #f5ffd8 0%, #ddf7a8 100%); color: #4a7600; font-size: 0.95rem; font-weight: 700; white-space: nowrap; box-shadow: 0 0 0 1px rgba(184, 239, 73, 0.2), 0 0 18px rgba(144, 194, 38, 0.28); animation: statusGlow 1.8s ease-in-out infinite;">
+                                <span style="width: 10px; height: 10px; border-radius: 50%; background: #90c226; display: inline-block; box-shadow: 0 0 0 4px rgba(184, 239, 73, 0.18), 0 0 12px rgba(144, 194, 38, 0.7); animation: statusPulse 1.8s ease-in-out infinite;"></span>
+                                Online and ready to help
+                            </div>
                         </div>
                         <div style="font-size: 20px; line-height: 140%; font-weight: 400; color: #555; max-width: 600px; margin: 0 auto;">
-                            I'm here to help keep your monitoring running smoothly. I can answer questions, troubleshoot common issues, and connect you to a support engineer when needed.
+                            I can help you with PRTG setup, troubleshooting, and answer your questions instantly. Available 24/7.
                         </div>
                     </div>
                 </template>
@@ -762,12 +853,19 @@
     <!-- Dark Blue Hero Header Bar -->
     <section class="hero-unit background-blackblue">
         <div class="search-box">
-            <h1 class="white">How can we help you today, User?</h1>
-            <h2 class="white">Our experts will assist you with anything you need.<br><br></h2>
+            <div class="hero-title-row">
+                <h1 class="white">Hi, I'm Max! Your AI support guide.</h1>
+                <div class="hero-status-pill">
+                    <span class="hero-status-dot"></span>
+                    Online and ready to help
+                </div>
+            </div>
+            <h2 class="white">I can help you with PRTG setup, troubleshooting, and answer your questions instantly. Available 24/7.</h2>
+            <br>
 
             <!-- Chat-first input -->
             <div class="hero-chat-input">
-                <input type="text" id="hero-chat-field" placeholder="Describe your issue here..." autocomplete="off">
+                <input type="text" id="hero-chat-field" placeholder="Ask Max a question..." autocomplete="off">
                 <button type="button" id="hero-chat-submit" title="Send">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2.5">
@@ -776,19 +874,32 @@
                 </button>
             </div>
 
+            <div class="hero-get-started">Get started:</div>
+
             <!-- Suggested topic pills -->
             <div class="suggested-topics">
-                <button type="button" class="topic-pill" data-topic="How do I configure email notification?">How do I configure email
-                    notification?</button>
-                <button type="button" class="topic-pill" data-topic="My sensor shows unknown status">My sensor shows unknown
-                    status</button>
-                <button type="button" class="topic-pill" data-topic="How do I set up SNMP sensors?">How do I set up SNMP
-                    sensors?</button>
+                <div class="topic-group">
+                    <div class="topic-group-label">Setup</div>
+                    <button type="button" class="topic-pill" data-topic="How do I install PRTG?">How do I install PRTG?</button>
+                    <button type="button" class="topic-pill" data-topic="What are the installation requirements?">What are the installation requirements?</button>
+                    <button type="button" class="topic-pill" data-topic="How do I set up my first device?">How do I set up my first device?</button>
+                </div>
+                <div class="topic-group">
+                    <div class="topic-group-label">Troubleshooting</div>
+                    <button type="button" class="topic-pill" data-topic="Why is my probe not connecting?">Why is my probe not connecting?</button>
+                    <button type="button" class="topic-pill" data-topic="Why is my sensor showing 'Down' status?">Why is my sensor showing 'Down' status?</button>
+                    <button type="button" class="topic-pill" data-topic="How do I troubleshoot core server issues?">How do I troubleshoot core server issues?</button>
+                </div>
+                <div class="topic-group">
+                    <div class="topic-group-label">Account &amp; Access</div>
+                    <button type="button" class="topic-pill" data-topic="How do I add new users?">How do I add new users?</button>
+                    <button type="button" class="topic-pill" data-topic="How do I reset a user password?">How do I reset a user password?</button>
+                </div>
             </div>
 
             <!-- Demoted create ticket -->
             <div class="hero-secondary-link">
-                Need more help? <a href="https://helpdesk.paessler.com/en/support/tickets/new">Create ticket</a>
+                Still need help? You can also <a href="https://helpdesk.paessler.com/en/support/tickets/new">create a ticket</a>.
             </div>
         </div>
     </section>
