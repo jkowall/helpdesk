@@ -261,46 +261,90 @@
     </div>
 
     <section class="hero">
-        <h1>Portal Mockups</h1>
-        <p>Choose a design to preview. Both include the Embrace AI chat widget.</p>
+        <h1>Freshdesk Theme Source</h1>
+        <p>The latest rollout now has one canonical source, with deploy snippets, previews, and local env-backed renders built from it.</p>
     </section>
 
     <section class="cards-section">
         <div class="cards-grid">
-
-
-
-            <!-- Card 2: Freshdesk Template -->
-            <a href="freshdesk-template.html" class="card">
+            <!-- Card 1: Theme Preview -->
+            <a href="theme-preview.html" class="card">
                 <div class="card-preview card-preview--freshdesk">
                     <span class="preview-icon">📋</span>
                 </div>
                 <div class="card-body">
-                    <span class="card-badge badge--template">Freshdesk Template</span>
-                    <h2 class="card-title">Freshdesk Template</h2>
+                    <span class="card-badge badge--template">Preview</span>
+                    <h2 class="card-title">Theme Preview</h2>
                     <p class="card-desc">
-                        Direct sync with the provided Liquid code. Shows how the portal looks when rendered from the
-                        source code, including Community Forums.
+                        A GitHub Pages-friendly static preview of the latest rollout design, meant for visual review and layout testing.
                     </p>
-                    <span class="card-cta">Open Freshdesk Template</span>
+                    <span class="card-cta">Open Theme Preview</span>
                 </div>
             </a>
 
-            <!-- Card 3: Production Clone -->
-            <a href="production-clone.html" class="card">
+            <!-- Card 2: Copy/Paste Workbench -->
+            <a href="copy-paste-workbench.html" class="card">
+                <div class="card-preview card-preview--mockup"
+                    style="background: linear-gradient(135deg, #16324f 0%, #90c226 100%);">
+                    <span class="preview-icon">🧰</span>
+                </div>
+                <div class="card-body">
+                    <span class="card-badge badge--custom">Deploy UX</span>
+                    <h2 class="card-title">Copy/Paste Workbench</h2>
+                    <p class="card-desc">
+                        View each Freshdesk section in its own panel, copy with one click, and prefer local rendered
+                        `dist/` files when they exist.
+                    </p>
+                    <span class="card-cta">Open Workbench</span>
+                </div>
+            </a>
+
+            <!-- Card 3: Widget Snippet -->
+            <a href="freshdesk-widget-snippet.html" class="card">
                 <div class="card-preview card-preview--mockup"
                     style="background: linear-gradient(135deg, #0d1a2b 0%, #00adef 100%);">
                     <span class="preview-icon">💎</span>
                 </div>
                 <div class="card-body">
-                    <span class="card-badge badge--template" style="background: #e1f5fe; color: #01579b;">Production
-                        Snapshot</span>
-                    <h2 class="card-title">Production Clone</h2>
+                    <span class="card-badge badge--template" style="background: #e1f5fe; color: #01579b;">Deployable</span>
+                    <h2 class="card-title">Widget Snippet</h2>
                     <p class="card-desc">
-                        A high-fidelity recreation of the current live helpdesk site. Literal branding, structure, and
-                        4-card layout from helpdesk.paessler.com.
+                        Standalone widget snippet with the current branding and logic, ready for local secret injection
+                        through `.env`.
                     </p>
-                    <span class="card-cta">Open Production Clone</span>
+                    <span class="card-cta">Open Widget Snippet</span>
+                </div>
+            </a>
+
+            <!-- Card 4: Widget Preview -->
+            <a href="widget-preview.html" class="card">
+                <div class="card-preview card-preview--freshdesk"
+                    style="background: linear-gradient(135deg, #004b87 0%, #1a6cac 60%, #90c226 100%);">
+                    <span class="preview-icon">🧪</span>
+                </div>
+                <div class="card-body">
+                    <span class="card-badge badge--template">Preview</span>
+                    <h2 class="card-title">Widget Preview</h2>
+                    <p class="card-desc">
+                        Lightweight page context for testing the standalone widget snippet and its expand/collapse flow.
+                    </p>
+                    <span class="card-cta">Open Widget Preview</span>
+                </div>
+            </a>
+
+            <!-- Card 5: Raw Freshdesk Snapshot -->
+            <a href="freshdesk-template.html" class="card">
+                <div class="card-preview card-preview--freshdesk"
+                    style="background: linear-gradient(135deg, #7f8fa3 0%, #c5ced8 100%);">
+                    <span class="preview-icon">🧩</span>
+                </div>
+                <div class="card-body">
+                    <span class="card-badge badge--template">Raw Source</span>
+                    <h2 class="card-title">Freshdesk Template Snapshot</h2>
+                    <p class="card-desc">
+                        The raw combined Liquid snapshot for copy/paste reference. Useful as source material, not as the browser-rendered preview.
+                    </p>
+                    <span class="card-cta">Open Raw Snapshot</span>
                 </div>
             </a>
 

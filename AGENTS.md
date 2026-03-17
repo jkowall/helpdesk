@@ -1,10 +1,24 @@
 # AI Agent Instructions
 
+## Canonical Theme Source (`theme/`)
+
+The latest Freshdesk rollout code now lives in the `theme/` directory.
+
+- `theme/head.html`
+- `theme/layout.html`
+- `theme/header.html`
+- `theme/footer.html`
+- `theme/portal_home.html`
+- `theme/styles.css`
+
+- **Sync Policy**: Treat `theme/` as the source of truth. Generated or compatibility files must follow it, not the other way around.
+- **Secrets**: Sensitive values such as Embrace credentials must stay in `.env` and never be hardcoded into tracked files.
+
 ## AI Widget Snippet (`freshdesk-widget-snippet.html`)
 
 This is the standalone code designed to be pasted into the Freshdesk portal footer or header.
 
-- **Sync Policy**: This snippet must always be in sync with the branding and logic found in `production-clone.html`.
+- **Sync Policy**: This snippet must always be in sync with the canonical widget logic from `theme/header.html`, `theme/footer.html`, and `theme/styles.css`.
 - **Primary Text**: Must be **"Get Instant Help"**.
 - **Branding**: Uses `#004b87` (dark blue) for the bar and `#90c226` (Paessler green) for primary buttons.
 - **Relativity**: Action links (like Create Ticket) should be relative (`/en/support/tickets/new`) for use within the same domain.
@@ -12,7 +26,7 @@ This is the standalone code designed to be pasted into the Freshdesk portal foot
 ## Freshdesk Template Sync (`freshdesk-template.html`)
 
 - **CRITICAL**: This file must strictly match the structure of the provided Liquid code.
-- Elements like the hero section, the 5-card grid, and the Community Forums section are derived from the Liquid source.
+- It is a combined snapshot of the canonical `theme/` section files.
 - Functional links should point to the actual production services at `https://helpdesk.paessler.com`.
 
 ## AI Widget Branding

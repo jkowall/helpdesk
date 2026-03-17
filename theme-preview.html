@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paessler Helpdesk Theme Preview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paessler-blue: #005c9e;
+      --paessler-green: #90c226;
+      --paessler-dark: #333333;
+      --text-color: #4a4a4a;
+      --bg-light: #f5f7fa;
+      --widget-height: 50px;
+      --widget-bg: #004b87;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: var(--text-color);
+      line-height: 1.6;
+      background: #fff;
+      padding-top: var(--widget-height);
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--paessler-blue);
+      transition: color 0.2s ease;
+    }
+
+    a:hover {
+      color: #003f6b;
+    }
+
+    .preview-note {
+      max-width: 1140px;
+      margin: 22px auto 0;
+      padding: 0 16px;
+    }
+
+    .preview-banner {
+      background: linear-gradient(135deg, #16324f 0%, #004b87 100%);
+      color: #fff;
+      border-radius: 16px;
+      padding: 18px 20px;
+      box-shadow: 0 14px 34px rgba(14, 42, 68, 0.16);
+    }
+
+    .preview-banner strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.92rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .preview-banner p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .preview-banner a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .preview-widget {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--widget-height);
+      background: var(--widget-bg);
+      color: #fff;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .preview-widget-label {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .preview-widget-meta {
+      margin-left: auto;
+      margin-right: 16px;
+      font-size: 0.72rem;
+      opacity: 0.7;
+    }
+
+    .preview-widget-btn {
+      border: 0;
+      border-radius: 4px;
+      background: var(--paessler-green);
+      color: #fff;
+      padding: 7px 14px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .preview-widget-modal {
+      position: fixed;
+      inset: var(--widget-height) 0 0;
+      display: none;
+      background: rgba(11, 27, 43, 0.32);
+      z-index: 9998;
+      padding: 22px;
+    }
+
+    .preview-widget-modal.is-open {
+      display: block;
+    }
+
+    .preview-chat-shell {
+      max-width: 1020px;
+      height: calc(100vh - 94px);
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 24px 50px rgba(11, 27, 43, 0.24);
+    }
+
+    .preview-chat-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid #e6edf4;
+      background: #fff;
+    }
+
+    .preview-chat-head strong {
+      font-size: 1rem;
+      color: var(--paessler-dark);
+    }
+
+    .preview-chat-body {
+      flex: 1;
+      background: linear-gradient(180deg, #ffffff 0%, #f7fafc 100%);
+      padding: 30px 24px;
+    }
+
+    .preview-chat-card {
+      max-width: 700px;
+      background: #fff8e1;
+      border: 1px solid #ffe082;
+      border-radius: 12px;
+      padding: 18px 20px;
+      color: #6d5b00;
+    }
+
+    .preview-chat-card h3 {
+      margin-bottom: 12px;
+      color: #6d5b00;
+      font-size: 1.25rem;
+    }
+
+    .preview-chat-input {
+      border-top: 1px solid #e6edf4;
+      padding: 16px 20px;
+      background: #fff;
+    }
+
+    .preview-chat-input input {
+      width: 100%;
+      border: 1px solid #d8e1ea;
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 0.95rem;
+    }
+
+    header {
+      background: #fff;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 15px 0;
+      margin-top: 22px;
+    }
+
+    .header-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--paessler-blue);
+    }
+
+    .logo img {
+      height: 38px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      font-size: 0.92rem;
+    }
+
+    .nav-links a {
+      color: var(--text-color);
+      font-weight: 600;
+    }
+
+    .btn-ticket {
+      background: #f5900c;
+      color: #fff !important;
+      padding: 9px 16px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #0d1b2a 0%, #1b3a5c 50%, #005c9e 100%);
+      padding: 64px 20px 76px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .hero-inner {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 300;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 1.12rem;
+      font-weight: 300;
+      opacity: 0.9;
+      margin-bottom: 28px;
+    }
+
+    .hero-chat-input {
+      max-width: 680px;
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .hero-chat-input input {
+      flex: 1;
+      border: none;
+      padding: 16px 24px;
+      font-size: 1rem;
+      outline: none;
+      color: #333;
+    }
+
+    .hero-chat-input button {
+      background: var(--widget-bg);
+      border: none;
+      color: #fff;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      margin-right: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .suggested-topics {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      max-width: 780px;
+      margin: 0 auto 18px;
+    }
+
+    .topic-pill {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .hero-secondary-link {
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.92rem;
+    }
+
+    .hero-secondary-link a {
+      color: #fff;
+      text-decoration: underline;
+      font-weight: 600;
+    }
+
+    .cards-section {
+      background: var(--bg-light);
+      padding: 56px 20px 68px;
+    }
+
+    .cards-grid {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 28px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.11);
+    }
+
+    .card-image {
+      padding: 28px 28px 10px;
+      text-align: center;
+    }
+
+    .card-image img {
+      max-width: 110px;
+      height: auto;
+    }
+
+    .card-body {
+      padding: 10px 24px 26px;
+      text-align: center;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-body h3 {
+      color: var(--paessler-dark);
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+    }
+
+    .card-body p {
+      color: #666;
+      font-size: 0.94rem;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+
+    .card-body .btn {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 4px;
+      background: #00aeef;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.86rem;
+      text-transform: uppercase;
+    }
+
+    footer {
+      background: #f0f0f0;
+      padding: 40px 0;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .footer-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 15px;
+      color: #666;
+      font-size: 0.92rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 26px;
+      margin-bottom: 24px;
+    }
+
+    .footer-col h4 {
+      color: var(--paessler-dark);
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 8px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      border-top: 1px solid #ddd;
+      padding-top: 20px;
+      color: #888;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 980px) {
+      .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .preview-widget {
+        padding: 0 14px;
+      }
+
+      .preview-widget-meta {
+        display: none;
+      }
+
+      .cards-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="preview-widget">
+    <div class="preview-widget-label">Get Instant Help</div>
+    <div class="preview-widget-meta">Static Preview</div>
+    <button class="preview-widget-btn" type="button" id="open-preview-chat">Expand Chat</button>
+  </div>
+
+  <div class="preview-widget-modal" id="preview-chat-modal">
+    <div class="preview-chat-shell">
+      <div class="preview-chat-head">
+        <strong>Paessler Support</strong>
+        <button class="preview-widget-btn" type="button" id="close-preview-chat">Collapse</button>
+      </div>
+      <div class="preview-chat-body">
+        <div class="preview-chat-card">
+          <h3>&#128075; Hi there! I'm Max, your AI support guide.</h3>
+          <p>You're viewing a GitHub Pages-safe static preview of the current helpdesk layout. The real Freshdesk theme still lives in the separate Liquid source files for copy/paste deployment.</p>
+        </div>
+      </div>
+      <div class="preview-chat-input">
+        <input type="text" value="Describe your issue here..." aria-label="Preview chat input">
+      </div>
+    </div>
+  </div>
+
+  <div class="preview-note">
+    <div class="preview-banner">
+      <strong>GitHub Pages Preview</strong>
+      <p>
+        This page is the browser-renderable preview. The raw
+        <a href="freshdesk-template.html">`freshdesk-template.html`</a>
+        file is still kept separate for Freshdesk copy/paste, but it contains Liquid and won’t render correctly on its own outside Freshdesk.
+      </p>
+    </div>
+  </div>
+
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <img src="https://paessler.canto.global/direct/image/4g25o4l98t7q72k8i5gb6qbo4u/J0T21LBBTaxaHLX3K4RJg0-LDQI/original?content-type=image%2Fsvg%2Bxml&name=Logo_Paessler-PRTG-Network-Monitor.svg" alt="Paessler">
+        <span>Paessler Helpdesk</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#">Knowledge Base</a>
+        <a href="#">Community</a>
+        <a href="#">My Tickets</a>
+        <a href="#">Register</a>
+        <a href="#" class="btn-ticket">Sign in</a>
+        <a href="https://www.paessler.com">www.paessler.com</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>How can we help you today, Jordan?</h1>
+      <p>Our experts will assist you with anything you need.</p>
+
+      <div class="hero-chat-input">
+        <input type="text" placeholder="Describe your issue here..." autocomplete="off">
+        <button type="button" title="Send">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="suggested-topics">
+        <button type="button" class="topic-pill">How do I configure email notifications?</button>
+        <button type="button" class="topic-pill">My sensors are in an unknown state</button>
+        <button type="button" class="topic-pill">I want to set up SNMP sensors</button>
+      </div>
+
+      <div class="hero-secondary-link">
+        Need more help? <a href="#">Create ticket.</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cards-section">
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-image">
+          <img src="https://paessler.canto.global/direct/image/4nm8teekqh11p6uvadhjs4qg62/JEA7rMfXu_DfAyth4zncCcjqI8Q/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_Ticket-Overview.svg" alt="">
+        </div>
+        <div class="card-body">
+          <h3>All Your Tickets</h3>
+          <p>Click for an overview of all your tickets to quickly see the previous conversations or their status.</p>
+          <span class="btn">My Tickets</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image">
+          <img src="https://paessler.canto.global/direct/image/7oi7f9t3g17v1a2q6ge7vuqf67/P_RX2hwNtJZkPS8nnqYBmtVSvyA/original?content-type=image%2Fsvg%2Bxml&name=Preview_Category_KnowledgeBase.svg" alt="">
+        </div>
+        <div class="card-body">
+          <h3>Knowledge Base</h3>
+          <p>Here you can find questions and answers about PRTG and network monitoring in general.</p>
+          <span class="btn">Knowledge Base</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image">
+          <img src="https://paessler.canto.global/direct/image/ilih5m88v569f7ojatp4g2se7s/hm4Tni1cy9NJAXVx514Hck-DZXU/original?content-type=image%2Fsvg%2Bxml&name=Preview_Resources-Support.svg" alt="">
+        </div>
+        <div class="card-body">
+          <h3>Other Resources</h3>
+          <p>Explore all our support resources, from FAQ, videos, manuals and Co.</p>
+          <span class="btn">Other Resources</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image">
+          <img src="https://paessler.canto.global/direct/image/p00t8i1lc97nt0r3botvmpup4k/2-w4qEm7JG6DCSJCzgylqcsoh5c/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_UserVoice.svg" alt="">
+        </div>
+        <div class="card-body">
+          <h3>Feature Request</h3>
+          <p>Got a feature you'd like to see? Make your voice count!</p>
+          <span class="btn">Feature Request</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>About Paessler</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Blog Newsletter</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Products</h4>
+          <ul>
+            <li><a href="#">PRTG Network Monitor</a></li>
+            <li><a href="#">PRTG Enterprise Monitor</a></li>
+            <li><a href="#">PRTG Hosted Monitor</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">PRTG Manual</a></li>
+            <li><a href="#">Knowledge Base</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>Nuremberg, Germany</li>
+            <li><a href="mailto:info@paessler.com">info@paessler.com</a></li>
+            <li>+49 911 93775-0</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Paessler GmbH</span>
+        <span>Terms · Privacy · Legal Notice</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const modal = document.getElementById('preview-chat-modal');
+    const openBtn = document.getElementById('open-preview-chat');
+    const closeBtn = document.getElementById('close-preview-chat');
+
+    function openModal() {
+      modal.classList.add('is-open');
+      openBtn.textContent = 'Chat Open';
+    }
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      openBtn.textContent = 'Expand Chat';
+    }
+
+    openBtn.addEventListener('click', function () {
+      if (modal.classList.contains('is-open')) {
+        closeModal();
+      } else {
+        openModal();
+      }
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', function (event) {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+
+</html>

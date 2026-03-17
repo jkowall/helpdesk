@@ -1,0 +1,142 @@
+<!-- global variables -->
+{% assign prtg_sidebar_logo = "https://paessler.canto.global/direct/image/4g25o4l98t7q72k8i5gb6qbo4u/J0T21LBBTaxaHLX3K4RJg0-LDQI/original?content-type=image%2Fsvg%2Bxml&name=Logo_Paessler-PRTG-Network-Monitor.svg" %}
+
+<!-- placeholder for gtag manager -->
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-BB36"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- Notification Messages -->
+{{page_message}}
+
+<div id="new-layout" class="layout {% if portal.current_page == 'portal_home' %}home {% endif %}{% if portal.user.id %}layout--logged-in{% else %}layout--anonymous{% endif %}">
+  <div class="layout__header">
+    {{header}}
+  </div>
+  <div class="layout__content">
+    {% if portal.current_page == 'portal_home' or portal.current_page == 'search' %}
+      {{ content_for_layout }}
+    {% else %}
+      <div class="container">
+        <div class="container-inner clearfix">
+          {{ content_for_layout }}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  <script type="module" src="https://js.embrace.ai/v1/elements.js"></script>
+
+  <div class="layout__footer">
+    {{footer}}
+  </div>
+</div>
+<script>
+  (function($) {
+    function clipper(min, max) {
+      return function(o) {
+        if (o > max) return max;
+        if (o < min) return min;
+        return o;
+      };
+    }
+
+    var BT_SETTINGS = {
+      css: {
+        activeClass: 'is-active',
+        hiddenClass: 'is-hidden'
+      }
+    };
+
+    var opacityClipper = clipper(0, 1);
+    var $window = $(window);
+    var $heroUnit = $('[data-hero-unit]');
+    var $topbar = $('[data-topbar]');
+    var topbarHeight = parseInt($topbar.height());
+    var $scrollToTop = $('[data-scroll-to-top]');
+    var $heroUnitBg;
+    var $searchBox;
+
+    if ($heroUnit.length) {
+      $heroUnitBg = $heroUnit.find('[data-hero-bg]');
+      $searchBox = $heroUnit.find('[data-search-box]');
+    }
+
+    $scrollToTop.click(function() {
+      $('html, body').animate({scrollTop: 0}, 1000);
+      return false;
+    });
+
+    var bindEffects = function() {
+      var scrolled = $window.scrollTop();
+      if (scrolled > topbarHeight) {
+        $scrollToTop.addClass(BT_SETTINGS.css.activeClass);
+      } else {
+        $scrollToTop.removeClass(BT_SETTINGS.css.activeClass);
+      }
+
+      if ($heroUnit.length) {
+        $heroUnitBg.css({
+          '-moz-transform': 'translate3d(0px,' + scrolled / -3 + 'px' + ', 0px)',
+          '-webkit-transform': 'translate3d(0px,' + scrolled / -3 + 'px' + ', 0px)',
+          transform: 'translate3d(0px,' + scrolled / -3 + 'px' + ', 0px)'
+        });
+
+        $searchBox.css({
+          opacity: opacityClipper(1 - opacityClipper(scrolled * 0.003))
+        });
+      }
+    };
+
+    $window.on('scroll.theme', bindEffects);
+
+    $('[data-toggle-menu]').click(function() {
+      $(this).toggleClass(BT_SETTINGS.css.activeClass);
+      $('[data-menu]').toggleClass(BT_SETTINGS.css.activeClass);
+    });
+
+    $('.image-with-lightbox').magnificPopup({
+      type: 'image',
+      closeOnContentClick: true,
+      closeBtnInside: false,
+      fixedContentPos: true,
+      mainClass: 'mfp-with-zoom',
+      image: {
+        verticalFit: true
+      },
+      zoom: {
+        enabled: true,
+        duration: 300
+      }
+    });
+
+    $('.image-with-video-icon').magnificPopup({
+      disableOn: 700,
+      type: 'iframe',
+      mainClass: 'mfp-fade',
+      removalDelay: 160,
+      preloader: false,
+      fixedContentPos: false
+    });
+
+    $('.accordion__item-title').on('click', function() {
+      var $title = $(this);
+      $title.toggleClass('accordion__item-title--active');
+      $title.parents('.accordion__item').find('.accordion__item-content').slideToggle();
+    });
+
+    $('.tabs-link').click(function(e) {
+      e.preventDefault();
+      var $link = $(this);
+      var tabIndex = $link.index();
+      var $tab = $link.parents('.tabs').find('.tab').eq(tabIndex);
+      $link.addClass(BT_SETTINGS.css.activeClass).siblings().removeClass(BT_SETTINGS.css.activeClass);
+      $tab.removeClass(BT_SETTINGS.css.hiddenClass).siblings('.tab').addClass(BT_SETTINGS.css.hiddenClass);
+    });
+
+    $('.fa-spin').empty();
+    $('.dropdown-toggle').removeClass('help-text tickets-heading list-lead ');
+    $('#ticket-filter-container .dropdown-toggle, #ticket-export-button, #onboarding-tickets-view .dropdown-toggle, #bulk_onboard').addClass('btn');
+  })(jQuery);
+</script>

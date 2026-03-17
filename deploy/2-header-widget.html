@@ -2,64 +2,33 @@
   PAESSLER HELPDESK – AI WIDGET (HEADER)
   Paste into: Admin → Portals → Appearance → Pages → Header
   Place this ABOVE the existing {{ header }} tag.
-  
-  IMPORTANT: Replace YOUR_ORG_ID and YOUR_CLIENT_ID with real values.
+
+  Credentials are injected locally from .env when rendered to dist/.
 -->
 
-<!-- AI Widget Top Bar -->
+{% if portal.has_user_signed_in == true %}
 <div id="embrace-widget-container" class="widget-top-bar">
-    <!-- Collapsed state: bar label + expand button -->
-    <div class="bar-label">Get Instant Help</div>
-    <div class="ai-disclosure">Powered by AI</div>
+  <div class="bar-label">Get Instant Help</div>
+  <div class="ai-disclosure">Powered by AI</div>
 
-    <!-- Fullscreen header (Embrace-style branded bar) -->
-    <div class="fs-header">
-        <div class="fs-header-left" id="btn-back-helpdesk">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M15 18l-6-6 6-6" />
-            </svg>
-            Back to Helpdesk
+  <div class="chat-wrapper">
+    <embrace-chat org-id="__EMBRACE_ORG_ID__" client-id="__EMBRACE_CLIENT_ID__" data-fd_email='{{portal.user.email}}'>
+      <template>
+        <div slot="initial-message"
+          style="background: #fff8e1; border: 1px solid #ffe082; border-radius: 8px; padding: 10px 14px; margin: 8px 16px; color: #6d5b00; display: flex; align-items: flex-start; gap: 8px;">
+          <div>
+            <h2 style='font-size: 18px; font-weight: bold; margin-bottom: 15px !important;'>&#128075; Hi there! I'm Max, your AI support guide.</h2>
+            <p style="margin-bottom: 0;">I'm here to help keep your monitoring running smoothly. I can answer questions, troubleshoot common issues, and connect you to a support engineer when needed.</p>
+          </div>
         </div>
-        <div class="fs-header-center">
-            <svg class="prtg-logo" viewBox="0 0 149.9 116.9" xmlns="http://www.w3.org/2000/svg">
-                <polygon fill="#050F34" points="83.7,97.9 94.3,88.6 25.8,47.6"/>
-                <path fill="#00AEEF" d="M23.9,19.8C-3.5,44.9-7.9,86.6,13.7,116.9l10.4-6.7c-18-22.2-14.5-54.8,7.7-72.8c1.5-1.2,3.1-2.4,4.8-3.5l-0.3,0.2L23.9,19.8z"/>
-                <path fill="#050F34" d="M127.8,21.8C99.3-6.5,53.6-7.4,23.9,19.8l12.5,14.3l0.3-0.2c0.8-0.5,1.7-1,2.5-1.5l0.5-0.3c0.8-0.5,1.7-0.9,2.5-1.3l0.5-0.3c19.2-9,41.9-5.7,57.8,8.3c1.3,1.1,2.4,2.3,3.6,3.5l0.1,0.1c0.5,0.5,1,1.1,1.4,1.6l0.4,0.5c0.2,0.2,0.4,0.5,0.6,0.7L127.8,21.8z"/>
-                <path fill="#E60060" d="M106.6,45.3c12.9,16.1,15,38.4,5.3,56.6l24.4,14.9c20.9-29.5,17.3-69.7-8.4-95.1"/>
-            </svg>
-            Paessler Support
-        </div>
-        <div class="fs-header-right">
-            <button type="button" class="fs-btn-new-chat" title="Start new conversation">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                </svg>
-                New chat
-            </button>
-            <a href="/en/support/tickets/new" class="fs-btn-create-ticket">Create ticket</a>
-        </div>
-    </div>
+        <div slot="input-placeholder">Chat with Max</div>
+      </template>
+    </embrace-chat>
+  </div>
 
-    <!-- Chat Component -->
-    <div class="chat-wrapper">
-        <!-- ⚠️ REPLACE org-id and client-id with your Embrace AI credentials -->
-        <embrace-chat org-id="YOUR_ORG_ID" client-id="YOUR_CLIENT_ID" external-id="paessler-freshdesk-portal">
-            <template>
-                <div slot="initial-message"
-                    style="text-align: center; padding: 0 16px;">
-                    <div style="font-size: 32px; line-height: 120%; font-weight: 500; margin-bottom: 24px; color: #333;">
-                        Hi there! I'm Max, your AI support guide.
-                    </div>
-                    <div style="font-size: 20px; line-height: 140%; font-weight: 400; color: #555; max-width: 600px; margin: 0 auto;">
-                        I'm here to help keep your monitoring running smoothly. I can answer questions, troubleshoot common issues, and connect you to a support engineer when needed.
-                    </div>
-                </div>
-            </template>
-        </embrace-chat>
-    </div>
-
-    <!-- Collapsed controls -->
-    <div class="widget-controls-collapsed">
-        <button type="button" id="btn-expand" class="widget-btn primary">Expand Chat</button>
-    </div>
+  <div class="widget-controls">
+    <a href="{{ portal.new_ticket_url }}" id="btn-open-ticket-widget" class="widget-btn" style="text-decoration: none;">Still need help? Open a Ticket</a>
+    <button type="button" id="btn-expand" class="widget-btn primary">Expand Chat</button>
+  </div>
 </div>
+{% endif %}

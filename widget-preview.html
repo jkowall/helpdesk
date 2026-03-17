@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Widget Preview</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(180deg, #f7fbff 0%, #e9f0f6 100%);
+      color: #16324f;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 96px 20px 48px;
+    }
+
+    .hero {
+      padding: 52px 40px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #0f2f4e 0%, #005c9e 100%);
+      color: white;
+      box-shadow: 0 18px 40px rgba(18, 45, 72, 0.18);
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      line-height: 1.02;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 700px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .section {
+      margin-top: 28px;
+      background: white;
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 12px 28px rgba(18, 45, 72, 0.08);
+    }
+
+    .section h2 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>Widget Preview</h1>
+      <p>This page loads the standalone widget snippet so you can test the expand/collapse behavior in a page context.</p>
+    </section>
+
+    <section class="section">
+      <h2>Dummy Content</h2>
+      <p>
+        This content is only here to simulate a normal page behind the widget. If you already rendered `dist/freshdesk-widget-snippet.html`,
+        that version will be loaded first. Otherwise the source snippet with placeholders will be used.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    async function loadSnippet(path) {
+      const response = await fetch(path);
+      if (!response.ok) throw new Error(path);
+      return response.text();
+    }
+
+    (async function () {
+      const paths = ['dist/freshdesk-widget-snippet.html', 'freshdesk-widget-snippet.html'];
+      for (const path of paths) {
+        try {
+          const html = await loadSnippet(path);
+          document.body.insertAdjacentHTML('afterbegin', html);
+          return;
+        } catch (error) {
+          continue;
+        }
+      }
+      document.body.insertAdjacentHTML('afterbegin', '<div style="padding:16px;background:#ffd8d1;color:#7a1d07;">Could not load widget snippet. Serve this folder over HTTP and make sure the snippet file exists.</div>');
+    })();
+  </script>
+</body>
+</html>
