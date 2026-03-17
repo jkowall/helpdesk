@@ -156,8 +156,8 @@ div.home {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
-  flex-wrap: wrap;
+  gap: 10px;
+  flex-wrap: nowrap;
   margin-bottom: 14px;
 }
 
@@ -207,13 +207,13 @@ section p.white {
 .hero-status-pill {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
+  gap: 6px;
+  padding: 6px 12px;
   border-radius: 999px;
   border: 2px solid #b8ef49;
   background: linear-gradient(180deg, rgba(152, 214, 44, 0.32) 0%, rgba(98, 154, 16, 0.28) 100%);
   color: #f4ffd8;
-  font-size: 0.95rem;
+  font-size: 0.84rem;
   font-weight: 700;
   white-space: nowrap;
   box-shadow: 0 0 0 1px rgba(184, 239, 73, 0.12), 0 0 18px rgba(144, 194, 38, 0.3);
@@ -222,8 +222,8 @@ section p.white {
 }
 
 .hero-status-dot {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: #b8ef49;
   display: inline-block;
@@ -598,6 +598,10 @@ embrace-chat {
 }
 
 @media (max-width: 991px) {
+  .hero-title-row {
+    flex-wrap: wrap;
+  }
+
   .topbar__menu {
     float: right !important;
     display: flex;
