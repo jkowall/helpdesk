@@ -575,17 +575,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 {% assign callback_service_desc = "Brauchen Sie Rat von einem Experten? <br />Wir helfen gern. Wählen Sie Service | Rückruf beim Ticket erstellen" %}
 {% assign callback_service_btn = "Beantragen" %}
 {% assign table_of_content = "Inhalt" %}
-{% assign ai_group_setup = "Setup" %}
-{% assign ai_group_troubleshooting = "Fehlerbehebung" %}
-{% assign ai_group_account = "Konto & Zugriff" %}
-{% assign ai_pill_install_prtg = "Wie installiere ich PRTG?" %}
-{% assign ai_pill_install_requirements = "Was sind die Installationsvoraussetzungen?" %}
-{% assign ai_pill_first_device = "Wie richte ich mein erstes Gerät ein?" %}
-{% assign ai_pill_probe_connecting = "Warum verbindet sich meine Probe nicht?" %}
-{% assign ai_pill_sensor_down = "Warum hat mein Sensor den Status 'Down'?" %}
-{% assign ai_pill_core_server = "Wie behebe ich Core-Server-Probleme?" %}
-{% assign ai_pill_add_users = "Wie füge ich neue Benutzer hinzu?" %}
-{% assign ai_pill_reset_password = "Wie setze ich ein Benutzerpasswort zurück?" %}
+{% assign ai_pill_install_prtg = "PRTG installieren" %}
+{% assign ai_pill_install_requirements = "PRTG aktualisieren oder reparieren" %}
+{% assign ai_pill_first_device = "SNMP-Sensoren einrichten" %}
+{% assign ai_pill_probe_connecting = "E-Mail-Benachrichtigungen konfigurieren" %}
+{% assign ai_pill_sensor_down = "Eine Probe einrichten" %}
+{% assign ai_pill_core_server = "Probe verbindet sich nicht" %}
+{% assign ai_pill_add_users = "Sensoren zeigen Down oder Unknown" %}
+{% assign ai_pill_reset_password = "Sensorfehler" %}
 {% else %}
 {% assign here_to_help = "We're here to help you!" %}
 {% assign ai_hero_title = "Hi, I'm Max! Your AI support guide." %}
@@ -615,17 +612,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 {% assign feature_request = "Feature Request" %}
 {% assign feature_request_desc = "Got a feature you'd like to see? Make your voice count!" %}
 {% assign table_of_content = "Content" %}
-{% assign ai_group_setup = "Setup" %}
-{% assign ai_group_troubleshooting = "Troubleshooting" %}
-{% assign ai_group_account = "Account & Access" %}
-{% assign ai_pill_install_prtg = "How do I install PRTG?" %}
-{% assign ai_pill_install_requirements = "What are the installation requirements?" %}
-{% assign ai_pill_first_device = "How do I set up my first device?" %}
-{% assign ai_pill_probe_connecting = "Why is my probe not connecting?" %}
-{% assign ai_pill_sensor_down = "Why is my sensor showing 'Down' status?" %}
-{% assign ai_pill_core_server = "How do I troubleshoot core server issues?" %}
-{% assign ai_pill_add_users = "How do I add new users?" %}
-{% assign ai_pill_reset_password = "How do I reset a user password?" %}
+{% assign ai_pill_install_prtg = "Install PRTG" %}
+{% assign ai_pill_install_requirements = "Upgrade or repair PRTG" %}
+{% assign ai_pill_first_device = "Set up SNMP sensors" %}
+{% assign ai_pill_probe_connecting = "Configure email notifications" %}
+{% assign ai_pill_sensor_down = "Set up a probe" %}
+{% assign ai_pill_core_server = "Probe not connecting" %}
+{% assign ai_pill_add_users = "Sensors showing Down or Unknown" %}
+{% assign ai_pill_reset_password = "Sensor errors" %}
 {% endif %}
 
 {% if portal.current_tab %}
@@ -656,19 +650,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="suggested-topics">
         <div class="topic-group">
-          <div class="topic-group-label">{{ ai_group_setup }}</div>
           <button type="button" class="topic-pill" data-topic="{{ai_pill_install_prtg}}">{{ai_pill_install_prtg}}</button>
           <button type="button" class="topic-pill" data-topic="{{ai_pill_install_requirements}}">{{ai_pill_install_requirements}}</button>
           <button type="button" class="topic-pill" data-topic="{{ai_pill_first_device}}">{{ai_pill_first_device}}</button>
-        </div>
-        <div class="topic-group">
-          <div class="topic-group-label">{{ ai_group_troubleshooting }}</div>
           <button type="button" class="topic-pill" data-topic="{{ai_pill_probe_connecting}}">{{ai_pill_probe_connecting}}</button>
           <button type="button" class="topic-pill" data-topic="{{ai_pill_sensor_down}}">{{ai_pill_sensor_down}}</button>
           <button type="button" class="topic-pill" data-topic="{{ai_pill_core_server}}">{{ai_pill_core_server}}</button>
-        </div>
-        <div class="topic-group">
-          <div class="topic-group-label">{{ ai_group_account }}</div>
           <button type="button" class="topic-pill" data-topic="{{ai_pill_add_users}}">{{ai_pill_add_users}}</button>
           <button type="button" class="topic-pill" data-topic="{{ai_pill_reset_password}}">{{ai_pill_reset_password}}</button>
         </div>
