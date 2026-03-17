@@ -156,6 +156,7 @@
       flex: 1;
       background: linear-gradient(180deg, #ffffff 0%, #f7fafc 100%);
       padding: 30px 24px;
+      overflow-y: auto;
     }
 
     .preview-chat-card {
@@ -173,18 +174,62 @@
       font-size: 1.25rem;
     }
 
+    .preview-chat-thread {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .preview-message {
+      max-width: 700px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(14, 42, 68, 0.08);
+    }
+
+    .preview-message.user {
+      align-self: flex-end;
+      background: #004b87;
+      color: #fff;
+      border-bottom-right-radius: 4px;
+    }
+
+    .preview-message.assistant {
+      align-self: flex-start;
+      background: #fff;
+      color: #24435f;
+      border: 1px solid #dce7f1;
+      border-bottom-left-radius: 4px;
+    }
+
     .preview-chat-input {
       border-top: 1px solid #e6edf4;
       padding: 16px 20px;
       background: #fff;
     }
 
+    .preview-chat-input form {
+      display: flex;
+      gap: 12px;
+    }
+
     .preview-chat-input input {
-      width: 100%;
+      flex: 1;
       border: 1px solid #d8e1ea;
       border-radius: 12px;
       padding: 14px 16px;
       font-size: 0.95rem;
+    }
+
+    .preview-chat-send {
+      border: 0;
+      border-radius: 12px;
+      background: var(--paessler-green);
+      color: #fff;
+      padding: 0 18px;
+      font-weight: 700;
+      cursor: pointer;
     }
 
     header {
@@ -497,14 +542,18 @@
         <strong>Paessler Support</strong>
         <button class="preview-widget-btn" type="button" id="close-preview-chat">Collapse</button>
       </div>
-      <div class="preview-chat-body">
+      <div class="preview-chat-body" id="preview-chat-body">
         <div class="preview-chat-card">
           <h3>&#128075; Hi there! I'm Max, your AI support guide.</h3>
           <p>You're viewing a GitHub Pages-safe static preview of the current helpdesk layout. The real Freshdesk theme still lives in the separate Liquid source files for copy/paste deployment.</p>
         </div>
+        <div class="preview-chat-thread" id="preview-chat-thread"></div>
       </div>
       <div class="preview-chat-input">
-        <input type="text" value="Describe your issue here..." aria-label="Preview chat input">
+        <form id="preview-chat-form">
+          <input type="text" id="preview-chat-input-field" placeholder="Describe your issue here..." aria-label="Preview chat input">
+          <button class="preview-chat-send" type="submit">Send</button>
+        </form>
       </div>
     </div>
   </div>
@@ -542,19 +591,19 @@
       <h1>How can we help you today, Jordan?</h1>
       <p>Our experts will assist you with anything you need.</p>
 
-      <div class="hero-chat-input">
-        <input type="text" placeholder="Describe your issue here..." autocomplete="off">
-        <button type="button" title="Send">
+      <form class="hero-chat-input" id="hero-preview-form">
+        <input type="text" id="hero-preview-field" placeholder="Describe your issue here..." autocomplete="off">
+        <button type="submit" title="Send" id="hero-preview-submit">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>
         </button>
-      </div>
+      </form>
 
       <div class="suggested-topics">
-        <button type="button" class="topic-pill">How do I configure email notifications?</button>
-        <button type="button" class="topic-pill">My sensors are in an unknown state</button>
-        <button type="button" class="topic-pill">I want to set up SNMP sensors</button>
+        <button type="button" class="topic-pill" data-topic="How do I configure email notifications?">How do I configure email notifications?</button>
+        <button type="button" class="topic-pill" data-topic="My sensors are in an unknown state">My sensors are in an unknown state</button>
+        <button type="button" class="topic-pill" data-topic="I want to set up SNMP sensors">I want to set up SNMP sensors</button>
       </div>
 
       <div class="hero-secondary-link">
@@ -657,15 +706,45 @@
     const modal = document.getElementById('preview-chat-modal');
     const openBtn = document.getElementById('open-preview-chat');
     const closeBtn = document.getElementById('close-preview-chat');
+    const heroForm = document.getElementById('hero-preview-form');
+    const heroField = document.getElementById('hero-preview-field');
+    const chatForm = document.getElementById('preview-chat-form');
+    const chatField = document.getElementById('preview-chat-input-field');
+    const chatThread = document.getElementById('preview-chat-thread');
+    const chatBody = document.getElementById('preview-chat-body');
+    const topicPills = document.querySelectorAll('.topic-pill');
 
     function openModal() {
       modal.classList.add('is-open');
       openBtn.textContent = 'Chat Open';
+      if (chatField) chatField.focus();
     }
 
     function closeModal() {
       modal.classList.remove('is-open');
       openBtn.textContent = 'Expand Chat';
+    }
+
+    function appendMessage(role, text) {
+      if (!chatThread || !text) return;
+      const bubble = document.createElement('div');
+      bubble.className = 'preview-message ' + role;
+      bubble.textContent = text;
+      chatThread.appendChild(bubble);
+      if (chatBody) chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function submitPreviewMessage(message) {
+      const trimmed = (message || '').trim();
+      openModal();
+      if (!trimmed) return;
+      appendMessage('user', trimmed);
+      window.setTimeout(function () {
+        appendMessage(
+          'assistant',
+          'Preview response: in Freshdesk this would hand the message to the live widget. For the GitHub Pages demo, we are just confirming the submit flow is wired correctly.'
+        );
+      }, 180);
     }
 
     openBtn.addEventListener('click', function () {
@@ -679,6 +758,30 @@
     closeBtn.addEventListener('click', closeModal);
     modal.addEventListener('click', function (event) {
       if (event.target === modal) {
+        closeModal();
+      }
+    });
+
+    heroForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+      submitPreviewMessage(heroField.value);
+      heroField.value = '';
+    });
+
+    chatForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+      submitPreviewMessage(chatField.value);
+      chatField.value = '';
+    });
+
+    topicPills.forEach(function (pill) {
+      pill.addEventListener('click', function () {
+        submitPreviewMessage(pill.dataset.topic || pill.textContent);
+      });
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && modal.classList.contains('is-open')) {
         closeModal();
       }
     });

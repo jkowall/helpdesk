@@ -75,12 +75,30 @@
       return response.text();
     }
 
+    function injectHtmlWithScripts(html) {
+      const template = document.createElement('template');
+      template.innerHTML = html;
+      const fragment = template.content;
+      const scripts = Array.from(fragment.querySelectorAll('script'));
+
+      scripts.forEach(function (script) {
+        const replacement = document.createElement('script');
+        Array.from(script.attributes).forEach(function (attribute) {
+          replacement.setAttribute(attribute.name, attribute.value);
+        });
+        replacement.textContent = script.textContent;
+        script.parentNode.replaceChild(replacement, script);
+      });
+
+      document.body.insertBefore(fragment, document.body.firstChild);
+    }
+
     (async function () {
       const paths = ['dist/freshdesk-widget-snippet.html', 'freshdesk-widget-snippet.html'];
       for (const path of paths) {
         try {
           const html = await loadSnippet(path);
-          document.body.insertAdjacentHTML('afterbegin', html);
+          injectHtmlWithScripts(html);
           return;
         } catch (error) {
           continue;
