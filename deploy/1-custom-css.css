@@ -472,8 +472,9 @@ embrace-chat::part(answer) {
 
 embrace-chat {
   display: block;
-  max-width: 1000px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: none;
+  margin: 0;
   height: 100%;
 }
 
@@ -491,12 +492,6 @@ embrace-chat {
 
   .topbar__tab-item {
     margin-left: 28px;
-  }
-}
-
-@media (max-width: 1000px) {
-  embrace-chat {
-    padding: 0 16px;
   }
 }
 
