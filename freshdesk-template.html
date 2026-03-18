@@ -197,8 +197,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div style="font-size: 28px; line-height: 118%; font-weight: 600; color: #333;">
               Hi, I'm Max! Your AI support guide.
             </div>
-            <div style="display: inline-flex; align-items: center; gap: 5px; padding: 5px 10px; border-radius: 999px; border: 2px solid #b8ef49; background: linear-gradient(180deg, #f5ffd8 0%, #ddf7a8 100%); color: #4a7600; font-size: 0.76rem; font-weight: 700; white-space: nowrap; box-shadow: 0 0 0 1px rgba(184, 239, 73, 0.2), 0 0 18px rgba(144, 194, 38, 0.28); animation: statusGlow 1.8s ease-in-out infinite;">
-              <span style="width: 7px; height: 7px; border-radius: 50%; background: #90c226; display: inline-block; box-shadow: 0 0 0 4px rgba(184, 239, 73, 0.18), 0 0 12px rgba(144, 194, 38, 0.7); animation: statusPulse 1.8s ease-in-out infinite;"></span>
+            <div style="display: inline-flex; align-items: center; gap: 8px; padding: 18px 8px 8px 18px; border-radius: 9999px; border: 1px solid #c0cc19; background-color: #004b87; color: #ffffff; font-size: 14px; line-height: 16.8px; font-weight: 400; white-space: nowrap; box-shadow: none; text-shadow: none;">
+              <span style="width: 8px; height: 8px; border-radius: 50%; background: #c0cc19; display: inline-block; box-shadow: none; animation: statusPulse 1.8s ease-in-out infinite;"></span>
               Online and ready to help
             </div>
           </div>
@@ -943,25 +943,13 @@ div.home {
   margin-bottom: 14px;
 }
 
-@keyframes statusGlow {
-  0%,
-  100% {
-    box-shadow: 0 0 0 1px rgba(184, 239, 73, 0.12), 0 0 18px rgba(144, 194, 38, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 0 1px rgba(184, 239, 73, 0.28), 0 0 28px rgba(184, 239, 73, 0.46);
-  }
-}
-
 @keyframes statusPulse {
   0%,
   100% {
     transform: scale(1);
-    box-shadow: 0 0 0 4px rgba(184, 239, 73, 0.2), 0 0 14px rgba(184, 239, 73, 0.85);
   }
   50% {
     transform: scale(1.18);
-    box-shadow: 0 0 0 7px rgba(184, 239, 73, 0.12), 0 0 20px rgba(184, 239, 73, 1);
   }
 }
 
@@ -990,27 +978,28 @@ section p.white {
 .hero-status-pill {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 5px 10px;
-  border-radius: 999px;
-  border: 2px solid #b8ef49;
-  background: linear-gradient(180deg, rgba(152, 214, 44, 0.32) 0%, rgba(98, 154, 16, 0.28) 100%);
-  color: #f4ffd8;
-  font-size: 0.76rem;
-  font-weight: 700;
+  gap: 8px;
+  padding: 18px 8px 8px 18px;
+  border-radius: 9999px;
+  border: 1px solid #c0cc19;
+  background: transparent;
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 16.8px;
+  font-weight: 400;
   white-space: nowrap;
-  box-shadow: 0 0 0 1px rgba(184, 239, 73, 0.12), 0 0 18px rgba(144, 194, 38, 0.3);
-  text-shadow: 0 0 10px rgba(184, 239, 73, 0.2);
-  animation: statusGlow 1.8s ease-in-out infinite;
+  box-shadow: none;
+  text-shadow: none;
+  animation: none;
 }
 
 .hero-status-dot {
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: #b8ef49;
+  background: #c0cc19;
   display: inline-block;
-  box-shadow: 0 0 0 4px rgba(184, 239, 73, 0.2), 0 0 14px rgba(184, 239, 73, 0.85);
+  box-shadow: none;
   animation: statusPulse 1.8s ease-in-out infinite;
 }
 
@@ -1041,7 +1030,7 @@ section p.white {
 }
 
 .hero-chat-input button {
-  background: var(--fd-widget-bg);
+  background-color: #f59c00;
   border: none;
   color: #fff;
   width: 48px;
@@ -1052,12 +1041,12 @@ section p.white {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s;
+  transition: background-color 0.2s ease;
   flex-shrink: 0;
 }
 
 .hero-chat-input button:hover {
-  background: #004577;
+  background-color: #dc8c00;
 }
 
 .suggested-topics {
@@ -1087,7 +1076,7 @@ section p.white {
 }
 
 .topic-pill {
-  background: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.4);
   color: #fff;
   padding: 10px 20px;
@@ -1095,13 +1084,13 @@ section p.white {
   font-size: 0.9rem;
   font-weight: 400;
   cursor: pointer;
-  transition: all 0.25s;
+  transition: background-color 0.25s ease, transform 0.25s ease;
   font-family: inherit;
 }
 
 .topic-pill:hover {
-  background: rgba(255, 255, 255, 0.3);
-  border-color: #fff;
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: scale(1.02);
 }
 
 .hero-secondary-link {
@@ -1111,14 +1100,15 @@ section p.white {
 }
 
 .hero-secondary-link a {
-  color: #fff;
-  text-decoration: underline;
+  color: #00aeef;
+  text-decoration: none;
   font-weight: 500;
+  transition: color 0.2s ease;
 }
 
 .hero-secondary-link a:hover {
-  color: #fff;
-  opacity: 0.9;
+  color: #009bd6;
+  text-decoration: none;
 }
 
 .box-segment.column--sm-3 {
