@@ -428,6 +428,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var expandBtn = document.getElementById('btn-expand');
     var heroChatField = document.getElementById('hero-chat-field');
     var heroChatSubmit = document.getElementById('hero-chat-submit');
+    var heroSecondaryLink = document.querySelector('.hero-secondary-link a');
     var ticketBtnSnippet = document.getElementById('btn-open-ticket-widget');
     var barLabel = document.querySelector('.bar-label');
 
@@ -480,6 +481,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }, 600);
     };
 
+    function bindHoverStyles(el, baseStyles, hoverStyles) {
+      if (!el) return;
+
+      function applyStyles(styles) {
+        for (var prop in styles) {
+          if (Object.prototype.hasOwnProperty.call(styles, prop)) {
+            el.style[prop] = styles[prop];
+          }
+        }
+      }
+
+      applyStyles(baseStyles);
+      el.addEventListener('mouseenter', function () { applyStyles(hoverStyles); });
+      el.addEventListener('mouseleave', function () { applyStyles(baseStyles); });
+      el.addEventListener('focus', function () { applyStyles(hoverStyles); });
+      el.addEventListener('blur', function () { applyStyles(baseStyles); });
+    }
+
+    bindHoverStyles(heroChatSubmit, {
+      backgroundColor: '#F59C00'
+    }, {
+      backgroundColor: '#DC8C00'
+    });
+
+    bindHoverStyles(heroSecondaryLink, {
+      color: '#00AEEF',
+      textDecoration: 'none'
+    }, {
+      color: '#009BD6',
+      textDecoration: 'none'
+    });
+
     if (heroChatSubmit) {
       heroChatSubmit.addEventListener('click', function () {
         var msg = heroChatField ? heroChatField.value.trim() : '';
@@ -503,6 +536,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     var pills = document.querySelectorAll('.topic-pill');
     for (var i = 0; i < pills.length; i++) {
+      bindHoverStyles(pills[i], {
+        backgroundColor: 'rgba(255, 255, 255, 0.15)',
+        transform: 'scale(1)'
+      }, {
+        backgroundColor: 'rgba(255, 255, 255, 0.25)',
+        transform: 'scale(1.02)'
+      });
       pills[i].addEventListener('click', function () {
         var topic = this.getAttribute('data-topic');
         openFullscreenChat(topic);
@@ -1030,7 +1070,7 @@ section p.white {
 }
 
 .hero-chat-input button {
-  background-color: #f59c00;
+  background-color: #f59c00 !important;
   border: none;
   color: #fff;
   width: 48px;
@@ -1046,7 +1086,7 @@ section p.white {
 }
 
 .hero-chat-input button:hover {
-  background-color: #dc8c00;
+  background-color: #dc8c00 !important;
 }
 
 .suggested-topics {
@@ -1076,7 +1116,7 @@ section p.white {
 }
 
 .topic-pill {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.15) !important;
   border: 1px solid rgba(255, 255, 255, 0.4);
   color: #fff;
   padding: 10px 20px;
@@ -1089,8 +1129,8 @@ section p.white {
 }
 
 .topic-pill:hover {
-  background-color: rgba(255, 255, 255, 0.25);
-  transform: scale(1.02);
+  background-color: rgba(255, 255, 255, 0.25) !important;
+  transform: scale(1.02) !important;
 }
 
 .hero-secondary-link {
@@ -1100,15 +1140,15 @@ section p.white {
 }
 
 .hero-secondary-link a {
-  color: #00aeef;
-  text-decoration: none;
+  color: #00aeef !important;
+  text-decoration: none !important;
   font-weight: 500;
   transition: color 0.2s ease;
 }
 
 .hero-secondary-link a:hover {
-  color: #009bd6;
-  text-decoration: none;
+  color: #009bd6 !important;
+  text-decoration: none !important;
 }
 
 .box-segment.column--sm-3 {

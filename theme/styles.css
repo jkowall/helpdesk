@@ -248,7 +248,7 @@ section p.white {
 }
 
 .hero-chat-input button {
-  background-color: #f59c00;
+  background-color: #f59c00 !important;
   border: none;
   color: #fff;
   width: 48px;
@@ -264,7 +264,7 @@ section p.white {
 }
 
 .hero-chat-input button:hover {
-  background-color: #dc8c00;
+  background-color: #dc8c00 !important;
 }
 
 .suggested-topics {
@@ -294,7 +294,7 @@ section p.white {
 }
 
 .topic-pill {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.15) !important;
   border: 1px solid rgba(255, 255, 255, 0.4);
   color: #fff;
   padding: 10px 20px;
@@ -307,8 +307,8 @@ section p.white {
 }
 
 .topic-pill:hover {
-  background-color: rgba(255, 255, 255, 0.25);
-  transform: scale(1.02);
+  background-color: rgba(255, 255, 255, 0.25) !important;
+  transform: scale(1.02) !important;
 }
 
 .hero-secondary-link {
@@ -318,15 +318,15 @@ section p.white {
 }
 
 .hero-secondary-link a {
-  color: #00aeef;
-  text-decoration: none;
+  color: #00aeef !important;
+  text-decoration: none !important;
   font-weight: 500;
   transition: color 0.2s ease;
 }
 
 .hero-secondary-link a:hover {
-  color: #009bd6;
-  text-decoration: none;
+  color: #009bd6 !important;
+  text-decoration: none !important;
 }
 
 .box-segment.column--sm-3 {
