@@ -174,5 +174,45 @@
         expandBtn.click();
       }
     };
+
+    function injectShadowStyles() {
+      var chatEl = document.querySelector('embrace-chat');
+      if (!chatEl) return;
+
+      function tryInject() {
+        var sr = chatEl.shadowRoot;
+        if (!sr) return false;
+        if (sr.querySelector('#paessler-shadow-overrides')) return true;
+
+        var style = document.createElement('style');
+        style.id = 'paessler-shadow-overrides';
+        style.textContent =
+          '[part="initial-header"] { display: none !important; }' +
+          '[part="chat"] { border: none !important; box-shadow: none !important; border-radius: 0 !important; }' +
+          'button[type="submit"], button[aria-label*="send" i], button[aria-label*="Send"], form button:last-of-type { background-color: #F59C00 !important; transition: background-color 0.2s ease !important; }' +
+          'button[type="submit"]:hover, button[aria-label*="send" i]:hover, button[aria-label*="Send"]:hover, form button:last-of-type:hover { background-color: #DC8C00 !important; }' +
+          'a[href*="/support/tickets/new"], a[href*="/tickets/new"] { color: #00AEEF !important; text-decoration: none !important; transition: color 0.2s ease !important; }' +
+          'a[href*="/support/tickets/new"]:hover, a[href*="/tickets/new"]:hover { color: #009BD6 !important; text-decoration: none !important; }' +
+          'button[class*="chip"], button[class*="suggest"], button[data-testid*="chip"], button[data-testid*="suggest"], [role="button"][class*="chip"], [role="button"][class*="suggest"], [data-testid*="chip"] button, [data-testid*="suggest"] button { background-color: rgba(255, 255, 255, 0.15) !important; transition: background-color 0.25s ease, transform 0.25s ease !important; }' +
+          'button[class*="chip"]:hover, button[class*="suggest"]:hover, button[data-testid*="chip"]:hover, button[data-testid*="suggest"]:hover, [role="button"][class*="chip"]:hover, [role="button"][class*="suggest"]:hover, [data-testid*="chip"] button:hover, [data-testid*="suggest"] button:hover { background-color: rgba(255, 255, 255, 0.25) !important; transform: scale(1.02) !important; }';
+        sr.appendChild(style);
+        return true;
+      }
+
+      if (!tryInject()) {
+        var observer = new MutationObserver(function () {
+          if (tryInject()) observer.disconnect();
+        });
+        observer.observe(chatEl, { childList: true, subtree: true });
+        setTimeout(tryInject, 500);
+        setTimeout(tryInject, 1500);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', injectShadowStyles);
+    } else {
+      injectShadowStyles();
+    }
   })();
 </script>
