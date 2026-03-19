@@ -273,9 +273,19 @@
     }
 
     .preview-chat-input {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
       border-top: 1px solid #e6edf4;
       padding: 16px 20px;
       background: #fff;
+    }
+
+    .preview-chat-disclaimer {
+      font-size: 12px;
+      font-weight: 400;
+      color: #888;
+      text-align: center;
     }
 
     .preview-chat-input form {
@@ -684,6 +694,7 @@
         <div class="preview-chat-thread" id="preview-chat-thread"></div>
       </div>
       <div class="preview-chat-input">
+        <div class="preview-chat-disclaimer">AI-generated responses may not always be accurate. For critical issues, please create a ticket.</div>
         <form id="preview-chat-form">
           <input type="text" id="preview-chat-input-field" placeholder="Ask Max a question..." aria-label="Preview chat input">
           <button class="preview-chat-send" type="submit">Send</button>

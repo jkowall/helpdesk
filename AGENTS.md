@@ -29,6 +29,15 @@ This is the standalone code designed to be pasted into the Freshdesk portal foot
 - It is a combined snapshot of the canonical `theme/` section files.
 - Functional links should point to the actual production services at `https://helpdesk.paessler.com`.
 
+## Preview And Deploy Sync
+
+- **Always update preview surfaces** when widget UI or copy changes. In particular, keep `theme-preview.html` aligned for anything visible in the expanded chat window, including disclaimers, labels, buttons, and helper text.
+- **Always update compatibility/deploy files** when canonical widget behavior changes. Keep these in sync with `theme/`:
+  - `deploy/1-custom-css.css`
+  - `deploy/2-header-widget.html`
+  - `deploy/4-footer-script.html`
+- **Do not treat previews as optional**: if the user is likely to validate a change in the preview, the preview must reflect the same visible behavior as the canonical theme.
+
 ## AI Widget Branding
 
 - The primary text for the AI widget top bar should be **"Get Instant Help"**.
