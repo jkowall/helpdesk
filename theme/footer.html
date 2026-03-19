@@ -247,7 +247,10 @@
         style.id = 'paessler-shadow-overrides';
         style.textContent =
           '[part="initial-header"] { display: none !important; }' +
+          '[part="company-name"], [part="logo"], [part="initial-subtitle"] { display: none !important; }' +
           '[part="chat"] { border: none !important; box-shadow: none !important; border-radius: 0 !important; }' +
+          '[part="powered-by"] { flex-direction: column !important; gap: 0 !important; margin-top: 12px !important; }' +
+          '[part="powered-by"]::before { content: "AI-generated responses may not always be accurate. For critical issues, please create a ticket."; display: block; font-size: 12px; font-weight: 400; color: #888; text-align: center; margin-bottom: 12px; }' +
           'button[type="submit"], button[aria-label*="send" i], button[aria-label*="Send"], form button:last-of-type { background-color: #F59C00 !important; transition: background-color 0.2s ease !important; }' +
           'button[type="submit"]:hover, button[aria-label*="send" i]:hover, button[aria-label*="Send"]:hover, form button:last-of-type:hover { background-color: #DC8C00 !important; }' +
           'a[href*="/support/tickets/new"], a[href*="/tickets/new"] { color: #00AEEF !important; text-decoration: none !important; transition: color 0.2s ease !important; }' +
