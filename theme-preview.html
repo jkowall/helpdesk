@@ -288,6 +288,16 @@
       text-align: center;
     }
 
+    .preview-chat-disclaimer a {
+      color: #00aeef;
+      text-decoration: none;
+    }
+
+    .preview-chat-disclaimer a:hover {
+      color: #009bd6;
+      text-decoration: none;
+    }
+
     .preview-chat-input form {
       display: flex;
       gap: 12px;
@@ -694,7 +704,7 @@
         <div class="preview-chat-thread" id="preview-chat-thread"></div>
       </div>
       <div class="preview-chat-input">
-        <div class="preview-chat-disclaimer">AI-generated responses may not always be accurate. For critical issues, please create a ticket.</div>
+        <div class="preview-chat-disclaimer">AI-generated responses may not always be accurate. For critical issues, please <a href="https://helpdesk.paessler.com/en/support/tickets/new">create a ticket</a>.</div>
         <form id="preview-chat-form">
           <input type="text" id="preview-chat-input-field" placeholder="Ask Max a question..." aria-label="Preview chat input">
           <button class="preview-chat-send" type="submit">Send</button>

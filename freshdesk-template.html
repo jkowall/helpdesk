@@ -209,7 +209,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div slot="input-placeholder">Ask Max a question...</div>
       </template>
     </embrace-chat>
-    <div class="chat-disclaimer">AI-generated responses may not always be accurate. For critical issues, please create a ticket.</div>
+    <div class="chat-disclaimer">AI-generated responses may not always be accurate. For critical issues, please <a href="{{ portal.new_ticket_url }}">create a ticket</a>.</div>
   </div>
 
   <div class="widget-controls">
@@ -1366,7 +1366,16 @@ div#fallback-footer .bottom-container .social-wrapper a.social {
   font-weight: 400;
   color: #888;
   text-align: center;
-  pointer-events: none;
+}
+
+.chat-disclaimer a {
+  color: var(--fd-brand-blue);
+  text-decoration: none;
+}
+
+.chat-disclaimer a:hover {
+  color: #009bd6;
+  text-decoration: none;
 }
 
 #embrace-widget-container.widget-fullscreen .chat-disclaimer {

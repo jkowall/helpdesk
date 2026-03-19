@@ -134,7 +134,16 @@
     font-weight: 400;
     color: #888;
     text-align: center;
-    pointer-events: none;
+  }
+
+  .chat-disclaimer a {
+    color: var(--fd-brand-blue);
+    text-decoration: none;
+  }
+
+  .chat-disclaimer a:hover {
+    color: #009bd6;
+    text-decoration: none;
   }
 
   #embrace-widget-container.widget-fullscreen .chat-disclaimer {
@@ -185,7 +194,7 @@
         <div slot="input-placeholder">Chat with Max</div>
       </template>
     </embrace-chat>
-    <div class="chat-disclaimer">AI-generated responses may not always be accurate. For critical issues, please create a ticket.</div>
+    <div class="chat-disclaimer">AI-generated responses may not always be accurate. For critical issues, please <a href="/en/support/tickets/new">create a ticket</a>.</div>
   </div>
 
   <div class="widget-controls">
