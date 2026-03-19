@@ -250,7 +250,6 @@
             '[part="company-name"], [part="logo"], [part="initial-subtitle"] { display: none !important; }' +
             '[part="chat"] { border: none !important; box-shadow: none !important; border-radius: 0 !important; }' +
             '[part="powered-by"] { flex-direction: column !important; gap: 0 !important; margin-top: 12px !important; }' +
-            '#paessler-chat-disclaimer { display: block; font-size: 12px; font-weight: 400; color: #888; text-align: center; margin-bottom: 12px; }' +
             'button[type="submit"], button[aria-label*="send" i], button[aria-label*="Send"], form button:last-of-type { background-color: #F59C00 !important; transition: background-color 0.2s ease !important; }' +
             'button[type="submit"]:hover, button[aria-label*="send" i]:hover, button[aria-label*="Send"]:hover, form button:last-of-type:hover { background-color: #DC8C00 !important; }' +
             'a[href*="/support/tickets/new"], a[href*="/tickets/new"] { color: #00AEEF !important; text-decoration: none !important; transition: color 0.2s ease !important; }' +
@@ -258,16 +257,6 @@
             'button[class*="chip"], button[class*="suggest"], button[data-testid*="chip"], button[data-testid*="suggest"], [role="button"][class*="chip"], [role="button"][class*="suggest"], [data-testid*="chip"] button, [data-testid*="suggest"] button { background-color: rgba(255, 255, 255, 0.15) !important; transition: background-color 0.25s ease, transform 0.25s ease !important; }' +
             'button[class*="chip"]:hover, button[class*="suggest"]:hover, button[data-testid*="chip"]:hover, button[data-testid*="suggest"]:hover, [role="button"][class*="chip"]:hover, [role="button"][class*="suggest"]:hover, [data-testid*="chip"] button:hover, [data-testid*="suggest"] button:hover { background-color: rgba(255, 255, 255, 0.25) !important; transform: scale(1.02) !important; }';
           sr.appendChild(style);
-        }
-
-        var poweredBy = sr.querySelector('[part="powered-by"]');
-        if (!poweredBy || !poweredBy.parentNode) return false;
-
-        if (!sr.querySelector('#paessler-chat-disclaimer')) {
-          var disclaimer = document.createElement('div');
-          disclaimer.id = 'paessler-chat-disclaimer';
-          disclaimer.textContent = 'AI-generated responses may not always be accurate. For critical issues, please create a ticket.';
-          poweredBy.parentNode.insertBefore(disclaimer, poweredBy);
         }
 
         return true;

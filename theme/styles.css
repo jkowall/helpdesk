@@ -513,8 +513,24 @@ div#fallback-footer .bottom-container .social-wrapper a.social {
 }
 
 #embrace-widget-container.widget-fullscreen .chat-wrapper {
-  display: block;
+  display: flex;
+  flex-direction: column;
   padding-top: 60px;
+}
+
+.chat-disclaimer {
+  display: none;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 12px 16px 20px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #888;
+  text-align: center;
+}
+
+#embrace-widget-container.widget-fullscreen .chat-disclaimer {
+  display: block;
 }
 
 embrace-chat::part(initial-header),
@@ -536,16 +552,6 @@ embrace-chat::part(powered-by) {
   margin-top: 12px;
 }
 
-embrace-chat::part(powered-by)::before {
-  content: "AI-generated responses may not always be accurate. For critical issues, please create a ticket.";
-  display: block;
-  font-size: 12px;
-  font-weight: 400;
-  color: #888;
-  text-align: center;
-  margin-bottom: 12px;
-}
-
 embrace-chat::part(answer) {
   margin-top: 24px;
 }
@@ -554,6 +560,8 @@ embrace-chat {
   display: block;
   max-width: 1000px;
   margin: 0 auto;
+  flex: 1;
+  min-height: 0;
   height: 100%;
 }
 
