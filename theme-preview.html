@@ -288,16 +288,6 @@
       text-align: center;
     }
 
-    .preview-chat-disclaimer a {
-      color: #00aeef;
-      text-decoration: none;
-    }
-
-    .preview-chat-disclaimer a:hover {
-      color: #009bd6;
-      text-decoration: none;
-    }
-
     .preview-chat-input form {
       display: flex;
       gap: 12px;
@@ -693,18 +683,18 @@
       <div class="preview-chat-body" id="preview-chat-body">
         <div class="preview-chat-card">
           <div class="preview-chat-title-row">
-            <h3 id="preview-chat-title">Hi, I'm Max! Your AI support guide.</h3>
+            <h3 id="preview-chat-title">Hi, I'm Max. How can I help today?</h3>
             <div class="status-pill">
               <span class="status-dot"></span>
               <span id="preview-chat-status">Online and ready to help</span>
             </div>
           </div>
-          <p id="preview-chat-claim">I can help you with PRTG setup, troubleshooting, and answer your questions instantly. Available 24/7.</p>
+          <p id="preview-chat-claim">Ask me about PRTG setup, troubleshooting, or common questions, and I’ll help you get to the right answer quickly.</p>
         </div>
         <div class="preview-chat-thread" id="preview-chat-thread"></div>
       </div>
       <div class="preview-chat-input">
-        <div class="preview-chat-disclaimer">AI-generated responses may not always be accurate. For critical issues, please <a href="https://helpdesk.paessler.com/en/support/tickets/new">create a ticket</a>.</div>
+        <div class="preview-chat-disclaimer">You’re chatting with Max, our AI assistant built to help you get answers quickly. If needed, he’ll guide you to the next best step.</div>
         <form id="preview-chat-form">
           <input type="text" id="preview-chat-input-field" placeholder="Ask Max a question..." aria-label="Preview chat input">
           <button class="preview-chat-send" type="submit">Send</button>

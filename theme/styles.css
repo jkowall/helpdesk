@@ -533,16 +533,6 @@ div#fallback-footer .bottom-container .social-wrapper a.social {
   text-align: center;
 }
 
-.chat-disclaimer a {
-  color: var(--fd-brand-blue);
-  text-decoration: none;
-}
-
-.chat-disclaimer a:hover {
-  color: #009bd6;
-  text-decoration: none;
-}
-
 #embrace-widget-container.widget-fullscreen .chat-disclaimer {
   display: block;
 }
