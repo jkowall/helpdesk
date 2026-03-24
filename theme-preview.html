@@ -106,6 +106,7 @@
       background: var(--widget-bg);
       color: #fff;
       z-index: 9999;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -113,84 +114,106 @@
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
 
+    .preview-widget.widget-fullscreen {
+      height: 100vh;
+      width: 100vw;
+      padding: 0;
+      flex-direction: column;
+      align-items: stretch;
+      background: #fff;
+      box-shadow: none;
+    }
+
     .preview-widget-label {
       font-weight: 600;
       font-size: 0.9rem;
+      display: flex;
+      align-items: center;
     }
 
-    .preview-widget-meta {
+    .preview-widget-disclosure {
       margin-left: auto;
       margin-right: 16px;
       font-size: 0.72rem;
-      opacity: 0.7;
+      opacity: 0.6;
     }
 
+    .preview-widget.widget-fullscreen .preview-widget-label,
+    .preview-widget.widget-fullscreen .preview-widget-disclosure {
+      display: none;
+    }
+
+    .preview-widget-controls {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      z-index: 1;
+    }
+
+    .preview-widget.widget-fullscreen .preview-widget-controls {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+    }
+
+    .preview-widget-ticket,
     .preview-widget-btn {
+      appearance: none;
       border: 0;
       border-radius: 4px;
-      background: var(--paessler-green);
+      background: rgba(255, 255, 255, 0.15);
       color: #fff;
       padding: 7px 14px;
       font-size: 0.8rem;
       font-weight: 700;
       text-transform: uppercase;
       cursor: pointer;
+      text-decoration: none;
     }
 
-    .preview-widget-modal {
-      position: fixed;
-      inset: var(--widget-height) 0 0;
+    .preview-widget-btn {
+      background: var(--paessler-green);
+    }
+
+    .preview-widget-ticket {
       display: none;
-      background: rgba(11, 27, 43, 0.32);
-      z-index: 9998;
-      padding: 22px;
-    }
-
-    .preview-widget-modal.is-open {
-      display: block;
+      border: 1px solid #00aeef;
+      color: #00aeef;
+      background: transparent;
     }
 
     .preview-chat-shell {
-      max-width: 1020px;
-      height: calc(100vh - 94px);
+      flex: 1;
+      width: 100%;
+      height: 100%;
       margin: 0 auto;
-      background: #fff;
-      border-radius: 20px;
-      overflow: hidden;
-      display: flex;
+      max-width: 1000px;
+      display: none;
       flex-direction: column;
-      box-shadow: 0 24px 50px rgba(11, 27, 43, 0.24);
+      position: relative;
+      padding-top: 60px;
     }
 
-    .preview-chat-head {
+    .preview-widget.widget-fullscreen .preview-chat-shell {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 20px;
-      border-bottom: 1px solid #e6edf4;
-      background: #fff;
-    }
-
-    .preview-chat-head strong {
-      font-size: 1rem;
-      color: var(--paessler-dark);
     }
 
     .preview-chat-body {
       flex: 1;
-      background: linear-gradient(180deg, #ffffff 0%, #f7fafc 100%);
-      padding: 30px 24px;
+      background: #fff;
+      padding: 30px 24px 0;
       overflow-y: auto;
     }
 
     .preview-chat-card {
-      max-width: 700px;
-      background: #fff;
-      border: 1px solid #dce7f1;
-      border-radius: 12px;
-      padding: 18px 20px;
+      max-width: 100%;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      padding: 0 0 10px;
       color: #24435f;
-      box-shadow: 0 10px 24px rgba(14, 42, 68, 0.08);
+      box-shadow: none;
+      text-align: center;
     }
 
     .preview-chat-title-row {
@@ -276,16 +299,20 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      border-top: 1px solid #e6edf4;
-      padding: 16px 20px;
+      padding: 16px 20px 24px;
       background: #fff;
     }
 
     .preview-chat-disclaimer {
+      display: none;
       font-size: 12px;
       font-weight: 400;
       color: #888;
       text-align: center;
+    }
+
+    .preview-widget.widget-fullscreen .preview-chat-disclaimer {
+      display: block;
     }
 
     .preview-chat-input form {
@@ -655,8 +682,39 @@
         padding: 0 14px;
       }
 
-      .preview-widget-meta {
+      .preview-widget-disclosure {
         display: none;
+      }
+
+      .preview-widget-controls {
+        gap: 8px;
+      }
+
+      .preview-widget.widget-fullscreen .preview-widget-controls {
+        top: 12px;
+        right: 14px;
+        left: 14px;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+      }
+
+      .preview-chat-body {
+        padding: 24px 16px 0;
+      }
+
+      .preview-chat-input {
+        padding: 14px 16px 20px;
+      }
+
+      .preview-chat-input form {
+        flex-direction: column;
+      }
+
+      .preview-chat-send,
+      .preview-chat-input input,
+      .preview-widget-ticket,
+      .preview-widget-btn {
+        width: 100%;
       }
 
       .cards-grid,
@@ -668,18 +726,14 @@
 </head>
 
 <body>
-  <div class="preview-widget">
+  <div class="preview-widget" id="preview-widget">
     <div class="preview-widget-label">Get Instant Help</div>
-    <div class="preview-widget-meta">Canonical Theme Preview</div>
-    <button class="preview-widget-btn" type="button" id="open-preview-chat">Expand Chat</button>
-  </div>
-
-  <div class="preview-widget-modal" id="preview-chat-modal">
+    <div class="preview-widget-disclosure">Powered by AI</div>
+    <div class="preview-widget-controls">
+      <a class="preview-widget-ticket" id="preview-open-ticket" href="/en/support/tickets/new">Still need help? Open a Ticket</a>
+      <button class="preview-widget-btn" type="button" id="open-preview-chat">Expand Chat</button>
+    </div>
     <div class="preview-chat-shell">
-      <div class="preview-chat-head">
-        <strong>Paessler Support</strong>
-        <button class="preview-widget-btn" type="button" id="close-preview-chat">Collapse</button>
-      </div>
       <div class="preview-chat-body" id="preview-chat-body">
         <div class="preview-chat-card">
           <div class="preview-chat-title-row">
@@ -861,9 +915,9 @@
   </footer>
 
   <script>
-    const modal = document.getElementById('preview-chat-modal');
+    const widget = document.getElementById('preview-widget');
     const openBtn = document.getElementById('open-preview-chat');
-    const closeBtn = document.getElementById('close-preview-chat');
+    const ticketBtn = document.getElementById('preview-open-ticket');
     const heroForm = document.getElementById('hero-preview-form');
     const heroField = document.getElementById('hero-preview-field');
     const chatForm = document.getElementById('preview-chat-form');
@@ -933,15 +987,17 @@
       }
     }
 
-    function openModal() {
-      modal.classList.add('is-open');
-      openBtn.textContent = 'Chat Open';
+    function openChat() {
+      widget.classList.add('widget-fullscreen');
+      openBtn.textContent = 'Collapse Chat';
+      if (ticketBtn) ticketBtn.style.display = 'inline-flex';
       if (chatField) chatField.focus();
     }
 
-    function closeModal() {
-      modal.classList.remove('is-open');
+    function closeChat() {
+      widget.classList.remove('widget-fullscreen');
       openBtn.textContent = 'Expand Chat';
+      if (ticketBtn) ticketBtn.style.display = 'none';
     }
 
     function appendMessage(role, text) {
@@ -955,7 +1011,7 @@
 
     function submitPreviewMessage(message) {
       const trimmed = (message || '').trim();
-      openModal();
+      openChat();
       if (!trimmed) return;
       appendMessage('user', trimmed);
       window.setTimeout(function () {
@@ -969,17 +1025,10 @@
     syncFromCanonicalTheme();
 
     openBtn.addEventListener('click', function () {
-      if (modal.classList.contains('is-open')) {
-        closeModal();
+      if (widget.classList.contains('widget-fullscreen')) {
+        closeChat();
       } else {
-        openModal();
-      }
-    });
-
-    closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', function (event) {
-      if (event.target === modal) {
-        closeModal();
+        openChat();
       }
     });
 
@@ -1002,8 +1051,8 @@
     });
 
     document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape' && modal.classList.contains('is-open')) {
-        closeModal();
+      if (event.key === 'Escape' && widget.classList.contains('widget-fullscreen')) {
+        closeChat();
       }
     });
   </script>

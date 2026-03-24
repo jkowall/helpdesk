@@ -191,7 +191,6 @@
       border-radius: 20px;
       box-shadow: 0 12px 28px rgba(22, 50, 79, 0.08);
       overflow: hidden;
-      min-height: 420px;
       display: flex;
       flex-direction: column;
     }
@@ -280,12 +279,22 @@
     .panel-body {
       position: relative;
       flex: 1;
+      background: #0d1826;
+    }
+
+    .panel-body.is-collapsed .preview-fade,
+    .panel-body.is-collapsed .preview-note {
+      display: block;
+    }
+
+    .panel-body.is-expanded .preview-fade,
+    .panel-body.is-expanded .preview-note {
+      display: none;
     }
 
     pre {
       margin: 0;
       padding: 18px;
-      height: 100%;
       overflow: auto;
       background: #0d1826;
       color: #eaf2fb;
@@ -293,6 +302,34 @@
       line-height: 1.55;
       white-space: pre-wrap;
       word-break: break-word;
+    }
+
+    .preview-fade {
+      display: none;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 88px;
+      background: linear-gradient(180deg, rgba(13, 24, 38, 0) 0%, rgba(13, 24, 38, 0.96) 78%);
+      pointer-events: none;
+    }
+
+    .preview-note {
+      display: none;
+      position: absolute;
+      right: 16px;
+      bottom: 14px;
+      z-index: 1;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(234, 242, 251, 0.82);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      pointer-events: none;
     }
 
     .meta-note {
@@ -440,6 +477,17 @@
       });
     }
 
+    function makePreview(text, maxLines = 14) {
+      const lines = text.split('\n');
+      if (lines.length <= maxLines) {
+        return { text, truncated: false };
+      }
+      return {
+        text: `${lines.slice(0, maxLines).join('\n')}\n\n...`,
+        truncated: true
+      };
+    }
+
     async function buildPanel(config) {
       const panel = document.createElement('article');
       panel.className = 'panel';
@@ -483,6 +531,9 @@
       copyBtn.textContent = 'Copy';
       copyBtn.addEventListener('click', () => copyText(text, copyBtn));
 
+      const toggleBtn = document.createElement('button');
+      toggleBtn.type = 'button';
+
       const openBtn = document.createElement('a');
       openBtn.href = activePath;
       openBtn.target = '_blank';
@@ -490,15 +541,45 @@
       openBtn.textContent = 'Open Raw';
 
       actions.appendChild(copyBtn);
+      actions.appendChild(toggleBtn);
       actions.appendChild(openBtn);
       head.appendChild(title);
       head.appendChild(actions);
 
       const body = document.createElement('div');
       body.className = 'panel-body';
+
+      const preview = makePreview(text);
+      let expanded = !preview.truncated;
+
+      function syncBody() {
+        body.classList.toggle('is-collapsed', !expanded);
+        body.classList.toggle('is-expanded', expanded);
+        pre.textContent = expanded ? text : preview.text;
+        toggleBtn.textContent = preview.truncated ? (expanded ? 'Collapse' : 'Expand') : 'Full View';
+        toggleBtn.disabled = !preview.truncated;
+        toggleBtn.style.opacity = preview.truncated ? '1' : '0.5';
+        toggleBtn.style.cursor = preview.truncated ? 'pointer' : 'default';
+      }
+
       const pre = document.createElement('pre');
-      pre.textContent = text;
+      const fade = document.createElement('div');
+      fade.className = 'preview-fade';
+      const note = document.createElement('div');
+      note.className = 'preview-note';
+      note.textContent = 'Preview Only';
+
+      if (preview.truncated) {
+        toggleBtn.addEventListener('click', () => {
+          expanded = !expanded;
+          syncBody();
+        });
+      }
+
+      syncBody();
       body.appendChild(pre);
+      body.appendChild(fade);
+      body.appendChild(note);
 
       panel.appendChild(head);
       panel.appendChild(body);
