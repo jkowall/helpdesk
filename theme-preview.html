@@ -204,30 +204,29 @@
       gap: 8px;
       padding: 8px 16px;
       border-radius: 9999px;
-      border: 1px solid #c0cc19;
-      background: transparent;
-      color: #ffffff;
+      border: 1px solid #b8ef49;
+      background: rgba(0, 75, 135, 0.28);
+      color: #f6ffd9;
       font-size: 14px;
       line-height: 16.8px;
       font-weight: 400;
       white-space: nowrap;
-      box-shadow: none;
-      text-shadow: none;
-      animation: none;
+      box-shadow: 0 0 0 1px rgba(184, 239, 73, 0.12), 0 0 14px rgba(144, 194, 38, 0.16);
+      text-shadow: 0 0 10px rgba(184, 239, 73, 0.14);
+      animation: statusGlow 1.8s ease-in-out infinite;
       justify-content: center;
     }
 
     .status-pill.preview-surface {
-      background-color: #004b87;
+      background-color: rgba(0, 75, 135, 0.92);
     }
 
     .status-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: #c0cc19;
+      background: #b8ef49;
       display: inline-block;
-      box-shadow: none;
       animation: statusPulse 1.8s ease-in-out infinite;
     }
 
@@ -374,20 +373,28 @@
       margin: 0 auto;
     }
 
+    .hero-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: nowrap;
+      margin-bottom: 14px;
+    }
+
     .hero h1 {
-      font-size: clamp(3rem, 4.4vw, 4.1rem);
-      font-weight: 300;
-      margin: 0 0 22px;
+      font-size: clamp(2.45rem, 4vw, 3.3rem);
+      font-weight: 700;
+      margin: 0;
       line-height: 1.08;
-      letter-spacing: -0.03em;
     }
 
     .hero p {
-      font-size: clamp(1.55rem, 2.1vw, 2rem);
-      font-weight: 300;
-      opacity: 0.92;
+      font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+      font-weight: 400;
+      opacity: 0.88;
       margin: 0 auto 34px;
-      max-width: 980px;
+      max-width: 880px;
     }
 
     .hero-chat-input {
@@ -669,7 +676,7 @@
           <div slot="initial-message" style="text-align: center; padding: 0 16px;">
             <div style="display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: nowrap; margin-bottom: 24px;">
               <div id="preview-chat-title" style="font-size: 28px; line-height: 118%; font-weight: 600; color: #333;">
-                Hi, I'm Max. How can I help today?
+                Hi, I'm Max! Your AI support guide.
               </div>
               <div class="status-pill preview-surface">
                 <span class="status-dot"></span>
@@ -677,7 +684,7 @@
               </div>
             </div>
             <div id="preview-chat-claim" style="font-size: 20px; line-height: 140%; font-weight: 400; color: #555; max-width: 600px; margin: 0 auto;">
-              Ask me about PRTG setup, troubleshooting, or common questions, and I’ll help you get to the right answer quickly.
+              I can help you with PRTG setup, troubleshooting, and answer your questions instantly. Available 24/7.
             </div>
           </div>
           <div slot="input-placeholder" id="preview-chat-input-placeholder">Ask Max a question...</div>
@@ -721,11 +728,17 @@
 
   <section class="hero">
     <div class="hero-inner">
-      <h1 id="hero-title">How can we help you today, Jonah?</h1>
-      <p id="hero-claim">Our experts will assist you with anything you need.</p>
+      <div class="hero-title-row">
+        <h1 id="hero-title">Hi, I'm Max! Your AI support guide.</h1>
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          <span id="hero-status">Online and ready to help</span>
+        </div>
+      </div>
+      <p id="hero-claim">I can help you with PRTG setup, troubleshooting, and answer your questions instantly. Available 24/7.</p>
 
       <form class="hero-chat-input" id="hero-preview-form">
-        <input type="text" id="hero-preview-field" placeholder="Describe your issue here..." autocomplete="off">
+        <input type="text" id="hero-preview-field" placeholder="Ask Max a question..." autocomplete="off">
         <button type="submit" title="Send" id="hero-preview-submit">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M5 12h14M12 5l7 7-7 7" />
@@ -747,7 +760,7 @@
       </div>
 
       <div class="hero-secondary-link">
-        Need more help? <a href="https://helpdesk.paessler.com/en/support/tickets/new">Create ticket.</a>
+        Still need help? You can also <a href="https://helpdesk.paessler.com/en/support/tickets/new">create a ticket</a>.
       </div>
     </div>
   </section>

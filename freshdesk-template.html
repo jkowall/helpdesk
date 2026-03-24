@@ -196,15 +196,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             style="text-align: center; padding: 0 16px;">
             <div style="display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: nowrap; margin-bottom: 24px;">
               <div style="font-size: 28px; line-height: 118%; font-weight: 600; color: #333;">
-                Hi, I'm Max. How can I help today?
+                Hi, I'm Max! Your AI support guide.
               </div>
-              <div style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; border-radius: 9999px; border: 1px solid #c0cc19; background-color: #004b87; color: #ffffff; font-size: 14px; line-height: 16.8px; font-weight: 400; white-space: nowrap; box-shadow: none; text-shadow: none;">
-                <span style="width: 8px; height: 8px; border-radius: 50%; background: #c0cc19; display: inline-block; box-shadow: none; animation: statusPulse 1.8s ease-in-out infinite;"></span>
+              <div style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; border-radius: 9999px; border: 1px solid #b8ef49; background-color: rgba(0, 75, 135, 0.92); color: #f6ffd9; font-size: 14px; line-height: 16.8px; font-weight: 400; white-space: nowrap; box-shadow: 0 0 0 1px rgba(184, 239, 73, 0.12), 0 0 14px rgba(144, 194, 38, 0.14); text-shadow: 0 0 10px rgba(184, 239, 73, 0.14);">
+                <span style="width: 8px; height: 8px; border-radius: 50%; background: #b8ef49; display: inline-block; box-shadow: 0 0 0 4px rgba(184, 239, 73, 0.18), 0 0 12px rgba(184, 239, 73, 0.48); animation: statusPulse 1.8s ease-in-out infinite;"></span>
                 Online and ready to help
               </div>
             </div>
             <div style="font-size: 20px; line-height: 140%; font-weight: 400; color: #555; max-width: 600px; margin: 0 auto;">
-              Ask me about PRTG setup, troubleshooting, or common questions, and I’ll help you get to the right answer quickly.
+              I can help you with PRTG setup, troubleshooting, and answer your questions instantly. Available 24/7.
             </div>
           </div>
           <div slot="input-placeholder">Ask Max a question...</div>
@@ -602,11 +602,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- PORTAL_HOME -->
 {% if portal.current_language.name == "German" %}
 {% assign here_to_help = "Wir sind da um zu helfen!" %}
-{% assign how_can_we_help = "Wie können wir heute weiterhelfen" %}
 {% assign claim = "Unsere Experten beraten Sie gern bei Ihren Anliegen." %}
+{% assign ai_hero_title = "Hi, ich bin Max! Dein KI-Support-Guide." %}
+{% assign ai_hero_claim = "Ich helfe dir bei PRTG-Setup, Troubleshooting und beantworte deine Fragen sofort. Verfügbar 24/7." %}
+{% assign ai_online_status = "Online und bereit zu helfen" %}
 {% assign search = "Suchen" %}
 {% assign search_placeholder = "Geben Sie einen Suchbegriff ein..." %}
-{% assign hero_input_placeholder = "Beschreiben Sie Ihr Anliegen..." %}
+{% assign hero_input_placeholder = "Stell Max eine Frage..." %}
 {% assign new_ticket = "Neues Ticket" %}
 {% assign my_tickets = "Meine Tickets" %}
 {% assign not_registered_yet = "Sie haben noch keinen Account?" %}
@@ -636,15 +638,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 {% assign ai_pill_probe_not_connecting = "Probe verbindet sich nicht" %}
 {% assign ai_pill_sensor_unknown = "Sensoren zeigen Down oder Unknown" %}
 {% assign ai_pill_sensor_errors = "Sensorfehler" %}
-{% assign hero_help_prefix = "Brauchen Sie mehr Hilfe?" %}
-{% assign hero_help_link = "Ticket erstellen." %}
+{% assign hero_help_prefix = "Brauchst du noch Hilfe? Du kannst auch" %}
+{% assign hero_help_link = "ein Ticket erstellen" %}
 {% else %}
 {% assign here_to_help = "We're here to help you!" %}
-{% assign how_can_we_help = "How can we help you today" %}
 {% assign claim = "Our experts will assist you with anything you need." %}
+{% assign ai_hero_title = "Hi, I'm Max! Your AI support guide." %}
+{% assign ai_hero_claim = "I can help you with PRTG setup, troubleshooting, and answer your questions instantly. Available 24/7." %}
+{% assign ai_online_status = "Online and ready to help" %}
 {% assign search = "Search" %}
 {% assign search_placeholder = "Enter your search term here..." %}
-{% assign hero_input_placeholder = "Describe your issue here..." %}
+{% assign hero_input_placeholder = "Ask Max a question..." %}
 {% assign new_ticket = "Create ticket" %}
 {% assign my_tickets = "My Tickets" %}
 {% assign not_registered_yet = "Not yet registered?" %}
@@ -674,8 +678,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 {% assign ai_pill_probe_not_connecting = "Probe not connecting" %}
 {% assign ai_pill_sensor_unknown = "Sensors showing Down or Unknown" %}
 {% assign ai_pill_sensor_errors = "Sensor errors" %}
-{% assign hero_help_prefix = "Need more help?" %}
-{% assign hero_help_link = "Create ticket." %}
+{% assign hero_help_prefix = "Still need help? You can also" %}
+{% assign hero_help_link = "create a ticket" %}
 {% endif %}
 
 {% if portal.current_tab %}
@@ -683,8 +687,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="hero-unit background-blackblue" data-hero-unit>
   <div class="container-inner search-box search-box--hero-unit" data-search-box>
     {% if portal.user.id %}
-      <h1 class="white">{{ how_can_we_help }}, {{ portal.user.first_name }}?</h1>
-      <h2 class="white">{{ claim }}</h2>
+      <div class="hero-title-row">
+        <h1 class="white">{{ ai_hero_title }}</h1>
+        <div class="hero-status-pill">
+          <span class="hero-status-dot"></span>
+          {{ ai_online_status }}
+        </div>
+      </div>
+      <h2 class="white">{{ ai_hero_claim }}</h2>
       <br>
 
       <div class="hero-chat-input">
@@ -710,7 +720,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div class="hero-secondary-link">
-        {{ hero_help_prefix }} <a href="{{ portal.new_ticket_url }}">{{ hero_help_link }}</a>
+        {{ hero_help_prefix }} <a href="{{ portal.new_ticket_url }}">{{ hero_help_link }}</a>.
       </div>
     {% else %}
       <h1 class="white">{{ here_to_help }}</h1>
@@ -1052,9 +1062,21 @@ div.home {
   0%,
   100% {
     transform: scale(1);
+    box-shadow: 0 0 0 4px rgba(184, 239, 73, 0.18), 0 0 12px rgba(184, 239, 73, 0.45);
   }
   50% {
     transform: scale(1.18);
+    box-shadow: 0 0 0 7px rgba(184, 239, 73, 0.1), 0 0 18px rgba(184, 239, 73, 0.7);
+  }
+}
+
+@keyframes statusGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 1px rgba(184, 239, 73, 0.18), 0 0 16px rgba(144, 194, 38, 0.18);
+  }
+  50% {
+    box-shadow: 0 0 0 1px rgba(184, 239, 73, 0.28), 0 0 22px rgba(184, 239, 73, 0.24);
   }
 }
 
@@ -1066,19 +1088,18 @@ section p.white {
 }
 
 .hero-unit h1.white {
-  font-size: clamp(3rem, 4.4vw, 4.1rem);
-  font-weight: 300;
-  margin: 0 0 22px;
+  font-size: clamp(2.45rem, 4vw, 3.3rem);
+  font-weight: 700;
+  margin: 0;
   line-height: 1.08;
-  letter-spacing: -0.03em;
 }
 
 .hero-unit h2.white {
-  font-size: clamp(1.55rem, 2.1vw, 2rem);
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.92) !important;
-  margin: 0 auto 34px;
-  max-width: 980px;
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.88) !important;
+  margin: 0 auto;
+  max-width: 880px;
 }
 
 .hero-status-pill {
@@ -1087,16 +1108,16 @@ section p.white {
   gap: 8px;
   padding: 8px 16px;
   border-radius: 9999px;
-  border: 1px solid #c0cc19;
-  background: transparent;
-  color: #ffffff;
+  border: 1px solid #b8ef49;
+  background: rgba(0, 75, 135, 0.28);
+  color: #f6ffd9;
   font-size: 14px;
   line-height: 16.8px;
   font-weight: 400;
   white-space: nowrap;
-  box-shadow: none;
-  text-shadow: none;
-  animation: none;
+  box-shadow: 0 0 0 1px rgba(184, 239, 73, 0.12), 0 0 14px rgba(144, 194, 38, 0.16);
+  text-shadow: 0 0 10px rgba(184, 239, 73, 0.14);
+  animation: statusGlow 1.8s ease-in-out infinite;
   justify-content: center;
 }
 
@@ -1104,9 +1125,8 @@ section p.white {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #c0cc19;
+  background: #b8ef49;
   display: inline-block;
-  box-shadow: none;
   animation: statusPulse 1.8s ease-in-out infinite;
 }
 
