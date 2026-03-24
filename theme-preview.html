@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Paessler Helpdesk Theme Preview</title>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script type="module" src="https://js.embrace.ai/v1/elements.js"></script>
   <style>
     :root {
       --paessler-blue: #005c9e;
@@ -194,41 +195,6 @@
       display: flex;
     }
 
-    .preview-chat-body {
-      flex: 1;
-      background: #fff;
-      padding: 30px 24px 0;
-      overflow-y: auto;
-    }
-
-    .preview-chat-card {
-      max-width: 100%;
-      background: transparent;
-      border: 0;
-      border-radius: 0;
-      padding: 0 0 10px;
-      color: #24435f;
-      box-shadow: none;
-      text-align: center;
-    }
-
-    .preview-chat-title-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: nowrap;
-      margin-bottom: 18px;
-      text-align: center;
-    }
-
-    .preview-chat-card h3 {
-      margin: 0;
-      color: #24435f;
-      font-size: 1.35rem;
-      line-height: 1.2;
-    }
-
     .status-pill {
       display: inline-flex;
       align-items: center;
@@ -248,7 +214,7 @@
       justify-content: center;
     }
 
-    .preview-chat-card .status-pill {
+    .status-pill.preview-surface {
       background-color: #004b87;
     }
 
@@ -262,45 +228,14 @@
       animation: statusPulse 1.8s ease-in-out infinite;
     }
 
-    .preview-chat-thread {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-top: 20px;
-    }
-
-    .preview-message {
-      max-width: 700px;
-      padding: 14px 16px;
-      border-radius: 16px;
-      box-shadow: 0 6px 18px rgba(14, 42, 68, 0.08);
-    }
-
-    .preview-message.user {
-      align-self: flex-end;
-      background: #004b87;
-      color: #fff;
-      border-bottom-right-radius: 4px;
-    }
-
-    .preview-message.assistant {
-      align-self: flex-start;
-      background: #fff;
-      color: #24435f;
-      border: 1px solid #dce7f1;
-      border-bottom-left-radius: 4px;
-    }
-
-    .preview-chat-input {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      padding: 16px 20px 24px;
-      background: #fff;
-    }
-
     .preview-chat-disclaimer {
       display: none;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 92px;
+      z-index: 2;
+      padding: 0 24px;
       font-size: 12px;
       font-weight: 400;
       color: #888;
@@ -311,32 +246,33 @@
       display: block;
     }
 
-    .preview-chat-input form {
-      display: flex;
-      gap: 12px;
+    .preview-chat-shell embrace-chat::part(initial-header),
+    .preview-chat-shell embrace-chat::part(company-name),
+    .preview-chat-shell embrace-chat::part(logo),
+    .preview-chat-shell embrace-chat::part(initial-subtitle) {
+      display: none !important;
     }
 
-    .preview-chat-input input {
-      flex: 1;
-      border: 1px solid #d8e1ea;
-      border-radius: 12px;
-      padding: 14px 16px;
-      font-size: 0.95rem;
+    .preview-chat-shell embrace-chat::part(chat) {
+      border: none !important;
+      box-shadow: none !important;
+      border-radius: 0 !important;
     }
 
-    .preview-chat-send {
-      border: 0;
-      border-radius: 12px;
-      background-color: #f59c00;
-      color: #fff;
-      padding: 0 18px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
+    .preview-chat-shell embrace-chat::part(powered-by) {
+      flex-direction: column;
+      gap: 0;
+      margin-top: 12px;
     }
 
-    .preview-chat-send:hover {
-      background-color: #dc8c00;
+    .preview-chat-shell embrace-chat::part(answer) {
+      margin-top: 24px;
+    }
+
+    .preview-chat-shell embrace-chat {
+      display: block;
+      width: 100%;
+      height: 100%;
     }
 
     header {
@@ -661,8 +597,7 @@
     }
 
     @media (max-width: 700px) {
-      .hero-title-row,
-      .preview-chat-title-row {
+      .hero-title-row {
         flex-wrap: wrap;
       }
 
@@ -698,23 +633,6 @@
         border-radius: 18px;
       }
 
-      .preview-chat-body {
-        padding: 24px 16px 0;
-      }
-
-      .preview-chat-input {
-        padding: 14px 16px 20px;
-      }
-
-      .preview-chat-input form {
-        flex-direction: column;
-      }
-
-      .preview-chat-send,
-      .preview-chat-input input {
-        width: 100%;
-      }
-
       .cards-grid,
       .footer-grid {
         grid-template-columns: 1fr;
@@ -731,26 +649,26 @@
       <button class="preview-widget-btn" type="button" id="open-preview-chat">Expand Chat</button>
     </div>
     <div class="preview-chat-shell">
-      <div class="preview-chat-body" id="preview-chat-body">
-        <div class="preview-chat-card">
-          <div class="preview-chat-title-row">
-            <h3 id="preview-chat-title">Hi, I'm Max. How can I help today?</h3>
-            <div class="status-pill">
-              <span class="status-dot"></span>
-              <span id="preview-chat-status">Online and ready to help</span>
+      <embrace-chat id="preview-embrace-chat" org-id="PREVIEW_ORG_ID" client-id="PREVIEW_CLIENT_ID" external-id="paessler-theme-preview">
+        <template>
+          <div slot="initial-message" style="text-align: center; padding: 0 16px;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: nowrap; margin-bottom: 24px;">
+              <div id="preview-chat-title" style="font-size: 28px; line-height: 118%; font-weight: 600; color: #333;">
+                Hi, I'm Max. How can I help today?
+              </div>
+              <div class="status-pill preview-surface">
+                <span class="status-dot"></span>
+                <span id="preview-chat-status">Online and ready to help</span>
+              </div>
+            </div>
+            <div id="preview-chat-claim" style="font-size: 20px; line-height: 140%; font-weight: 400; color: #555; max-width: 600px; margin: 0 auto;">
+              Ask me about PRTG setup, troubleshooting, or common questions, and I’ll help you get to the right answer quickly.
             </div>
           </div>
-          <p id="preview-chat-claim">Ask me about PRTG setup, troubleshooting, or common questions, and I’ll help you get to the right answer quickly.</p>
-        </div>
-        <div class="preview-chat-thread" id="preview-chat-thread"></div>
-      </div>
-      <div class="preview-chat-input">
-        <div class="preview-chat-disclaimer">You’re chatting with Max, our AI assistant built to help you get answers quickly. If needed, he’ll guide you to the next best step.</div>
-        <form id="preview-chat-form">
-          <input type="text" id="preview-chat-input-field" placeholder="Ask Max a question..." aria-label="Preview chat input">
-          <button class="preview-chat-send" type="submit">Send</button>
-        </form>
-      </div>
+          <div slot="input-placeholder" id="preview-chat-input-placeholder">Ask Max a question...</div>
+        </template>
+      </embrace-chat>
+      <div class="preview-chat-disclaimer">You’re chatting with Max, our AI assistant built to help you get answers quickly. If needed, he’ll guide you to the next best step.</div>
     </div>
   </div>
 
@@ -914,12 +832,9 @@
   <script>
     const widget = document.getElementById('preview-widget');
     const openBtn = document.getElementById('open-preview-chat');
+    const previewChat = document.getElementById('preview-embrace-chat');
     const heroForm = document.getElementById('hero-preview-form');
     const heroField = document.getElementById('hero-preview-field');
-    const chatForm = document.getElementById('preview-chat-form');
-    const chatField = document.getElementById('preview-chat-input-field');
-    const chatThread = document.getElementById('preview-chat-thread');
-    const chatBody = document.getElementById('preview-chat-body');
     const topicPills = document.querySelectorAll('.topic-pill');
     const heroTitle = document.getElementById('hero-title');
     const heroStatus = document.getElementById('hero-status');
@@ -927,6 +842,7 @@
     const previewChatTitle = document.getElementById('preview-chat-title');
     const previewChatStatus = document.getElementById('preview-chat-status');
     const previewChatClaim = document.getElementById('preview-chat-claim');
+    const previewChatPlaceholder = document.getElementById('preview-chat-input-placeholder');
 
     function decodeHtml(value) {
       const textarea = document.createElement('textarea');
@@ -951,7 +867,7 @@
         if (heroPlaceholderMatch) {
           const placeholder = decodeHtml(heroPlaceholderMatch[1]);
           heroField.placeholder = placeholder;
-          chatField.placeholder = placeholder;
+          previewChatPlaceholder.textContent = placeholder;
         }
 
         if (assigns.ai_hero_title) {
@@ -986,7 +902,9 @@
     function openChat() {
       widget.classList.add('widget-fullscreen');
       openBtn.textContent = 'Collapse Chat';
-      if (chatField) chatField.focus();
+      window.setTimeout(function () {
+        focusPreviewInput();
+      }, 600);
     }
 
     function closeChat() {
@@ -994,29 +912,74 @@
       openBtn.textContent = 'Expand Chat';
     }
 
-    function appendMessage(role, text) {
-      if (!chatThread || !text) return;
-      const bubble = document.createElement('div');
-      bubble.className = 'preview-message ' + role;
-      bubble.textContent = text;
-      chatThread.appendChild(bubble);
-      if (chatBody) chatBody.scrollTop = chatBody.scrollHeight;
+    function focusPreviewInput() {
+      if (!previewChat || !previewChat.shadowRoot) return;
+      const input = previewChat.shadowRoot.querySelector('textarea, input[type="text"]');
+      if (input) input.focus();
     }
 
-    function submitPreviewMessage(message) {
+    function seedPreviewMessage(message) {
       const trimmed = (message || '').trim();
       openChat();
       if (!trimmed) return;
-      appendMessage('user', trimmed);
+
       window.setTimeout(function () {
-        appendMessage(
-          'assistant',
-          'Preview response: on the live helpdesk this message would be passed to the real Max widget. This GitHub Pages preview mirrors the same hero and widget experience without the Freshdesk runtime.'
-        );
-      }, 180);
+        if (!previewChat || !previewChat.shadowRoot) return;
+        const input = previewChat.shadowRoot.querySelector('textarea, input[type="text"]');
+        if (!input) return;
+
+        const nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, 'value') ||
+          Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value');
+        if (nativeSetter && nativeSetter.set) {
+          nativeSetter.set.call(input, trimmed);
+        } else {
+          input.value = trimmed;
+        }
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        input.focus();
+      }, 650);
+    }
+
+    function injectShadowStyles() {
+      if (!previewChat) return;
+
+      function tryInject() {
+        const sr = previewChat.shadowRoot;
+        if (!sr) return false;
+        let style = sr.querySelector('#paessler-shadow-overrides');
+        if (!style) {
+          style = document.createElement('style');
+          style.id = 'paessler-shadow-overrides';
+          style.textContent =
+            '[part="initial-header"] { display: none !important; }' +
+            '[part="company-name"], [part="logo"], [part="initial-subtitle"] { display: none !important; }' +
+            '[part="chat"] { border: none !important; box-shadow: none !important; border-radius: 0 !important; }' +
+            '[part="powered-by"] { flex-direction: column !important; gap: 0 !important; margin-top: 12px !important; }' +
+            'button[type="submit"], button[aria-label*="send" i], button[aria-label*="Send"], form button:last-of-type { background-color: #F59C00 !important; transition: background-color 0.2s ease !important; }' +
+            'button[type="submit"]:hover, button[aria-label*="send" i]:hover, button[aria-label*="Send"]:hover, form button:last-of-type:hover { background-color: #DC8C00 !important; }' +
+            'a[href*="/support/tickets/new"], a[href*="/tickets/new"] { color: #00AEEF !important; text-decoration: none !important; transition: color 0.2s ease !important; }' +
+            'a[href*="/support/tickets/new"]:hover, a[href*="/tickets/new"]:hover { color: #009BD6 !important; text-decoration: none !important; }' +
+            'button[class*="chip"], button[class*="suggest"], button[data-testid*="chip"], button[data-testid*="suggest"], [role="button"][class*="chip"], [role="button"][class*="suggest"], [data-testid*="chip"] button, [data-testid*="suggest"] button { background-color: rgba(255, 255, 255, 0.15) !important; transition: background-color 0.25s ease, transform 0.25s ease !important; }' +
+            'button[class*="chip"]:hover, button[class*="suggest"]:hover, button[data-testid*="chip"]:hover, button[data-testid*="suggest"]:hover, [role="button"][class*="chip"]:hover, [role="button"][class*="suggest"]:hover, [data-testid*="chip"] button:hover, [data-testid*="suggest"] button:hover { background-color: rgba(255, 255, 255, 0.25) !important; transform: scale(1.02) !important; }';
+          sr.appendChild(style);
+        }
+
+        return true;
+      }
+
+      if (!tryInject()) {
+        const observer = new MutationObserver(function () {
+          if (tryInject()) observer.disconnect();
+        });
+        observer.observe(previewChat, { childList: true, subtree: true });
+        window.setTimeout(tryInject, 500);
+        window.setTimeout(tryInject, 1500);
+        window.setTimeout(tryInject, 3000);
+      }
     }
 
     syncFromCanonicalTheme();
+    injectShadowStyles();
 
     openBtn.addEventListener('click', function () {
       if (widget.classList.contains('widget-fullscreen')) {
@@ -1028,19 +991,13 @@
 
     heroForm.addEventListener('submit', function (event) {
       event.preventDefault();
-      submitPreviewMessage(heroField.value);
+      seedPreviewMessage(heroField.value);
       heroField.value = '';
-    });
-
-    chatForm.addEventListener('submit', function (event) {
-      event.preventDefault();
-      submitPreviewMessage(chatField.value);
-      chatField.value = '';
     });
 
     topicPills.forEach(function (pill) {
       pill.addEventListener('click', function () {
-        submitPreviewMessage(pill.dataset.topic || pill.textContent);
+        seedPreviewMessage(pill.dataset.topic || pill.textContent);
       });
     });
 
