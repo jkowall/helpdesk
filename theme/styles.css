@@ -50,9 +50,55 @@ div.home {
   margin: 0 16px 0 0;
 }
 
+.topbar__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  color: #050f34;
+}
+
+.topbar__brand-mark {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.topbar__brand-name {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+.topbar__brand-tagline {
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.topbar__brand-divider {
+  width: 1px;
+  height: 42px;
+  background: #050f34;
+}
+
+.topbar__brand-helpdesk {
+  font-size: 24px;
+  line-height: 1.15;
+  font-weight: 400;
+  max-width: 120px;
+}
+
 .topbar__logo img {
   display: block;
   max-height: 75px !important;
+}
+
+.topbar__logo svg {
+  display: block;
+  width: 247px;
+  height: auto;
+  max-width: 100%;
 }
 
 .topbar__menu {
@@ -159,7 +205,7 @@ div.home {
 
 .hero-unit.background-blackblue {
   background: linear-gradient(90deg, rgba(0, 91, 148, 1) 0%, rgba(0, 174, 239, 1) 100%);
-  padding: 60px 0 80px;
+  padding: 86px 0 92px;
   margin-bottom: 48px;
 }
 
@@ -190,18 +236,19 @@ section p.white {
 }
 
 .hero-unit h1.white {
-  font-size: 2.45rem;
-  font-weight: 700;
-  margin: 0;
+  font-size: clamp(3rem, 4.4vw, 4.1rem);
+  font-weight: 300;
+  margin: 0 0 22px;
   line-height: 1.08;
+  letter-spacing: -0.03em;
 }
 
 .hero-unit h2.white {
-  font-size: 1.15rem;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.85) !important;
-  margin: 0 auto;
-  max-width: 880px;
+  font-size: clamp(1.55rem, 2.1vw, 2rem);
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.92) !important;
+  margin: 0 auto 34px;
+  max-width: 980px;
 }
 
 .hero-status-pill {
@@ -234,7 +281,7 @@ section p.white {
 }
 
 .hero-chat-input {
-  max-width: 880px;
+  max-width: 840px;
   margin: 0 auto 25px;
   display: flex;
   align-items: center;
@@ -247,8 +294,8 @@ section p.white {
 .hero-chat-input input {
   flex: 1;
   border: none !important;
-  padding: 16px 24px;
-  font-size: 1rem;
+  padding: 20px 28px;
+  font-size: 1.15rem;
   font-family: inherit;
   outline: none;
   color: #333;
@@ -260,13 +307,13 @@ section p.white {
 }
 
 .hero-chat-input button {
-  background-color: #f59c00 !important;
-  border: none;
+  background-color: #005c9e !important;
+  border: 3px solid #ffffff;
   color: #fff;
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  margin-right: 4px;
+  margin-right: 0;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -276,7 +323,7 @@ section p.white {
 }
 
 .hero-chat-input button:hover {
-  background-color: #dc8c00 !important;
+  background-color: #004b87 !important;
 }
 
 .suggested-topics {
@@ -293,6 +340,7 @@ section p.white {
   flex-wrap: wrap;
   gap: 10px;
   align-items: center;
+  justify-content: center;
 }
 
 .topic-group-label {
@@ -325,19 +373,19 @@ section p.white {
 
 .hero-secondary-link {
   color: rgba(255, 255, 255, 0.82);
-  font-size: 0.95rem;
+  font-size: 1.02rem;
   text-align: center;
 }
 
 .hero-secondary-link a {
-  color: #00aeef !important;
+  color: #ffffff !important;
   text-decoration: none !important;
-  font-weight: 500;
+  font-weight: 700;
   transition: color 0.2s ease;
 }
 
 .hero-secondary-link a:hover {
-  color: #009bd6 !important;
+  color: #dff4ff !important;
   text-decoration: none !important;
 }
 
@@ -502,6 +550,7 @@ div#fallback-footer .bottom-container .social-wrapper a.social {
   display: flex;
   gap: 10px;
   align-items: center;
+  margin-left: auto;
   z-index: 10001;
 }
 
@@ -533,6 +582,11 @@ div#fallback-footer .bottom-container .social-wrapper a.social {
 .widget-btn.primary {
   background-color: var(--fd-brand-green);
   color: #fff;
+}
+
+#embrace-widget-container .bar-label,
+#embrace-widget-container .ai-disclosure {
+  display: none;
 }
 
 .chat-wrapper {
@@ -650,7 +704,7 @@ embrace-chat {
   }
 
   .hero-unit h1.white {
-    font-size: 2.1rem;
+    font-size: 2.5rem;
   }
 
   .topbar__menu {
@@ -722,6 +776,19 @@ embrace-chat {
   .home-card-link {
     flex-basis: 100%;
     max-width: 420px;
+  }
+
+  .topbar__brand {
+    gap: 12px;
+  }
+
+  .topbar__brand-name {
+    font-size: 24px;
+  }
+
+  .topbar__brand-helpdesk {
+    font-size: 19px;
+    max-width: 96px;
   }
 }
 

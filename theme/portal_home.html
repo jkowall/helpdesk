@@ -1,10 +1,10 @@
 {% if portal.current_language.name == "German" %}
 {% assign here_to_help = "Wir sind da um zu helfen!" %}
-{% assign ai_hero_title = "Hi, ich bin Max! Dein KI-Support-Guide." %}
-{% assign ai_hero_claim = "Ich helfe dir bei PRTG-Setup, Troubleshooting und beantworte deine Fragen sofort. Verfügbar 24/7." %}
-{% assign ai_online_status = "Online und bereit zu helfen" %}
+{% assign how_can_we_help = "Wie können wir heute weiterhelfen" %}
+{% assign claim = "Unsere Experten beraten Sie gern bei Ihren Anliegen." %}
 {% assign search = "Suchen" %}
 {% assign search_placeholder = "Geben Sie einen Suchbegriff ein..." %}
+{% assign hero_input_placeholder = "Beschreiben Sie Ihr Anliegen..." %}
 {% assign new_ticket = "Neues Ticket" %}
 {% assign my_tickets = "Meine Tickets" %}
 {% assign not_registered_yet = "Sie haben noch keinen Account?" %}
@@ -26,23 +26,20 @@
 {% assign callback_service_desc = "Brauchen Sie Rat von einem Experten? <br />Wir helfen gern. Wählen Sie Service | Rückruf beim Ticket erstellen" %}
 {% assign callback_service_btn = "Beantragen" %}
 {% assign table_of_content = "Inhalt" %}
-{% assign ai_pill_install_prtg = "PRTG installieren" %}
-{% assign ai_pill_install_requirements = "PRTG aktualisieren oder reparieren" %}
-{% assign ai_pill_first_device = "SNMP-Sensoren einrichten" %}
-{% assign ai_pill_probe_connecting = "E-Mail-Benachrichtigungen konfigurieren" %}
-{% assign ai_pill_sensor_down = "Eine Probe einrichten" %}
-{% assign ai_pill_core_server = "Probe verbindet sich nicht" %}
-{% assign ai_pill_add_users = "Sensoren zeigen Down oder Unknown" %}
-{% assign ai_pill_reset_password = "Sensorfehler" %}
+{% assign ai_pill_email_notification = "Wie konfiguriere ich E-Mail-Benachrichtigungen?" %}
+{% assign ai_pill_unknown_status = "Meine Sensoren sind im Status Unknown" %}
+{% assign ai_pill_setup_snmp_sensors = "Ich möchte SNMP-Sensoren einrichten" %}
+{% assign hero_help_prefix = "Brauchen Sie mehr Hilfe?" %}
+{% assign hero_help_link = "Ticket erstellen." %}
 {% else %}
 {% assign here_to_help = "We're here to help you!" %}
-{% assign ai_hero_title = "Hi, I'm Max! Your AI support guide." %}
-{% assign ai_hero_claim = "I can help you with PRTG setup, troubleshooting, and answer your questions instantly. Available 24/7." %}
-{% assign ai_online_status = "Online and ready to help" %}
+{% assign how_can_we_help = "How can we help you today" %}
+{% assign claim = "Our experts will assist you with anything you need." %}
 {% assign search = "Search" %}
 {% assign search_placeholder = "Enter your search term here..." %}
+{% assign hero_input_placeholder = "Describe your issue here..." %}
 {% assign new_ticket = "Create ticket" %}
-{% assign my_tickets = "My tickets" %}
+{% assign my_tickets = "My Tickets" %}
 {% assign not_registered_yet = "Not yet registered?" %}
 {% assign register = "Login" %}
 {% assign loginmsg = "Sign in to start!" %}
@@ -62,14 +59,11 @@
 {% assign feature_request = "Feature Request" %}
 {% assign feature_request_desc = "Got a feature you'd like to see? Make your voice count!" %}
 {% assign table_of_content = "Content" %}
-{% assign ai_pill_install_prtg = "Install PRTG" %}
-{% assign ai_pill_install_requirements = "Upgrade or repair PRTG" %}
-{% assign ai_pill_first_device = "Set up SNMP sensors" %}
-{% assign ai_pill_probe_connecting = "Configure email notifications" %}
-{% assign ai_pill_sensor_down = "Set up a probe" %}
-{% assign ai_pill_core_server = "Probe not connecting" %}
-{% assign ai_pill_add_users = "Sensors showing Down or Unknown" %}
-{% assign ai_pill_reset_password = "Sensor errors" %}
+{% assign ai_pill_email_notification = "How do I configure email notifications?" %}
+{% assign ai_pill_unknown_status = "My sensors are in an unknown state" %}
+{% assign ai_pill_setup_snmp_sensors = "I want to set up SNMP sensors" %}
+{% assign hero_help_prefix = "Need more help?" %}
+{% assign hero_help_link = "Create ticket." %}
 {% endif %}
 
 {% if portal.current_tab %}
@@ -77,18 +71,12 @@
 <section class="hero-unit background-blackblue" data-hero-unit>
   <div class="container-inner search-box search-box--hero-unit" data-search-box>
     {% if portal.user.id %}
-      <div class="hero-title-row">
-        <h1 class="white">{{ ai_hero_title }}</h1>
-        <div class="hero-status-pill">
-          <span class="hero-status-dot"></span>
-          {{ ai_online_status }}
-        </div>
-      </div>
-      <h2 class="white">{{ ai_hero_claim }}</h2>
+      <h1 class="white">{{ how_can_we_help }}, {{ portal.user.first_name }}?</h1>
+      <h2 class="white">{{ claim }}</h2>
       <br>
 
       <div class="hero-chat-input">
-        <input type="text" id="hero-chat-field" placeholder="Ask Max a question..." autocomplete="off">
+        <input type="text" id="hero-chat-field" placeholder="{{ hero_input_placeholder }}" autocomplete="off">
         <button type="button" id="hero-chat-submit" title="Send">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M5 12h14M12 5l7 7-7 7" />
@@ -98,23 +86,18 @@
 
       <div class="suggested-topics">
         <div class="topic-group">
-          <button type="button" class="topic-pill" data-topic="{{ai_pill_install_prtg}}">{{ai_pill_install_prtg}}</button>
-          <button type="button" class="topic-pill" data-topic="{{ai_pill_install_requirements}}">{{ai_pill_install_requirements}}</button>
-          <button type="button" class="topic-pill" data-topic="{{ai_pill_first_device}}">{{ai_pill_first_device}}</button>
-          <button type="button" class="topic-pill" data-topic="{{ai_pill_probe_connecting}}">{{ai_pill_probe_connecting}}</button>
-          <button type="button" class="topic-pill" data-topic="{{ai_pill_sensor_down}}">{{ai_pill_sensor_down}}</button>
-          <button type="button" class="topic-pill" data-topic="{{ai_pill_core_server}}">{{ai_pill_core_server}}</button>
-          <button type="button" class="topic-pill" data-topic="{{ai_pill_add_users}}">{{ai_pill_add_users}}</button>
-          <button type="button" class="topic-pill" data-topic="{{ai_pill_reset_password}}">{{ai_pill_reset_password}}</button>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_email_notification}}">{{ai_pill_email_notification}}</button>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_unknown_status}}">{{ai_pill_unknown_status}}</button>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_setup_snmp_sensors}}">{{ai_pill_setup_snmp_sensors}}</button>
         </div>
       </div>
 
       <div class="hero-secondary-link">
-        Still need help? You can also <a href="{{ portal.new_ticket_url }}">create a ticket</a>.
+        {{ hero_help_prefix }} <a href="{{ portal.new_ticket_url }}">{{ hero_help_link }}</a>
       </div>
     {% else %}
       <h1 class="white">{{ here_to_help }}</h1>
-      <h2 class="white">{{ new_ticket_desc }}<br><br></h2>
+      <h2 class="white">{{ claim }}<br><br></h2>
       <div style="text-align: center;">
         <a class="btn btn-primary extralarge" href="/login">{{ loginmsg }}</a>
       </div>

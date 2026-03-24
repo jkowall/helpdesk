@@ -139,6 +139,8 @@
       opacity: 0.6;
     }
 
+    .preview-widget .preview-widget-label,
+    .preview-widget .preview-widget-disclosure,
     .preview-widget.widget-fullscreen .preview-widget-label,
     .preview-widget.widget-fullscreen .preview-widget-disclosure {
       display: none;
@@ -148,6 +150,7 @@
       display: flex;
       gap: 10px;
       align-items: center;
+      margin-left: auto;
       z-index: 1;
     }
 
@@ -293,17 +296,46 @@
     }
 
     .logo {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--paessler-blue);
+      color: #050f34;
     }
 
-    .logo img {
-      height: 38px;
-      width: auto;
+    .topbar-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+      color: #050f34;
+    }
+
+    .topbar-brand-mark {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .topbar-brand-name {
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+    }
+
+    .topbar-brand-tagline {
+      margin-top: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .topbar-brand-divider {
+      width: 1px;
+      height: 42px;
+      background: #050f34;
+    }
+
+    .topbar-brand-helpdesk {
+      font-size: 24px;
+      line-height: 1.15;
+      font-weight: 400;
+      max-width: 120px;
     }
 
     .nav-links {
@@ -316,58 +348,50 @@
     }
 
     .nav-links a {
-      color: var(--text-color);
+      color: #050f34;
       font-weight: 600;
+      text-transform: uppercase;
     }
 
-    .btn-ticket {
-      background: #f5900c;
-      color: #fff !important;
-      padding: 9px 16px;
-      border-radius: 999px;
-      text-transform: uppercase;
-      font-size: 0.82rem;
-      font-weight: 700;
+    .nav-links .profile-link,
+    .nav-links .site-link {
+      text-transform: none;
+    }
+
+    .nav-links .site-link {
+      color: #00aeef;
     }
 
     .hero {
-      background: linear-gradient(135deg, #0d1b2a 0%, #1b3a5c 50%, #005c9e 100%);
-      padding: 64px 20px 76px;
+      background: linear-gradient(90deg, rgba(0, 91, 148, 1) 0%, rgba(0, 174, 239, 1) 100%);
+      padding: 86px 20px 92px;
       text-align: center;
       color: #fff;
     }
 
     .hero-inner {
-      max-width: 920px;
+      max-width: 980px;
       margin: 0 auto;
     }
 
-    .hero-title-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: nowrap;
-      margin-bottom: 14px;
-    }
-
     .hero h1 {
-      font-size: 2.45rem;
-      font-weight: 700;
-      margin: 0;
+      font-size: clamp(3rem, 4.4vw, 4.1rem);
+      font-weight: 300;
+      margin: 0 0 22px;
       line-height: 1.08;
+      letter-spacing: -0.03em;
     }
 
     .hero p {
-      font-size: 1.12rem;
-      font-weight: 400;
-      opacity: 0.9;
-      margin: 0 auto 28px;
-      max-width: 880px;
+      font-size: clamp(1.55rem, 2.1vw, 2rem);
+      font-weight: 300;
+      opacity: 0.92;
+      margin: 0 auto 34px;
+      max-width: 980px;
     }
 
     .hero-chat-input {
-      max-width: 880px;
+      max-width: 840px;
       margin: 0 auto 24px;
       display: flex;
       align-items: center;
@@ -380,20 +404,19 @@
     .hero-chat-input input {
       flex: 1;
       border: none;
-      padding: 16px 24px;
-      font-size: 1rem;
+      padding: 20px 28px;
+      font-size: 1.15rem;
       outline: none;
       color: #333;
     }
 
     .hero-chat-input button {
-      background-color: #f59c00;
-      border: none;
+      background-color: #005c9e;
+      border: 3px solid #ffffff;
       color: #fff;
-      width: 48px;
-      height: 48px;
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
-      margin-right: 4px;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -403,16 +426,12 @@
     }
 
     .hero-chat-input button:hover {
-      background-color: #dc8c00;
+      background-color: #004b87;
     }
 
     .suggested-topics {
-      max-width: 880px;
+      max-width: 860px;
       margin: 0 auto 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      align-items: stretch;
     }
 
     .topic-group {
@@ -420,16 +439,7 @@
       flex-wrap: wrap;
       gap: 10px;
       align-items: center;
-    }
-
-    .topic-group-label {
-      flex-basis: 100%;
-      color: rgba(255, 255, 255, 0.72);
-      font-size: 0.86rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      text-align: left;
+      justify-content: center;
     }
 
     .topic-pill {
@@ -450,18 +460,18 @@
 
     .hero-secondary-link {
       color: rgba(255, 255, 255, 0.82);
-      font-size: 0.95rem;
+      font-size: 1.02rem;
     }
 
     .hero-secondary-link a {
-      color: #00aeef;
+      color: #ffffff;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 700;
       transition: color 0.2s ease;
     }
 
     .hero-secondary-link a:hover {
-      color: #009bd6;
+      color: #dff4ff;
       text-decoration: none;
     }
 
@@ -597,16 +607,8 @@
     }
 
     @media (max-width: 700px) {
-      .hero-title-row {
-        flex-wrap: wrap;
-      }
-
       .hero h1 {
-        font-size: 2.1rem;
-      }
-
-      .status-pill {
-        font-size: 0.86rem;
+        font-size: 2.5rem;
       }
 
       .preview-widget {
@@ -636,6 +638,19 @@
       .cards-grid,
       .footer-grid {
         grid-template-columns: 1fr;
+      }
+
+      .topbar-brand {
+        gap: 12px;
+      }
+
+      .topbar-brand-name {
+        font-size: 24px;
+      }
+
+      .topbar-brand-helpdesk {
+        font-size: 19px;
+        max-width: 96px;
       }
     }
   </style>
@@ -686,33 +701,31 @@
   <header>
     <div class="header-container">
       <div class="logo">
-        <img src="https://paessler.canto.global/direct/image/4g25o4l98t7q72k8i5gb6qbo4u/J0T21LBBTaxaHLX3K4RJg0-LDQI/original?content-type=image%2Fsvg%2Bxml&name=Logo_Paessler-PRTG-Network-Monitor.svg" alt="Paessler">
-        <span>Paessler Helpdesk</span>
+        <span class="topbar-brand">
+          <span class="topbar-brand-mark">
+            <span class="topbar-brand-name">PAESSLER</span>
+            <span class="topbar-brand-tagline">THE MONITORING EXPERTS</span>
+          </span>
+          <span class="topbar-brand-divider" aria-hidden="true"></span>
+          <span class="topbar-brand-helpdesk">Paessler Helpdesk</span>
+        </span>
       </div>
       <nav class="nav-links">
         <a href="#">Knowledge Base</a>
-        <a href="#">Community</a>
-        <a href="#">My Tickets</a>
-        <a href="#">Register</a>
-        <a href="#" class="btn-ticket">Sign in</a>
-        <a href="https://www.paessler.com">www.paessler.com</a>
+        <a href="#">Tickets</a>
+        <a href="#" class="profile-link">Jonah Kowall</a>
+        <a href="https://www.paessler.com" class="site-link">www.paessler.com</a>
       </nav>
     </div>
   </header>
 
   <section class="hero">
     <div class="hero-inner">
-      <div class="hero-title-row">
-        <h1 id="hero-title">Hi, I'm Max! Your AI support guide.</h1>
-        <div class="status-pill">
-          <span class="status-dot"></span>
-          <span id="hero-status">Online and ready to help</span>
-        </div>
-      </div>
-      <p id="hero-claim">I can help you with PRTG setup, troubleshooting, and answer your questions instantly. Available 24/7.</p>
+      <h1 id="hero-title">How can we help you today, Jonah?</h1>
+      <p id="hero-claim">Our experts will assist you with anything you need.</p>
 
       <form class="hero-chat-input" id="hero-preview-form">
-        <input type="text" id="hero-preview-field" placeholder="Ask Max a question..." autocomplete="off">
+        <input type="text" id="hero-preview-field" placeholder="Describe your issue here..." autocomplete="off">
         <button type="submit" title="Send" id="hero-preview-submit">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M5 12h14M12 5l7 7-7 7" />
@@ -722,19 +735,14 @@
 
       <div class="suggested-topics">
         <div class="topic-group">
-          <button type="button" class="topic-pill" data-copy-var="ai_pill_install_prtg" data-topic="Install PRTG">Install PRTG</button>
-          <button type="button" class="topic-pill" data-copy-var="ai_pill_install_requirements" data-topic="Upgrade or repair PRTG">Upgrade or repair PRTG</button>
-          <button type="button" class="topic-pill" data-copy-var="ai_pill_first_device" data-topic="Set up SNMP sensors">Set up SNMP sensors</button>
-          <button type="button" class="topic-pill" data-copy-var="ai_pill_probe_connecting" data-topic="Configure email notifications">Configure email notifications</button>
-          <button type="button" class="topic-pill" data-copy-var="ai_pill_sensor_down" data-topic="Set up a probe">Set up a probe</button>
-          <button type="button" class="topic-pill" data-copy-var="ai_pill_core_server" data-topic="Probe not connecting">Probe not connecting</button>
-          <button type="button" class="topic-pill" data-copy-var="ai_pill_add_users" data-topic="Sensors showing Down or Unknown">Sensors showing Down or Unknown</button>
-          <button type="button" class="topic-pill" data-copy-var="ai_pill_reset_password" data-topic="Sensor errors">Sensor errors</button>
+          <button type="button" class="topic-pill" data-copy-var="ai_pill_email_notification" data-topic="How do I configure email notifications?">How do I configure email notifications?</button>
+          <button type="button" class="topic-pill" data-copy-var="ai_pill_unknown_status" data-topic="My sensors are in an unknown state">My sensors are in an unknown state</button>
+          <button type="button" class="topic-pill" data-copy-var="ai_pill_setup_snmp_sensors" data-topic="I want to set up SNMP sensors">I want to set up SNMP sensors</button>
         </div>
       </div>
 
       <div class="hero-secondary-link">
-        Still need help? You can also <a href="https://helpdesk.paessler.com/en/support/tickets/new">create a ticket</a>.
+        Need more help? <a href="https://helpdesk.paessler.com/en/support/tickets/new">Create ticket.</a>
       </div>
     </div>
   </section>
@@ -837,12 +845,11 @@
     const heroField = document.getElementById('hero-preview-field');
     const topicPills = document.querySelectorAll('.topic-pill');
     const heroTitle = document.getElementById('hero-title');
-    const heroStatus = document.getElementById('hero-status');
     const heroClaim = document.getElementById('hero-claim');
     const previewChatTitle = document.getElementById('preview-chat-title');
-    const previewChatStatus = document.getElementById('preview-chat-status');
     const previewChatClaim = document.getElementById('preview-chat-claim');
     const previewChatPlaceholder = document.getElementById('preview-chat-input-placeholder');
+    const heroSecondaryLink = document.querySelector('.hero-secondary-link');
 
     function decodeHtml(value) {
       const textarea = document.createElement('textarea');
@@ -870,18 +877,23 @@
           previewChatPlaceholder.textContent = placeholder;
         }
 
+        if (assigns.how_can_we_help) {
+          heroTitle.textContent = assigns.how_can_we_help + ', Jonah?';
+        }
+
+        if (assigns.claim) {
+          heroClaim.textContent = assigns.claim;
+        }
+
+        if (assigns.hero_help_prefix && assigns.hero_help_link && heroSecondaryLink) {
+          heroSecondaryLink.innerHTML = assigns.hero_help_prefix + ' <a href="https://helpdesk.paessler.com/en/support/tickets/new">' + assigns.hero_help_link + '</a>';
+        }
+
         if (assigns.ai_hero_title) {
-          heroTitle.textContent = assigns.ai_hero_title;
           previewChatTitle.textContent = assigns.ai_hero_title;
         }
 
-        if (assigns.ai_online_status) {
-          heroStatus.textContent = assigns.ai_online_status;
-          previewChatStatus.textContent = assigns.ai_online_status;
-        }
-
         if (assigns.ai_hero_claim) {
-          heroClaim.textContent = assigns.ai_hero_claim;
           previewChatClaim.textContent = assigns.ai_hero_claim;
         }
 

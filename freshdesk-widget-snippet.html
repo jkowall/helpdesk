@@ -63,7 +63,13 @@
     display: flex;
     gap: 10px;
     align-items: center;
+    margin-left: auto;
     z-index: 10001;
+  }
+
+  #embrace-widget-container .bar-label,
+  #embrace-widget-container .ai-disclosure {
+    display: none;
   }
 
   #embrace-widget-container.widget-fullscreen .widget-controls {
@@ -259,7 +265,6 @@
   (function () {
     var container = document.getElementById('embrace-widget-container');
     var expandBtn = document.getElementById('btn-expand');
-    var barLabel = document.querySelector('.bar-label');
 
     if (!container || !expandBtn) return;
 
@@ -267,10 +272,8 @@
       var isFullscreen = container.classList.toggle('widget-fullscreen');
       if (isFullscreen) {
         expandBtn.textContent = 'Collapse Chat';
-        if (barLabel) barLabel.style.display = 'none';
       } else {
         expandBtn.textContent = 'Expand Chat';
-        if (barLabel) barLabel.style.display = 'flex';
       }
     });
 

@@ -225,7 +225,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="topbar__inner">
       <div class="topbar__logo-wrapper">
         <a class="topbar__logo" href="https://helpdesk.paessler.com">
-          <img src="https://paessler.canto.global/direct/image/4g25o4l98t7q72k8i5gb6qbo4u/J0T21LBBTaxaHLX3K4RJg0-LDQI/original?content-type=image%2Fsvg%2Bxml&name=Logo_Paessler-PRTG-Network-Monitor.svg" alt="Paessler GmbH - The Monitoring Experts" />
+          <span class="topbar__brand">
+            <span class="topbar__brand-mark">
+              <span class="topbar__brand-name">PAESSLER</span>
+              <span class="topbar__brand-tagline">THE MONITORING EXPERTS</span>
+            </span>
+            <span class="topbar__brand-divider" aria-hidden="true"></span>
+            <span class="topbar__brand-helpdesk">Paessler Helpdesk</span>
+          </span>
         </a>
       </div>
       <div class="topbar__menu">
@@ -430,7 +437,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var heroChatField = document.getElementById('hero-chat-field');
     var heroChatSubmit = document.getElementById('hero-chat-submit');
     var heroSecondaryLink = document.querySelector('.hero-secondary-link a');
-    var barLabel = document.querySelector('.bar-label');
 
     if (!container || !expandBtn) return;
 
@@ -438,10 +444,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var isFullscreen = container.classList.toggle('widget-fullscreen');
       if (isFullscreen) {
         expandBtn.textContent = 'Collapse Chat';
-        if (barLabel) barLabel.style.display = 'none';
       } else {
         expandBtn.textContent = 'Expand Chat';
-        if (barLabel) barLabel.style.display = 'flex';
       }
     });
 
@@ -598,11 +602,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- PORTAL_HOME -->
 {% if portal.current_language.name == "German" %}
 {% assign here_to_help = "Wir sind da um zu helfen!" %}
-{% assign ai_hero_title = "Hi, ich bin Max! Dein KI-Support-Guide." %}
-{% assign ai_hero_claim = "Ich helfe dir bei PRTG-Setup, Troubleshooting und beantworte deine Fragen sofort. Verfügbar 24/7." %}
-{% assign ai_online_status = "Online und bereit zu helfen" %}
+{% assign how_can_we_help = "Wie können wir heute weiterhelfen" %}
+{% assign claim = "Unsere Experten beraten Sie gern bei Ihren Anliegen." %}
 {% assign search = "Suchen" %}
 {% assign search_placeholder = "Geben Sie einen Suchbegriff ein..." %}
+{% assign hero_input_placeholder = "Beschreiben Sie Ihr Anliegen..." %}
 {% assign new_ticket = "Neues Ticket" %}
 {% assign my_tickets = "Meine Tickets" %}
 {% assign not_registered_yet = "Sie haben noch keinen Account?" %}
@@ -624,23 +628,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 {% assign callback_service_desc = "Brauchen Sie Rat von einem Experten? <br />Wir helfen gern. Wählen Sie Service | Rückruf beim Ticket erstellen" %}
 {% assign callback_service_btn = "Beantragen" %}
 {% assign table_of_content = "Inhalt" %}
-{% assign ai_pill_install_prtg = "PRTG installieren" %}
-{% assign ai_pill_install_requirements = "PRTG aktualisieren oder reparieren" %}
-{% assign ai_pill_first_device = "SNMP-Sensoren einrichten" %}
-{% assign ai_pill_probe_connecting = "E-Mail-Benachrichtigungen konfigurieren" %}
-{% assign ai_pill_sensor_down = "Eine Probe einrichten" %}
-{% assign ai_pill_core_server = "Probe verbindet sich nicht" %}
-{% assign ai_pill_add_users = "Sensoren zeigen Down oder Unknown" %}
-{% assign ai_pill_reset_password = "Sensorfehler" %}
+{% assign ai_pill_email_notification = "Wie konfiguriere ich E-Mail-Benachrichtigungen?" %}
+{% assign ai_pill_unknown_status = "Meine Sensoren sind im Status Unknown" %}
+{% assign ai_pill_setup_snmp_sensors = "Ich möchte SNMP-Sensoren einrichten" %}
+{% assign hero_help_prefix = "Brauchen Sie mehr Hilfe?" %}
+{% assign hero_help_link = "Ticket erstellen." %}
 {% else %}
 {% assign here_to_help = "We're here to help you!" %}
-{% assign ai_hero_title = "Hi, I'm Max! Your AI support guide." %}
-{% assign ai_hero_claim = "I can help you with PRTG setup, troubleshooting, and answer your questions instantly. Available 24/7." %}
-{% assign ai_online_status = "Online and ready to help" %}
+{% assign how_can_we_help = "How can we help you today" %}
+{% assign claim = "Our experts will assist you with anything you need." %}
 {% assign search = "Search" %}
 {% assign search_placeholder = "Enter your search term here..." %}
+{% assign hero_input_placeholder = "Describe your issue here..." %}
 {% assign new_ticket = "Create ticket" %}
-{% assign my_tickets = "My tickets" %}
+{% assign my_tickets = "My Tickets" %}
 {% assign not_registered_yet = "Not yet registered?" %}
 {% assign register = "Login" %}
 {% assign loginmsg = "Sign in to start!" %}
@@ -660,14 +661,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 {% assign feature_request = "Feature Request" %}
 {% assign feature_request_desc = "Got a feature you'd like to see? Make your voice count!" %}
 {% assign table_of_content = "Content" %}
-{% assign ai_pill_install_prtg = "Install PRTG" %}
-{% assign ai_pill_install_requirements = "Upgrade or repair PRTG" %}
-{% assign ai_pill_first_device = "Set up SNMP sensors" %}
-{% assign ai_pill_probe_connecting = "Configure email notifications" %}
-{% assign ai_pill_sensor_down = "Set up a probe" %}
-{% assign ai_pill_core_server = "Probe not connecting" %}
-{% assign ai_pill_add_users = "Sensors showing Down or Unknown" %}
-{% assign ai_pill_reset_password = "Sensor errors" %}
+{% assign ai_pill_email_notification = "How do I configure email notifications?" %}
+{% assign ai_pill_unknown_status = "My sensors are in an unknown state" %}
+{% assign ai_pill_setup_snmp_sensors = "I want to set up SNMP sensors" %}
+{% assign hero_help_prefix = "Need more help?" %}
+{% assign hero_help_link = "Create ticket." %}
 {% endif %}
 
 {% if portal.current_tab %}
@@ -675,18 +673,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="hero-unit background-blackblue" data-hero-unit>
   <div class="container-inner search-box search-box--hero-unit" data-search-box>
     {% if portal.user.id %}
-      <div class="hero-title-row">
-        <h1 class="white">{{ ai_hero_title }}</h1>
-        <div class="hero-status-pill">
-          <span class="hero-status-dot"></span>
-          {{ ai_online_status }}
-        </div>
-      </div>
-      <h2 class="white">{{ ai_hero_claim }}</h2>
+      <h1 class="white">{{ how_can_we_help }}, {{ portal.user.first_name }}?</h1>
+      <h2 class="white">{{ claim }}</h2>
       <br>
 
       <div class="hero-chat-input">
-        <input type="text" id="hero-chat-field" placeholder="Ask Max a question..." autocomplete="off">
+        <input type="text" id="hero-chat-field" placeholder="{{ hero_input_placeholder }}" autocomplete="off">
         <button type="button" id="hero-chat-submit" title="Send">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M5 12h14M12 5l7 7-7 7" />
@@ -696,23 +688,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="suggested-topics">
         <div class="topic-group">
-          <button type="button" class="topic-pill" data-topic="{{ai_pill_install_prtg}}">{{ai_pill_install_prtg}}</button>
-          <button type="button" class="topic-pill" data-topic="{{ai_pill_install_requirements}}">{{ai_pill_install_requirements}}</button>
-          <button type="button" class="topic-pill" data-topic="{{ai_pill_first_device}}">{{ai_pill_first_device}}</button>
-          <button type="button" class="topic-pill" data-topic="{{ai_pill_probe_connecting}}">{{ai_pill_probe_connecting}}</button>
-          <button type="button" class="topic-pill" data-topic="{{ai_pill_sensor_down}}">{{ai_pill_sensor_down}}</button>
-          <button type="button" class="topic-pill" data-topic="{{ai_pill_core_server}}">{{ai_pill_core_server}}</button>
-          <button type="button" class="topic-pill" data-topic="{{ai_pill_add_users}}">{{ai_pill_add_users}}</button>
-          <button type="button" class="topic-pill" data-topic="{{ai_pill_reset_password}}">{{ai_pill_reset_password}}</button>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_email_notification}}">{{ai_pill_email_notification}}</button>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_unknown_status}}">{{ai_pill_unknown_status}}</button>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_setup_snmp_sensors}}">{{ai_pill_setup_snmp_sensors}}</button>
         </div>
       </div>
 
       <div class="hero-secondary-link">
-        Still need help? You can also <a href="{{ portal.new_ticket_url }}">create a ticket</a>.
+        {{ hero_help_prefix }} <a href="{{ portal.new_ticket_url }}">{{ hero_help_link }}</a>
       </div>
     {% else %}
       <h1 class="white">{{ here_to_help }}</h1>
-      <h2 class="white">{{ new_ticket_desc }}<br><br></h2>
+      <h2 class="white">{{ claim }}<br><br></h2>
       <div style="text-align: center;">
         <a class="btn btn-primary extralarge" href="/login">{{ loginmsg }}</a>
       </div>
@@ -878,9 +865,55 @@ div.home {
   margin: 0 16px 0 0;
 }
 
+.topbar__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  color: #050f34;
+}
+
+.topbar__brand-mark {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.topbar__brand-name {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+.topbar__brand-tagline {
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.topbar__brand-divider {
+  width: 1px;
+  height: 42px;
+  background: #050f34;
+}
+
+.topbar__brand-helpdesk {
+  font-size: 24px;
+  line-height: 1.15;
+  font-weight: 400;
+  max-width: 120px;
+}
+
 .topbar__logo img {
   display: block;
   max-height: 75px !important;
+}
+
+.topbar__logo svg {
+  display: block;
+  width: 247px;
+  height: auto;
+  max-width: 100%;
 }
 
 .topbar__menu {
@@ -987,7 +1020,7 @@ div.home {
 
 .hero-unit.background-blackblue {
   background: linear-gradient(90deg, rgba(0, 91, 148, 1) 0%, rgba(0, 174, 239, 1) 100%);
-  padding: 60px 0 80px;
+  padding: 86px 0 92px;
   margin-bottom: 48px;
 }
 
@@ -1018,18 +1051,19 @@ section p.white {
 }
 
 .hero-unit h1.white {
-  font-size: 2.45rem;
-  font-weight: 700;
-  margin: 0;
+  font-size: clamp(3rem, 4.4vw, 4.1rem);
+  font-weight: 300;
+  margin: 0 0 22px;
   line-height: 1.08;
+  letter-spacing: -0.03em;
 }
 
 .hero-unit h2.white {
-  font-size: 1.15rem;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.85) !important;
-  margin: 0 auto;
-  max-width: 880px;
+  font-size: clamp(1.55rem, 2.1vw, 2rem);
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.92) !important;
+  margin: 0 auto 34px;
+  max-width: 980px;
 }
 
 .hero-status-pill {
@@ -1062,7 +1096,7 @@ section p.white {
 }
 
 .hero-chat-input {
-  max-width: 880px;
+  max-width: 840px;
   margin: 0 auto 25px;
   display: flex;
   align-items: center;
@@ -1075,8 +1109,8 @@ section p.white {
 .hero-chat-input input {
   flex: 1;
   border: none !important;
-  padding: 16px 24px;
-  font-size: 1rem;
+  padding: 20px 28px;
+  font-size: 1.15rem;
   font-family: inherit;
   outline: none;
   color: #333;
@@ -1088,13 +1122,13 @@ section p.white {
 }
 
 .hero-chat-input button {
-  background-color: #f59c00 !important;
-  border: none;
+  background-color: #005c9e !important;
+  border: 3px solid #ffffff;
   color: #fff;
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  margin-right: 4px;
+  margin-right: 0;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -1104,7 +1138,7 @@ section p.white {
 }
 
 .hero-chat-input button:hover {
-  background-color: #dc8c00 !important;
+  background-color: #004b87 !important;
 }
 
 .suggested-topics {
@@ -1121,6 +1155,7 @@ section p.white {
   flex-wrap: wrap;
   gap: 10px;
   align-items: center;
+  justify-content: center;
 }
 
 .topic-group-label {
@@ -1153,19 +1188,19 @@ section p.white {
 
 .hero-secondary-link {
   color: rgba(255, 255, 255, 0.82);
-  font-size: 0.95rem;
+  font-size: 1.02rem;
   text-align: center;
 }
 
 .hero-secondary-link a {
-  color: #00aeef !important;
+  color: #ffffff !important;
   text-decoration: none !important;
-  font-weight: 500;
+  font-weight: 700;
   transition: color 0.2s ease;
 }
 
 .hero-secondary-link a:hover {
-  color: #009bd6 !important;
+  color: #dff4ff !important;
   text-decoration: none !important;
 }
 
@@ -1330,6 +1365,7 @@ div#fallback-footer .bottom-container .social-wrapper a.social {
   display: flex;
   gap: 10px;
   align-items: center;
+  margin-left: auto;
   z-index: 10001;
 }
 
@@ -1361,6 +1397,11 @@ div#fallback-footer .bottom-container .social-wrapper a.social {
 .widget-btn.primary {
   background-color: var(--fd-brand-green);
   color: #fff;
+}
+
+#embrace-widget-container .bar-label,
+#embrace-widget-container .ai-disclosure {
+  display: none;
 }
 
 .chat-wrapper {
@@ -1478,7 +1519,7 @@ embrace-chat {
   }
 
   .hero-unit h1.white {
-    font-size: 2.1rem;
+    font-size: 2.5rem;
   }
 
   .topbar__menu {
@@ -1550,6 +1591,19 @@ embrace-chat {
   .home-card-link {
     flex-basis: 100%;
     max-width: 420px;
+  }
+
+  .topbar__brand {
+    gap: 12px;
+  }
+
+  .topbar__brand-name {
+    font-size: 24px;
+  }
+
+  .topbar__brand-helpdesk {
+    font-size: 19px;
+    max-width: 96px;
   }
 }
 
