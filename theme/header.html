@@ -5,23 +5,23 @@
 
   <div class="chat-wrapper">
     <div class="chat-window">
-      <embrace-chat org-id="__EMBRACE_ORG_ID__" client-id="__EMBRACE_CLIENT_ID__" external-id="paessler-freshdesk-portal"{% if portal.user.email %} data-fd_email='{{portal.user.email}}'{% endif %}>
-        <template>
-          <div slot="initial-message"
-            style="text-align: center; padding: 0 16px;">
-            <div style="display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: nowrap; margin-bottom: 24px;">
-              <div style="font-size: 28px; line-height: 118%; font-weight: 600; color: #333;">
-                Hi, I'm Max! Your AI support guide.
-              </div>
-              <div style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; border-radius: 9999px; border: 1px solid #b8ef49; background-color: rgba(0, 75, 135, 0.92); color: #f6ffd9; font-size: 14px; line-height: 16.8px; font-weight: 400; white-space: nowrap; box-shadow: 0 0 0 1px rgba(184, 239, 73, 0.12), 0 0 14px rgba(144, 194, 38, 0.14); text-shadow: 0 0 10px rgba(184, 239, 73, 0.14);">
-                <span style="width: 8px; height: 8px; border-radius: 50%; background: #b8ef49; display: inline-block; box-shadow: 0 0 0 4px rgba(184, 239, 73, 0.18), 0 0 12px rgba(184, 239, 73, 0.48); animation: statusPulse 1.8s ease-in-out infinite;"></span>
-                Online and ready to help
-              </div>
-            </div>
-            <div style="font-size: 20px; line-height: 140%; font-weight: 400; color: #555; max-width: 600px; margin: 0 auto;">
-              I can help you with PRTG setup, troubleshooting, and answer your questions instantly. Available 24/7.
+      <div class="chat-splash">
+        <div class="chat-splash-card">
+          <div class="chat-splash-title-row">
+            <div class="chat-splash-title">Hi, I'm Max! Your AI support guide.</div>
+            <div class="chat-splash-status">
+              <span class="chat-splash-status-dot"></span>
+              Online and ready to help
             </div>
           </div>
+          <div class="chat-splash-claim">
+            I can help you with PRTG setup, troubleshooting, and answer your questions instantly. Available 24/7.
+          </div>
+        </div>
+      </div>
+      <embrace-chat org-id="__EMBRACE_ORG_ID__" client-id="__EMBRACE_CLIENT_ID__" external-id="paessler-freshdesk-portal"{% if portal.user.email %} data-fd_email='{{portal.user.email}}'{% endif %}>
+        <template>
+          <div slot="initial-message"></div>
           <div slot="input-placeholder">Ask Max a question...</div>
         </template>
       </embrace-chat>

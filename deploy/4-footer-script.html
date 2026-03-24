@@ -100,11 +100,18 @@
           style.id = 'paessler-shadow-overrides';
           style.textContent =
             '[part="initial-header"] { display: none !important; }' +
+            'slot[name="initial-message"], [part="initial-message"], [class*="initial-message"], [data-testid*="initial-message"] { display: none !important; }' +
             '[part="company-name"], [part="logo"], [part="initial-subtitle"] { display: none !important; }' +
-            '[part="chat"] { border: none !important; box-shadow: none !important; border-radius: 0 !important; }' +
-            '[part="powered-by"] { flex-direction: column !important; gap: 0 !important; margin-top: 12px !important; }' +
-            'button[type="submit"], button[aria-label*="send" i], button[aria-label*="Send"], form button:last-of-type { background-color: #F59C00 !important; transition: background-color 0.2s ease !important; }' +
+            '[part="chat"] { border: none !important; box-shadow: none !important; border-radius: 0 !important; background: transparent !important; }' +
+            '[part="powered-by"] { flex-direction: column !important; gap: 0 !important; margin-top: 8px !important; }' +
+            'form { display: flex !important; align-items: center !important; gap: 10px !important; padding: 0 !important; margin: 0 !important; }' +
+            'textarea, input[type="text"] { border: 1px solid #d7e3ee !important; border-radius: 18px !important; padding: 16px 18px !important; min-height: 58px !important; box-shadow: none !important; font-size: 16px !important; color: #1b2a3a !important; }' +
+            'textarea::placeholder, input[type="text"]::placeholder { color: #8aa0b5 !important; }' +
+            'button, form button { border-radius: 16px !important; box-shadow: none !important; }' +
+            'button[type="submit"], button[aria-label*="send" i], button[aria-label*="Send"], form button:last-of-type { background-color: #F59C00 !important; color: #fff !important; border: none !important; width: 52px !important; height: 52px !important; min-width: 52px !important; transition: background-color 0.2s ease !important; }' +
             'button[type="submit"]:hover, button[aria-label*="send" i]:hover, button[aria-label*="Send"]:hover, form button:last-of-type:hover { background-color: #DC8C00 !important; }' +
+            'form button:not(:last-of-type), button[aria-label*="upload" i], button[aria-label*="attach" i], button[aria-label*="image" i] { background: #ffffff !important; border: 1px solid #d7e3ee !important; color: #6b7f92 !important; width: 44px !important; height: 44px !important; min-width: 44px !important; }' +
+            'form button:not(:last-of-type):hover, button[aria-label*="upload" i]:hover, button[aria-label*="attach" i]:hover, button[aria-label*="image" i]:hover { background: #f6fbff !important; border-color: #b6cbdd !important; }' +
             'a[href*="/support/tickets/new"], a[href*="/tickets/new"] { color: #00AEEF !important; text-decoration: none !important; transition: color 0.2s ease !important; }' +
             'a[href*="/support/tickets/new"]:hover, a[href*="/tickets/new"]:hover { color: #009BD6 !important; text-decoration: none !important; }' +
             'button[class*="chip"], button[class*="suggest"], button[data-testid*="chip"], button[data-testid*="suggest"], [role="button"][class*="chip"], [role="button"][class*="suggest"], [data-testid*="chip"] button, [data-testid*="suggest"] button { background-color: rgba(255, 255, 255, 0.15) !important; transition: background-color 0.25s ease, transform 0.25s ease !important; }' +
