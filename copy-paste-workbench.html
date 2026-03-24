@@ -358,78 +358,27 @@
   <div class="shell">
     <section class="hero">
       <h1>Freshdesk Theme + Deploy Workbench</h1>
-      <p>
-        This page is for two different jobs: full Freshdesk theme updates and smaller deploy-fragment updates.
-        It keeps those paths separate, lets you copy any block with one click, and prefers rendered `dist/` files
-        when they exist so your local credentials stay out of git.
-      </p>
+      <p>Copy the files below into Freshdesk. Use Theme Editor Sections for full theme deploys. Use Deploy Fragments only for partial updates.</p>
       <div class="hero-actions">
         <a class="btn primary" href="theme-preview.html" target="_blank" rel="noopener noreferrer">Open Theme Preview</a>
         <a class="btn secondary" href="widget-preview.html" target="_blank" rel="noopener noreferrer">Open Widget Preview</a>
       </div>
     </section>
 
-    <div class="status-bar">
-      <div class="status-card">
-        <strong>Best way to view this</strong>
-        <span>Serve the folder over HTTP so file loading works: `python3 -m http.server 8123` and open `http://127.0.0.1:8123/`.</span>
-      </div>
-      <div class="status-card">
-        <strong>Full theme updates</strong>
-        <span>Use the Theme Editor section below when you want to paste complete Freshdesk sections like Head, Header, Footer, Layout, Portal Home, or CSS.</span>
-      </div>
-      <div class="status-card">
-        <strong>Deploy fragments</strong>
-        <span>Use the Deploy Fragments section only for the smaller admin copy/paste snippets such as widget HTML, CSS, and footer script blocks.</span>
-      </div>
-      <div class="status-card">
-        <strong>Rendered vs source</strong>
-        <span>If `dist/` exists, this workbench will load that first. Otherwise it falls back to tracked source files with placeholders.</span>
-      </div>
-      <div class="status-card">
-        <strong>Secret safety</strong>
-        <span>`.env` and `dist/` stay ignored by git. Use `python3 scripts/render_templates.py` when you need local rendered values before copying.</span>
-      </div>
-    </div>
-
-    <section class="workflow-grid" aria-label="Workbench workflows">
-      <article class="workflow-card">
-        <h2>Full Theme Copy/Paste</h2>
-        <p>Use this when you are updating the actual Freshdesk theme editor section by section.</p>
-        <ol>
-          <li>Open Freshdesk theme editing for the portal.</li>
-          <li>Work straight down the Theme Editor Sections group below in the same order as the Freshdesk editor.</li>
-          <li>Paste `CSS`, `Head`, `Header`, `Footer`, `Layout`, and `Portal Home` into the matching Freshdesk sections.</li>
-          <li>Use `theme-preview.html` for visual checking because `freshdesk-template.html` is raw Liquid and not a browser preview.</li>
-        </ol>
-      </article>
-
-      <article class="workflow-card">
-        <h2>Deploy Fragment Copy/Paste</h2>
-        <p>Use this when you only need the smaller rollout snippets instead of replacing full theme sections.</p>
-        <ol>
-          <li>Copy from the Deploy Fragments group below.</li>
-          <li>Paste the CSS, header widget, hero block, or footer script into the corresponding admin area.</li>
-          <li>Keep these snippets synced with the canonical `theme/` files rather than editing them independently.</li>
-        </ol>
-      </article>
-    </section>
-
     <section class="section">
       <h2>Theme Editor Sections</h2>
-      <p>These are the complete canonical `theme/` files for full Freshdesk theme copy/paste, ordered to match the Freshdesk Pages editor flow.</p>
+      <p>Paste these into the matching Freshdesk theme sections.</p>
       <div id="theme-grid" class="grid"></div>
     </section>
 
     <section class="section">
       <h2>Deploy Fragments</h2>
-      <p>These are the smaller compatibility snippets for admin deployment work, not the full theme sections.</p>
+      <p>Use these only for partial updates.</p>
       <div id="deploy-grid" class="grid"></div>
     </section>
 
     <p class="meta-note">
-      Tip: run `python3 scripts/render_templates.py` first if you want the real Embrace credentials baked into the copyable blocks.
-      `theme-preview.html` is the visual check, while this workbench is the copy/paste surface.
+      Run `python3 scripts/render_templates.py` first if you want rendered values in the copyable blocks.
     </p>
   </div>
 

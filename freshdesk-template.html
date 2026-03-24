@@ -628,9 +628,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 {% assign callback_service_desc = "Brauchen Sie Rat von einem Experten? <br />Wir helfen gern. Wählen Sie Service | Rückruf beim Ticket erstellen" %}
 {% assign callback_service_btn = "Beantragen" %}
 {% assign table_of_content = "Inhalt" %}
-{% assign ai_pill_email_notification = "Wie konfiguriere ich E-Mail-Benachrichtigungen?" %}
-{% assign ai_pill_unknown_status = "Meine Sensoren sind im Status Unknown" %}
-{% assign ai_pill_setup_snmp_sensors = "Ich möchte SNMP-Sensoren einrichten" %}
+{% assign ai_pill_install_prtg = "PRTG installieren" %}
+{% assign ai_pill_install_requirements = "PRTG aktualisieren oder reparieren" %}
+{% assign ai_pill_setup_snmp_sensors = "SNMP-Sensoren einrichten" %}
+{% assign ai_pill_email_notification = "E-Mail-Benachrichtigungen konfigurieren" %}
+{% assign ai_pill_setup_probe = "Eine Probe einrichten" %}
+{% assign ai_pill_probe_not_connecting = "Probe verbindet sich nicht" %}
+{% assign ai_pill_sensor_unknown = "Sensoren zeigen Down oder Unknown" %}
+{% assign ai_pill_sensor_errors = "Sensorfehler" %}
 {% assign hero_help_prefix = "Brauchen Sie mehr Hilfe?" %}
 {% assign hero_help_link = "Ticket erstellen." %}
 {% else %}
@@ -661,9 +666,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 {% assign feature_request = "Feature Request" %}
 {% assign feature_request_desc = "Got a feature you'd like to see? Make your voice count!" %}
 {% assign table_of_content = "Content" %}
-{% assign ai_pill_email_notification = "How do I configure email notifications?" %}
-{% assign ai_pill_unknown_status = "My sensors are in an unknown state" %}
-{% assign ai_pill_setup_snmp_sensors = "I want to set up SNMP sensors" %}
+{% assign ai_pill_install_prtg = "Install PRTG" %}
+{% assign ai_pill_install_requirements = "Upgrade or repair PRTG" %}
+{% assign ai_pill_setup_snmp_sensors = "Set up SNMP sensors" %}
+{% assign ai_pill_email_notification = "Configure email notifications" %}
+{% assign ai_pill_setup_probe = "Set up a probe" %}
+{% assign ai_pill_probe_not_connecting = "Probe not connecting" %}
+{% assign ai_pill_sensor_unknown = "Sensors showing Down or Unknown" %}
+{% assign ai_pill_sensor_errors = "Sensor errors" %}
 {% assign hero_help_prefix = "Need more help?" %}
 {% assign hero_help_link = "Create ticket." %}
 {% endif %}
@@ -688,9 +698,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="suggested-topics">
         <div class="topic-group">
-          <button type="button" class="topic-pill" data-topic="{{ai_pill_email_notification}}">{{ai_pill_email_notification}}</button>
-          <button type="button" class="topic-pill" data-topic="{{ai_pill_unknown_status}}">{{ai_pill_unknown_status}}</button>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_install_prtg}}">{{ai_pill_install_prtg}}</button>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_install_requirements}}">{{ai_pill_install_requirements}}</button>
           <button type="button" class="topic-pill" data-topic="{{ai_pill_setup_snmp_sensors}}">{{ai_pill_setup_snmp_sensors}}</button>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_email_notification}}">{{ai_pill_email_notification}}</button>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_setup_probe}}">{{ai_pill_setup_probe}}</button>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_probe_not_connecting}}">{{ai_pill_probe_not_connecting}}</button>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_sensor_unknown}}">{{ai_pill_sensor_unknown}}</button>
+          <button type="button" class="topic-pill" data-topic="{{ai_pill_sensor_errors}}">{{ai_pill_sensor_errors}}</button>
         </div>
       </div>
 
