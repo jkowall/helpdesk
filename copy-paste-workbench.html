@@ -361,8 +361,8 @@
         <p>Use this when you are updating the actual Freshdesk theme editor section by section.</p>
         <ol>
           <li>Open Freshdesk theme editing for the portal.</li>
-          <li>Copy the matching panel from the Theme Editor Sections group below.</li>
-          <li>Paste `Head`, `Layout`, `Header`, `Footer`, `Portal Home`, and `CSS` into the same-named Freshdesk theme sections.</li>
+          <li>Work straight down the Theme Editor Sections group below in the same order as the Freshdesk editor.</li>
+          <li>Paste `CSS`, `Head`, `Header`, `Footer`, `Layout`, and `Portal Home` into the matching Freshdesk sections.</li>
           <li>Use `theme-preview.html` for visual checking because `freshdesk-template.html` is raw Liquid and not a browser preview.</li>
         </ol>
       </article>
@@ -380,7 +380,7 @@
 
     <section class="section">
       <h2>Theme Editor Sections</h2>
-      <p>These are the complete canonical `theme/` files for full Freshdesk theme copy/paste.</p>
+      <p>These are the complete canonical `theme/` files for full Freshdesk theme copy/paste, ordered to match the Freshdesk Pages editor flow.</p>
       <div id="theme-grid" class="grid"></div>
     </section>
 
@@ -399,12 +399,12 @@
   <script>
     const groups = {
       theme: [
+        { title: 'CSS', source: 'theme/styles.css', rendered: 'dist/theme/styles.css' },
         { title: 'Head', source: 'theme/head.html', rendered: 'dist/theme/head.html' },
-        { title: 'Layout', source: 'theme/layout.html', rendered: 'dist/theme/layout.html' },
         { title: 'Header', source: 'theme/header.html', rendered: 'dist/theme/header.html' },
         { title: 'Footer', source: 'theme/footer.html', rendered: 'dist/theme/footer.html' },
-        { title: 'Portal Home', source: 'theme/portal_home.html', rendered: 'dist/theme/portal_home.html' },
-        { title: 'CSS', source: 'theme/styles.css', rendered: 'dist/theme/styles.css' }
+        { title: 'Layout', source: 'theme/layout.html', rendered: 'dist/theme/layout.html' },
+        { title: 'Portal Home', source: 'theme/portal_home.html', rendered: 'dist/theme/portal_home.html' }
       ],
       deploy: [
         { title: 'Deploy CSS', source: 'deploy/1-custom-css.css', rendered: 'dist/deploy/1-custom-css.css' },
