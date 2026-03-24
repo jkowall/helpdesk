@@ -253,11 +253,11 @@ div.home {
 }
 
 .hero-unit h2.white {
-  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  font-size: clamp(1rem, 1.35vw, 1.25rem);
   font-weight: 400;
   color: rgba(255, 255, 255, 0.88) !important;
   margin: 0 auto;
-  max-width: 880px;
+  max-width: 760px;
 }
 
 section h1.white,
