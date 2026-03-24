@@ -7,6 +7,7 @@ The latest rollout code now lives in [`theme/`](../theme/). The files in `deploy
 - Do not commit `.env`
 - Put `EMBRACE_ORG_ID` and `EMBRACE_CLIENT_ID` in `.env`
 - Run `python3 scripts/render_templates.py` to create local rendered copies in `dist/`
+- Run `python3 scripts/check_sync.py` after widget changes to confirm preview and deploy surfaces still match the canonical theme widget
 
 ## Deploy Files
 

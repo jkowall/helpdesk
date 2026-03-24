@@ -20,6 +20,8 @@ Then run:
 
 ```bash
 python3 scripts/render_templates.py
+python3 scripts/check_sync.py
 ```
 
 Rendered local copies with secrets injected are written to `dist/`.
+The sync check verifies that the canonical `theme/` widget, preview surface, deploy snippets, and standalone widget snippet have not drifted on key copy and behavior.
