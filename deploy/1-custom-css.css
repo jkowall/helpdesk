@@ -58,11 +58,22 @@ div.home {
 .topbar__menu {
   display: flex;
   font-family: roboto, sans-serif;
+  align-items: center;
+  margin-left: auto;
 }
 
 .topbar__controls {
   display: flex;
   flex-direction: column;
+}
+
+.topbar__collapse {
+  display: block;
+}
+
+.topbar__account-controls {
+  display: flex;
+  align-items: center;
 }
 
 .topbar__tab-menu {
@@ -250,9 +261,30 @@ section p.white {
   opacity: 0.9;
 }
 
+.home-card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 32px;
+  width: 100%;
+  padding: 0 24px 32px;
+}
+
+.home-card-link {
+  display: flex;
+  flex: 0 1 320px;
+  max-width: 320px;
+  color: inherit;
+}
+
+.home-card-link:hover {
+  text-decoration: none;
+}
+
 .box-segment.column--sm-3 {
-  width: 22%;
-  margin: 0 1%;
+  width: 100%;
+  margin: 0;
 }
 
 .box-segment {
@@ -260,6 +292,10 @@ section p.white {
   border-radius: 5px;
   padding: 0 !important;
   box-shadow: 0 0 5px 0 rgba(153, 153, 153, 0.5);
+}
+
+.home-card-link .box-segment {
+  height: 100%;
 }
 
 .box-segment .box-content {
@@ -275,6 +311,8 @@ section p.white {
 }
 
 div.box-image > img {
+  display: block;
+  width: 100%;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
@@ -494,6 +532,14 @@ embrace-chat {
 }
 
 @media (min-width: 992px) {
+  .topbar__burger {
+    display: none !important;
+  }
+
+  .topbar__collapse {
+    display: block !important;
+  }
+
   .topbar__controls {
     flex-direction: row;
     justify-content: flex-end;
@@ -520,6 +566,7 @@ embrace-chat {
   }
 
   .topbar__controls {
+    width: 100%;
     padding: 15px;
   }
 
@@ -527,7 +574,17 @@ embrace-chat {
     margin-bottom: 16px;
   }
 
+  .topbar__collapse {
+    display: none;
+    width: 100%;
+  }
+
+  .topbar__collapse.is-active {
+    display: block;
+  }
+
   .topbar__inner {
+    flex-wrap: wrap;
     margin-left: 10px !important;
   }
 
@@ -545,6 +602,16 @@ embrace-chat {
   .btn-create-ticket,
   .pae-site-link {
     margin-left: 0 !important;
+  }
+
+  .home-card-grid {
+    gap: 24px;
+    padding: 0 16px 24px;
+  }
+
+  .home-card-link {
+    flex-basis: 100%;
+    max-width: 420px;
   }
 }
 

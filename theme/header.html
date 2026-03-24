@@ -4,7 +4,7 @@
   <div class="ai-disclosure">Powered by AI</div>
 
   <div class="chat-wrapper">
-    <embrace-chat org-id="__EMBRACE_ORG_ID__" client-id="__EMBRACE_CLIENT_ID__" data-fd_email='{{portal.user.email}}'>
+    <embrace-chat org-id="__EMBRACE_ORG_ID__" client-id="__EMBRACE_CLIENT_ID__" external-id="paessler-freshdesk-portal"{% if portal.user.email %} data-fd_email='{{portal.user.email}}'{% endif %}>
       <template>
         <div slot="initial-message"
           style="text-align: center; padding: 0 16px;">
@@ -39,7 +39,7 @@
     <div class="topbar__inner">
       <div class="topbar__logo-wrapper">
         <a class="topbar__logo" href="https://helpdesk.paessler.com">
-          <img src="{{ prtg_sidebar_logo }}" alt="Paessler GmbH - The Monitoring Experts" />
+          <img src="https://paessler.canto.global/direct/image/4g25o4l98t7q72k8i5gb6qbo4u/J0T21LBBTaxaHLX3K4RJg0-LDQI/original?content-type=image%2Fsvg%2Bxml&name=Logo_Paessler-PRTG-Network-Monitor.svg" alt="Paessler GmbH - The Monitoring Experts" />
         </a>
       </div>
       <div class="topbar__menu">
@@ -82,7 +82,7 @@
             {% if portal.has_user_signed_in == true %}
               {{ snippet.search_form }}
 
-              <div class="topbar__controls">
+              <div class="topbar__account-controls">
                 <ul class="topbar__tab-menu">
                   <li class="topbar__tab-item">
                     <div class="dropdown" id="action-bar-toggle">
@@ -98,7 +98,7 @@
                       </ul>
                     </div>
                   </li>
-                  <li>
+                  <li class="topbar__tab-item">
                     <div class="dropdown" id="action-bar-toggle">
                       <a style='margin-left: 14px !important;' class="dropdown-toggle profile-name btn btn-topbar pae-header-link" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">{{ current_user.name }}<b class="caret"></b></a>
                       <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -108,18 +108,17 @@
                     </div>
                   </li>
                 </ul>
-
-                <ul class="topbar__tab-menu">
+              </div>
             {% else %}
+              <ul class="topbar__tab-menu topbar__auth-menu">
                 {% if portal.can_signup_feature %}
                   <li class="topbar__tab-item"><a href="{{ portal['signup_url'] }}" class="topbar__tab-link pae-header-link topbar__link">Register</a></li>
                 {% endif %}
                 <li class="topbar__tab-item"><a href="{{ portal.login_url }}" class="banner-language-selector portal-signin btn btn-primary btn-create-ticket btn-topbar">Sign in</a></li>
+              </ul>
             {% endif %}
-                </ul>
-                <div class="container-inner search-box search-box--hero-unit" data-search-box></div>
-                <a class="topbar__tab-link topbar__link pae-site-link" style="margin-top: -15px; font-color: black !important; font-weight: normal !important; margin-left: 75px; margin-right: 0px;" href="https://www.paessler.com">www.paessler.com</a>
-              </div>
+            <div class="container-inner search-box search-box--hero-unit" data-search-box></div>
+            <a class="topbar__tab-link topbar__link pae-site-link" style="margin-top: -15px; font-color: black !important; font-weight: normal !important; margin-left: 75px; margin-right: 0px;" href="https://www.paessler.com">www.paessler.com</a>
           </div>
         </div>
       </div>

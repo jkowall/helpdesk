@@ -12,7 +12,7 @@
   <div class="ai-disclosure">Powered by AI</div>
 
   <div class="chat-wrapper">
-    <embrace-chat org-id="__EMBRACE_ORG_ID__" client-id="__EMBRACE_CLIENT_ID__" data-fd_email='{{portal.user.email}}'>
+    <embrace-chat org-id="__EMBRACE_ORG_ID__" client-id="__EMBRACE_CLIENT_ID__" external-id="paessler-freshdesk-portal"{% if portal.user.email %} data-fd_email='{{portal.user.email}}'{% endif %}>
       <template>
         <div slot="initial-message"
           style="text-align: center; padding: 0 16px;">

@@ -189,7 +189,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="ai-disclosure">Powered by AI</div>
 
   <div class="chat-wrapper">
-    <embrace-chat org-id="__EMBRACE_ORG_ID__" client-id="__EMBRACE_CLIENT_ID__" data-fd_email='{{portal.user.email}}'>
+    <embrace-chat org-id="__EMBRACE_ORG_ID__" client-id="__EMBRACE_CLIENT_ID__" external-id="paessler-freshdesk-portal"{% if portal.user.email %} data-fd_email='{{portal.user.email}}'{% endif %}>
       <template>
         <div slot="initial-message"
           style="text-align: center; padding: 0 16px;">
@@ -224,7 +224,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="topbar__inner">
       <div class="topbar__logo-wrapper">
         <a class="topbar__logo" href="https://helpdesk.paessler.com">
-          <img src="{{ prtg_sidebar_logo }}" alt="Paessler GmbH - The Monitoring Experts" />
+          <img src="https://paessler.canto.global/direct/image/4g25o4l98t7q72k8i5gb6qbo4u/J0T21LBBTaxaHLX3K4RJg0-LDQI/original?content-type=image%2Fsvg%2Bxml&name=Logo_Paessler-PRTG-Network-Monitor.svg" alt="Paessler GmbH - The Monitoring Experts" />
         </a>
       </div>
       <div class="topbar__menu">
@@ -267,7 +267,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             {% if portal.has_user_signed_in == true %}
               {{ snippet.search_form }}
 
-              <div class="topbar__controls">
+              <div class="topbar__account-controls">
                 <ul class="topbar__tab-menu">
                   <li class="topbar__tab-item">
                     <div class="dropdown" id="action-bar-toggle">
@@ -283,7 +283,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                       </ul>
                     </div>
                   </li>
-                  <li>
+                  <li class="topbar__tab-item">
                     <div class="dropdown" id="action-bar-toggle">
                       <a style='margin-left: 14px !important;' class="dropdown-toggle profile-name btn btn-topbar pae-header-link" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">{{ current_user.name }}<b class="caret"></b></a>
                       <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -293,18 +293,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
                   </li>
                 </ul>
-
-                <ul class="topbar__tab-menu">
+              </div>
             {% else %}
+              <ul class="topbar__tab-menu topbar__auth-menu">
                 {% if portal.can_signup_feature %}
                   <li class="topbar__tab-item"><a href="{{ portal['signup_url'] }}" class="topbar__tab-link pae-header-link topbar__link">Register</a></li>
                 {% endif %}
                 <li class="topbar__tab-item"><a href="{{ portal.login_url }}" class="banner-language-selector portal-signin btn btn-primary btn-create-ticket btn-topbar">Sign in</a></li>
+              </ul>
             {% endif %}
-                </ul>
-                <div class="container-inner search-box search-box--hero-unit" data-search-box></div>
-                <a class="topbar__tab-link topbar__link pae-site-link" style="margin-top: -15px; font-color: black !important; font-weight: normal !important; margin-left: 75px; margin-right: 0px;" href="https://www.paessler.com">www.paessler.com</a>
-              </div>
+            <div class="container-inner search-box search-box--hero-unit" data-search-box></div>
+            <a class="topbar__tab-link topbar__link pae-site-link" style="margin-top: -15px; font-color: black !important; font-weight: normal !important; margin-left: 75px; margin-right: 0px;" href="https://www.paessler.com">www.paessler.com</a>
           </div>
         </div>
       </div>
@@ -725,14 +724,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="container">
   <div class="container-inner clearfix">
-    {% if portal.user.id %}
-    <section style='width: 100%; margin-left: auto; margin-right: auto;'>
-    {% else %}
-    <section style='width: 100%; margin-left: auto; margin-right: auto;padding-left: 19%;'>
-    {% endif %}
+    <section class="home-card-grid">
 
       {% if portal.user.id %}
-      <a href="/support/tickets">
+      <a class="home-card-link" href="/support/tickets">
         <div class="box-segment column column--sm-3">
           <div class="box-image">
             <img src="https://paessler.canto.global/direct/image/4nm8teekqh11p6uvadhjs4qg62/JEA7rMfXu_DfAyth4zncCcjqI8Q/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_Ticket-Overview.svg" alt="">
@@ -746,8 +741,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
       {% endif %}
 
-      <div class="box-segment column column--sm-3">
-        <a href="https://helpdesk.paessler.com/en/support/solutions">
+      <a class="home-card-link" href="https://helpdesk.paessler.com/en/support/solutions">
+        <div class="box-segment column column--sm-3">
           <div class="box-image">
             <img src="https://paessler.canto.global/direct/image/7oi7f9t3g17v1a2q6ge7vuqf67/P_RX2hwNtJZkPS8nnqYBmtVSvyA/original?content-type=image%2Fsvg%2Bxml&name=Preview_Category_KnowledgeBase.svg" alt="">
           </div>
@@ -756,10 +751,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <p style='min-height: 100px !important;'>{{knowledge_base_desc}}</p>
             <span class="btn btn-primary">{{knowledge_base}}</span>
           </div>
-        </a>
-      </div>
+        </div>
+      </a>
 
-      <a href="https://www.paessler.com/support" target='_blank'>
+      <a class="home-card-link" href="https://www.paessler.com/support" target='_blank'>
         <div class="box-segment column column--sm-3">
           <div class="box-image">
             <img src="https://paessler.canto.global/direct/image/ilih5m88v569f7ojatp4g2se7s/hm4Tni1cy9NJAXVx514Hck-DZXU/original?content-type=image%2Fsvg%2Bxml&name=Preview_Resources-Support.svg" alt="">
@@ -772,7 +767,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </a>
 
-      <a href="https://uservoice.paessler.com/" target='_blank'>
+      <a class="home-card-link" href="https://uservoice.paessler.com/" target='_blank'>
         <div class="box-segment column column--sm-3">
           <div class="box-image">
             <img src="https://paessler.canto.global/direct/image/p00t8i1lc97nt0r3botvmpup4k/2-w4qEm7JG6DCSJCzgylqcsoh5c/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_UserVoice.svg" alt="">
@@ -786,8 +781,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
 
       {% if portal.user.account_tier == "PPEM" %}
-      <a href="{{ portal.new_ticket_url }}">
-        <div class="box-segment column column--sm-3" style='margin-top: 50px;'>
+      <a class="home-card-link" href="{{ portal.new_ticket_url }}">
+        <div class="box-segment column column--sm-3">
           <div class="box-image">
             <img src="https://paessler.canto.global/direct/image/l8gbjkqkh55upeeq63l6t6d32e/eNmJCkqGp1aSYejjtBhBUeIxLdM/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_Performance.svg" alt="">
           </div>
@@ -893,11 +888,22 @@ div.home {
 .topbar__menu {
   display: flex;
   font-family: roboto, sans-serif;
+  align-items: center;
+  margin-left: auto;
 }
 
 .topbar__controls {
   display: flex;
   flex-direction: column;
+}
+
+.topbar__collapse {
+  display: block;
+}
+
+.topbar__account-controls {
+  display: flex;
+  align-items: center;
 }
 
 .topbar__tab-menu {
@@ -1165,9 +1171,30 @@ section p.white {
   text-decoration: none !important;
 }
 
+.home-card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 32px;
+  width: 100%;
+  padding: 0 24px 32px;
+}
+
+.home-card-link {
+  display: flex;
+  flex: 0 1 320px;
+  max-width: 320px;
+  color: inherit;
+}
+
+.home-card-link:hover {
+  text-decoration: none;
+}
+
 .box-segment.column--sm-3 {
-  width: 22%;
-  margin: 0 1%;
+  width: 100%;
+  margin: 0;
 }
 
 .box-segment {
@@ -1175,6 +1202,10 @@ section p.white {
   border-radius: 5px;
   padding: 0 !important;
   box-shadow: 0 0 5px 0 rgba(153, 153, 153, 0.5);
+}
+
+.home-card-link .box-segment {
+  height: 100%;
 }
 
 .box-segment .box-content {
@@ -1190,6 +1221,8 @@ section p.white {
 }
 
 div.box-image > img {
+  display: block;
+  width: 100%;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
@@ -1409,6 +1442,14 @@ embrace-chat {
 }
 
 @media (min-width: 992px) {
+  .topbar__burger {
+    display: none !important;
+  }
+
+  .topbar__collapse {
+    display: block !important;
+  }
+
   .topbar__controls {
     flex-direction: row;
     justify-content: flex-end;
@@ -1443,6 +1484,7 @@ embrace-chat {
   }
 
   .topbar__controls {
+    width: 100%;
     padding: 15px;
   }
 
@@ -1450,7 +1492,17 @@ embrace-chat {
     margin-bottom: 16px;
   }
 
+  .topbar__collapse {
+    display: none;
+    width: 100%;
+  }
+
+  .topbar__collapse.is-active {
+    display: block;
+  }
+
   .topbar__inner {
+    flex-wrap: wrap;
     margin-left: 10px !important;
   }
 
@@ -1468,6 +1520,16 @@ embrace-chat {
   .btn-create-ticket,
   .pae-site-link {
     margin-left: 0 !important;
+  }
+
+  .home-card-grid {
+    gap: 24px;
+    padding: 0 16px 24px;
+  }
+
+  .home-card-link {
+    flex-basis: 100%;
+    max-width: 420px;
   }
 }
 

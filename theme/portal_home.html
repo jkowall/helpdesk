@@ -124,14 +124,10 @@
 
 <div class="container">
   <div class="container-inner clearfix">
-    {% if portal.user.id %}
-    <section style='width: 100%; margin-left: auto; margin-right: auto;'>
-    {% else %}
-    <section style='width: 100%; margin-left: auto; margin-right: auto;padding-left: 19%;'>
-    {% endif %}
+    <section class="home-card-grid">
 
       {% if portal.user.id %}
-      <a href="/support/tickets">
+      <a class="home-card-link" href="/support/tickets">
         <div class="box-segment column column--sm-3">
           <div class="box-image">
             <img src="https://paessler.canto.global/direct/image/4nm8teekqh11p6uvadhjs4qg62/JEA7rMfXu_DfAyth4zncCcjqI8Q/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_Ticket-Overview.svg" alt="">
@@ -145,8 +141,8 @@
       </a>
       {% endif %}
 
-      <div class="box-segment column column--sm-3">
-        <a href="https://helpdesk.paessler.com/en/support/solutions">
+      <a class="home-card-link" href="https://helpdesk.paessler.com/en/support/solutions">
+        <div class="box-segment column column--sm-3">
           <div class="box-image">
             <img src="https://paessler.canto.global/direct/image/7oi7f9t3g17v1a2q6ge7vuqf67/P_RX2hwNtJZkPS8nnqYBmtVSvyA/original?content-type=image%2Fsvg%2Bxml&name=Preview_Category_KnowledgeBase.svg" alt="">
           </div>
@@ -155,10 +151,10 @@
             <p style='min-height: 100px !important;'>{{knowledge_base_desc}}</p>
             <span class="btn btn-primary">{{knowledge_base}}</span>
           </div>
-        </a>
-      </div>
+        </div>
+      </a>
 
-      <a href="https://www.paessler.com/support" target='_blank'>
+      <a class="home-card-link" href="https://www.paessler.com/support" target='_blank'>
         <div class="box-segment column column--sm-3">
           <div class="box-image">
             <img src="https://paessler.canto.global/direct/image/ilih5m88v569f7ojatp4g2se7s/hm4Tni1cy9NJAXVx514Hck-DZXU/original?content-type=image%2Fsvg%2Bxml&name=Preview_Resources-Support.svg" alt="">
@@ -171,7 +167,7 @@
         </div>
       </a>
 
-      <a href="https://uservoice.paessler.com/" target='_blank'>
+      <a class="home-card-link" href="https://uservoice.paessler.com/" target='_blank'>
         <div class="box-segment column column--sm-3">
           <div class="box-image">
             <img src="https://paessler.canto.global/direct/image/p00t8i1lc97nt0r3botvmpup4k/2-w4qEm7JG6DCSJCzgylqcsoh5c/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_UserVoice.svg" alt="">
@@ -185,8 +181,8 @@
       </a>
 
       {% if portal.user.account_tier == "PPEM" %}
-      <a href="{{ portal.new_ticket_url }}">
-        <div class="box-segment column column--sm-3" style='margin-top: 50px;'>
+      <a class="home-card-link" href="{{ portal.new_ticket_url }}">
+        <div class="box-segment column column--sm-3">
           <div class="box-image">
             <img src="https://paessler.canto.global/direct/image/l8gbjkqkh55upeeq63l6t6d32e/eNmJCkqGp1aSYejjtBhBUeIxLdM/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_Performance.svg" alt="">
           </div>
