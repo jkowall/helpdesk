@@ -4,31 +4,32 @@
   <div class="ai-disclosure">Powered by AI</div>
 
   <div class="chat-wrapper">
-    <embrace-chat org-id="__EMBRACE_ORG_ID__" client-id="__EMBRACE_CLIENT_ID__" external-id="paessler-freshdesk-portal"{% if portal.user.email %} data-fd_email='{{portal.user.email}}'{% endif %}>
-      <template>
-        <div slot="initial-message"
-          style="text-align: center; padding: 0 16px;">
-          <div style="display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: nowrap; margin-bottom: 24px;">
-            <div style="font-size: 28px; line-height: 118%; font-weight: 600; color: #333;">
-              Hi, I'm Max. How can I help today?
+    <div class="chat-window">
+      <embrace-chat org-id="__EMBRACE_ORG_ID__" client-id="__EMBRACE_CLIENT_ID__" external-id="paessler-freshdesk-portal"{% if portal.user.email %} data-fd_email='{{portal.user.email}}'{% endif %}>
+        <template>
+          <div slot="initial-message"
+            style="text-align: center; padding: 0 16px;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: nowrap; margin-bottom: 24px;">
+              <div style="font-size: 28px; line-height: 118%; font-weight: 600; color: #333;">
+                Hi, I'm Max. How can I help today?
+              </div>
+              <div style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; border-radius: 9999px; border: 1px solid #c0cc19; background-color: #004b87; color: #ffffff; font-size: 14px; line-height: 16.8px; font-weight: 400; white-space: nowrap; box-shadow: none; text-shadow: none;">
+                <span style="width: 8px; height: 8px; border-radius: 50%; background: #c0cc19; display: inline-block; box-shadow: none; animation: statusPulse 1.8s ease-in-out infinite;"></span>
+                Online and ready to help
+              </div>
             </div>
-            <div style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; border-radius: 9999px; border: 1px solid #c0cc19; background-color: #004b87; color: #ffffff; font-size: 14px; line-height: 16.8px; font-weight: 400; white-space: nowrap; box-shadow: none; text-shadow: none;">
-              <span style="width: 8px; height: 8px; border-radius: 50%; background: #c0cc19; display: inline-block; box-shadow: none; animation: statusPulse 1.8s ease-in-out infinite;"></span>
-              Online and ready to help
+            <div style="font-size: 20px; line-height: 140%; font-weight: 400; color: #555; max-width: 600px; margin: 0 auto;">
+              Ask me about PRTG setup, troubleshooting, or common questions, and I’ll help you get to the right answer quickly.
             </div>
           </div>
-          <div style="font-size: 20px; line-height: 140%; font-weight: 400; color: #555; max-width: 600px; margin: 0 auto;">
-            Ask me about PRTG setup, troubleshooting, or common questions, and I’ll help you get to the right answer quickly.
-          </div>
-        </div>
-        <div slot="input-placeholder">Ask Max a question...</div>
-      </template>
-    </embrace-chat>
-    <div class="chat-disclaimer">You’re chatting with Max, our AI assistant built to help you get answers quickly. If needed, he’ll guide you to the next best step.</div>
+          <div slot="input-placeholder">Ask Max a question...</div>
+        </template>
+      </embrace-chat>
+      <div class="chat-disclaimer">You’re chatting with Max, our AI assistant built to help you get answers quickly. If needed, he’ll guide you to the next best step.</div>
+    </div>
   </div>
 
   <div class="widget-controls">
-    <a href="{{ portal.new_ticket_url }}" id="btn-open-ticket-widget" class="widget-btn" style="text-decoration: none;">Still need help? Open a Ticket</a>
     <button type="button" id="btn-expand" class="widget-btn primary">Expand Chat</button>
   </div>
 </div>

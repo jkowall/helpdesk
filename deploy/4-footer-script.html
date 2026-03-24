@@ -12,7 +12,6 @@
     var expandBtn = document.getElementById('btn-expand');
     var heroChatField = document.getElementById('hero-chat-field');
     var heroChatSubmit = document.getElementById('hero-chat-submit');
-    var ticketBtnSnippet = document.getElementById('btn-open-ticket-widget');
     var barLabel = document.querySelector('.bar-label');
 
     if (!container || !expandBtn) return;
@@ -21,11 +20,9 @@
       var isFullscreen = container.classList.toggle('widget-fullscreen');
       if (isFullscreen) {
         expandBtn.textContent = 'Collapse Chat';
-        if (ticketBtnSnippet) ticketBtnSnippet.style.display = 'inline-block';
         if (barLabel) barLabel.style.display = 'none';
       } else {
         expandBtn.textContent = 'Expand Chat';
-        if (ticketBtnSnippet) ticketBtnSnippet.style.display = 'none';
         if (barLabel) barLabel.style.display = 'flex';
       }
     });

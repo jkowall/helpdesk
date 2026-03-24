@@ -126,7 +126,6 @@ def main() -> int:
     preview_behavior_checks = [
         ("Preview fullscreen class", "widget.classList.add('widget-fullscreen')"),
         ("Preview collapse label", "Collapse Chat"),
-        ("Preview ticket reveal", "ticketBtn.style.display = 'inline-flex'"),
     ]
 
     for label, needle in preview_behavior_checks:

@@ -189,31 +189,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="ai-disclosure">Powered by AI</div>
 
   <div class="chat-wrapper">
-    <embrace-chat org-id="__EMBRACE_ORG_ID__" client-id="__EMBRACE_CLIENT_ID__" external-id="paessler-freshdesk-portal"{% if portal.user.email %} data-fd_email='{{portal.user.email}}'{% endif %}>
-      <template>
-        <div slot="initial-message"
-          style="text-align: center; padding: 0 16px;">
-          <div style="display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: nowrap; margin-bottom: 24px;">
-            <div style="font-size: 28px; line-height: 118%; font-weight: 600; color: #333;">
-              Hi, I'm Max. How can I help today?
+    <div class="chat-window">
+      <embrace-chat org-id="__EMBRACE_ORG_ID__" client-id="__EMBRACE_CLIENT_ID__" external-id="paessler-freshdesk-portal"{% if portal.user.email %} data-fd_email='{{portal.user.email}}'{% endif %}>
+        <template>
+          <div slot="initial-message"
+            style="text-align: center; padding: 0 16px;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: nowrap; margin-bottom: 24px;">
+              <div style="font-size: 28px; line-height: 118%; font-weight: 600; color: #333;">
+                Hi, I'm Max. How can I help today?
+              </div>
+              <div style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; border-radius: 9999px; border: 1px solid #c0cc19; background-color: #004b87; color: #ffffff; font-size: 14px; line-height: 16.8px; font-weight: 400; white-space: nowrap; box-shadow: none; text-shadow: none;">
+                <span style="width: 8px; height: 8px; border-radius: 50%; background: #c0cc19; display: inline-block; box-shadow: none; animation: statusPulse 1.8s ease-in-out infinite;"></span>
+                Online and ready to help
+              </div>
             </div>
-            <div style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; border-radius: 9999px; border: 1px solid #c0cc19; background-color: #004b87; color: #ffffff; font-size: 14px; line-height: 16.8px; font-weight: 400; white-space: nowrap; box-shadow: none; text-shadow: none;">
-              <span style="width: 8px; height: 8px; border-radius: 50%; background: #c0cc19; display: inline-block; box-shadow: none; animation: statusPulse 1.8s ease-in-out infinite;"></span>
-              Online and ready to help
+            <div style="font-size: 20px; line-height: 140%; font-weight: 400; color: #555; max-width: 600px; margin: 0 auto;">
+              Ask me about PRTG setup, troubleshooting, or common questions, and I’ll help you get to the right answer quickly.
             </div>
           </div>
-          <div style="font-size: 20px; line-height: 140%; font-weight: 400; color: #555; max-width: 600px; margin: 0 auto;">
-            Ask me about PRTG setup, troubleshooting, or common questions, and I’ll help you get to the right answer quickly.
-          </div>
-        </div>
-        <div slot="input-placeholder">Ask Max a question...</div>
-      </template>
-    </embrace-chat>
-    <div class="chat-disclaimer">You’re chatting with Max, our AI assistant built to help you get answers quickly. If needed, he’ll guide you to the next best step.</div>
+          <div slot="input-placeholder">Ask Max a question...</div>
+        </template>
+      </embrace-chat>
+      <div class="chat-disclaimer">You’re chatting with Max, our AI assistant built to help you get answers quickly. If needed, he’ll guide you to the next best step.</div>
+    </div>
   </div>
 
   <div class="widget-controls">
-    <a href="{{ portal.new_ticket_url }}" id="btn-open-ticket-widget" class="widget-btn" style="text-decoration: none;">Still need help? Open a Ticket</a>
     <button type="button" id="btn-expand" class="widget-btn primary">Expand Chat</button>
   </div>
 </div>
@@ -429,7 +430,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var heroChatField = document.getElementById('hero-chat-field');
     var heroChatSubmit = document.getElementById('hero-chat-submit');
     var heroSecondaryLink = document.querySelector('.hero-secondary-link a');
-    var ticketBtnSnippet = document.getElementById('btn-open-ticket-widget');
     var barLabel = document.querySelector('.bar-label');
 
     if (!container || !expandBtn) return;
@@ -438,11 +438,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var isFullscreen = container.classList.toggle('widget-fullscreen');
       if (isFullscreen) {
         expandBtn.textContent = 'Collapse Chat';
-        if (ticketBtnSnippet) ticketBtnSnippet.style.display = 'inline-block';
         if (barLabel) barLabel.style.display = 'none';
       } else {
         expandBtn.textContent = 'Expand Chat';
-        if (ticketBtnSnippet) ticketBtnSnippet.style.display = 'none';
         if (barLabel) barLabel.style.display = 'flex';
       }
     });
@@ -1299,7 +1297,7 @@ div#fallback-footer .bottom-container .social-wrapper a.social {
   padding: 0;
   flex-direction: column;
   align-items: stretch;
-  background-color: #fff;
+  background: linear-gradient(180deg, #f7fafc 0%, #edf3f8 100%);
   box-shadow: none;
 }
 
@@ -1337,8 +1335,8 @@ div#fallback-footer .bottom-container .social-wrapper a.social {
 
 #embrace-widget-container.widget-fullscreen .widget-controls {
   position: absolute;
-  top: 15px;
-  right: 20px;
+  top: 18px;
+  right: 24px;
 }
 
 .widget-btn {
@@ -1365,13 +1363,6 @@ div#fallback-footer .bottom-container .social-wrapper a.social {
   color: #fff;
 }
 
-#btn-open-ticket-widget {
-  display: none;
-  border: 1px solid var(--fd-brand-blue);
-  color: var(--fd-brand-blue);
-  background: transparent;
-}
-
 .chat-wrapper {
   flex: 1;
   width: 100%;
@@ -1381,8 +1372,21 @@ div#fallback-footer .bottom-container .social-wrapper a.social {
 }
 
 #embrace-widget-container.widget-fullscreen .chat-wrapper {
-  display: block;
-  padding-top: 60px;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding: 80px 24px 28px;
+}
+
+.chat-window {
+  position: relative;
+  width: min(1100px, 100%);
+  height: calc(100vh - 108px);
+  border-radius: 26px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid rgba(19, 57, 92, 0.08);
+  box-shadow: 0 28px 60px rgba(16, 40, 66, 0.16);
 }
 
 .chat-disclaimer {
@@ -1392,9 +1396,9 @@ div#fallback-footer .bottom-container .social-wrapper a.social {
   right: 0;
   bottom: 92px;
   z-index: 2;
-  max-width: 1000px;
+  max-width: none;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 24px;
   font-size: 12px;
   font-weight: 400;
   color: #888;
@@ -1430,14 +1434,15 @@ embrace-chat::part(answer) {
 
 embrace-chat {
   display: block;
-  max-width: 1000px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: none;
+  margin: 0;
   height: 100%;
 }
 
 @media (max-width: 1000px) {
   embrace-chat {
-    padding: 0 16px;
+    padding: 0;
   }
 }
 
@@ -1501,6 +1506,20 @@ embrace-chat {
     display: block;
   }
 
+  #embrace-widget-container.widget-fullscreen .widget-controls {
+    top: 12px;
+    right: 14px;
+  }
+
+  #embrace-widget-container.widget-fullscreen .chat-wrapper {
+    padding: 62px 10px 10px;
+  }
+
+  .chat-window {
+    height: calc(100vh - 74px);
+    border-radius: 18px;
+  }
+
   .topbar__inner {
     flex-wrap: wrap;
     margin-left: 10px !important;
@@ -1536,5 +1555,25 @@ embrace-chat {
 @media (max-width: 640px) {
   .bar-label {
     font-size: 0.8rem;
+  }
+
+  #embrace-widget-container.widget-fullscreen .widget-controls {
+    left: 10px;
+    right: 10px;
+    justify-content: flex-end;
+  }
+
+  .widget-btn.primary {
+    width: 100%;
+  }
+
+  .chat-window {
+    height: calc(100vh - 70px);
+    border-radius: 14px;
+  }
+
+  .chat-disclaimer {
+    bottom: 84px;
+    padding: 0 14px;
   }
 }
