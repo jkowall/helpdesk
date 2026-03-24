@@ -735,9 +735,14 @@
 
       <div class="suggested-topics">
         <div class="topic-group">
-          <button type="button" class="topic-pill" data-copy-var="ai_pill_email_notification" data-topic="How do I configure email notifications?">How do I configure email notifications?</button>
-          <button type="button" class="topic-pill" data-copy-var="ai_pill_unknown_status" data-topic="My sensors are in an unknown state">My sensors are in an unknown state</button>
-          <button type="button" class="topic-pill" data-copy-var="ai_pill_setup_snmp_sensors" data-topic="I want to set up SNMP sensors">I want to set up SNMP sensors</button>
+          <button type="button" class="topic-pill" data-topic="Install PRTG">Install PRTG</button>
+          <button type="button" class="topic-pill" data-topic="Upgrade or repair PRTG">Upgrade or repair PRTG</button>
+          <button type="button" class="topic-pill" data-topic="Set up SNMP sensors">Set up SNMP sensors</button>
+          <button type="button" class="topic-pill" data-topic="Configure email notifications">Configure email notifications</button>
+          <button type="button" class="topic-pill" data-topic="Set up a probe">Set up a probe</button>
+          <button type="button" class="topic-pill" data-topic="Probe not connecting">Probe not connecting</button>
+          <button type="button" class="topic-pill" data-topic="Sensors showing Down or Unknown">Sensors showing Down or Unknown</button>
+          <button type="button" class="topic-pill" data-topic="Sensor errors">Sensor errors</button>
         </div>
       </div>
 
@@ -870,9 +875,16 @@
           assigns[match[1]] = decodeHtml(match[2]);
         }
 
+        var placeholder = assigns.hero_input_placeholder;
         const heroPlaceholderMatch = source.match(/id="hero-chat-field"\s+placeholder="([^"]+)"/);
         if (heroPlaceholderMatch) {
-          const placeholder = decodeHtml(heroPlaceholderMatch[1]);
+          const matchedPlaceholder = decodeHtml(heroPlaceholderMatch[1]);
+          if (matchedPlaceholder.indexOf('{{') === -1 && matchedPlaceholder.indexOf('{%') === -1) {
+            placeholder = matchedPlaceholder;
+          }
+        }
+
+        if (placeholder) {
           heroField.placeholder = placeholder;
           previewChatPlaceholder.textContent = placeholder;
         }
@@ -897,15 +909,6 @@
           previewChatClaim.textContent = assigns.ai_hero_claim;
         }
 
-        document.querySelectorAll('[data-copy-var]').forEach(function (node) {
-          const variableName = node.getAttribute('data-copy-var');
-          const value = assigns[variableName];
-          if (!value) return;
-          node.textContent = value;
-          if (node.classList.contains('topic-pill')) {
-            node.setAttribute('data-topic', value);
-          }
-        });
       } catch (error) {
         console.warn('Could not sync preview text from canonical theme files.', error);
       }
