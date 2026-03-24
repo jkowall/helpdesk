@@ -493,6 +493,12 @@ div#fallback-footer .bottom-container .social-wrapper a.social {
   color: #fff;
 }
 
+div#fallback-footer .bottom-container .social-wrapper a.social svg {
+  display: block;
+  width: 28px;
+  height: 28px;
+}
+
 #embrace-widget-container {
   position: fixed;
   top: 0;
