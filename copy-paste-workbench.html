@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Freshdesk Copy/Paste Workbench</title>
+  <title>Freshdesk Theme + Deploy Workbench</title>
   <style>
     :root {
       --bg: #eef3f8;
@@ -140,6 +140,43 @@
     .section p {
       margin: 0 0 16px;
       color: var(--muted);
+    }
+
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .workflow-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 12px 28px rgba(22, 50, 79, 0.08);
+    }
+
+    .workflow-card h2 {
+      margin: 0 0 10px;
+      font-size: 1.18rem;
+    }
+
+    .workflow-card p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .workflow-card ol {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .workflow-card li + li {
+      margin-top: 6px;
     }
 
     .grid {
@@ -283,11 +320,11 @@
 <body>
   <div class="shell">
     <section class="hero">
-      <h1>Freshdesk Copy/Paste Workbench</h1>
+      <h1>Freshdesk Theme + Deploy Workbench</h1>
       <p>
-        This page is meant to make testing and deployment less annoying. It shows each Freshdesk section separately,
-        lets you copy any block with one click, and prefers the rendered `dist/` version when it exists so your local
-        credentials can be used without ever landing in git.
+        This page is for two different jobs: full Freshdesk theme updates and smaller deploy-fragment updates.
+        It keeps those paths separate, lets you copy any block with one click, and prefers rendered `dist/` files
+        when they exist so your local credentials stay out of git.
       </p>
       <div class="hero-actions">
         <a class="btn primary" href="theme-preview.html" target="_blank" rel="noopener noreferrer">Open Theme Preview</a>
@@ -301,34 +338,61 @@
         <span>Serve the folder over HTTP so file loading works: `python3 -m http.server 8123` and open `http://127.0.0.1:8123/`.</span>
       </div>
       <div class="status-card">
-        <strong>Rendered vs source</strong>
-        <span>If `dist/` exists, this workbench will load that first. Otherwise it falls back to the tracked source files with placeholders.</span>
+        <strong>Full theme updates</strong>
+        <span>Use the Theme Editor section below when you want to paste complete Freshdesk sections like Head, Header, Footer, Layout, Portal Home, or CSS.</span>
       </div>
       <div class="status-card">
-        <strong>Visual preview</strong>
-        <span>Use `theme-preview.html` for GitHub Pages and browser testing. `freshdesk-template.html` is raw Liquid source, so it is not meant to render like a full site by itself.</span>
+        <strong>Deploy fragments</strong>
+        <span>Use the Deploy Fragments section only for the smaller admin copy/paste snippets such as widget HTML, CSS, and footer script blocks.</span>
+      </div>
+      <div class="status-card">
+        <strong>Rendered vs source</strong>
+        <span>If `dist/` exists, this workbench will load that first. Otherwise it falls back to tracked source files with placeholders.</span>
       </div>
       <div class="status-card">
         <strong>Secret safety</strong>
-        <span>`.env` and `dist/` stay ignored by git. Copying rendered files here is local-only unless you paste them elsewhere.</span>
+        <span>`.env` and `dist/` stay ignored by git. Use `python3 scripts/render_templates.py` when you need local rendered values before copying.</span>
       </div>
     </div>
 
+    <section class="workflow-grid" aria-label="Workbench workflows">
+      <article class="workflow-card">
+        <h2>Full Theme Copy/Paste</h2>
+        <p>Use this when you are updating the actual Freshdesk theme editor section by section.</p>
+        <ol>
+          <li>Open Freshdesk theme editing for the portal.</li>
+          <li>Copy the matching panel from the Theme Editor Sections group below.</li>
+          <li>Paste `Head`, `Layout`, `Header`, `Footer`, `Portal Home`, and `CSS` into the same-named Freshdesk theme sections.</li>
+          <li>Use `theme-preview.html` for visual checking because `freshdesk-template.html` is raw Liquid and not a browser preview.</li>
+        </ol>
+      </article>
+
+      <article class="workflow-card">
+        <h2>Deploy Fragment Copy/Paste</h2>
+        <p>Use this when you only need the smaller rollout snippets instead of replacing full theme sections.</p>
+        <ol>
+          <li>Copy from the Deploy Fragments group below.</li>
+          <li>Paste the CSS, header widget, hero block, or footer script into the corresponding admin area.</li>
+          <li>Keep these snippets synced with the canonical `theme/` files rather than editing them independently.</li>
+        </ol>
+      </article>
+    </section>
+
     <section class="section">
-      <h2>Freshdesk Theme Sections</h2>
-      <p>These map directly to the Freshdesk theme editor sections you pasted earlier.</p>
+      <h2>Theme Editor Sections</h2>
+      <p>These are the complete canonical `theme/` files for full Freshdesk theme copy/paste.</p>
       <div id="theme-grid" class="grid"></div>
     </section>
 
     <section class="section">
       <h2>Deploy Fragments</h2>
-      <p>These are the split-out copy/paste fragments for quicker deployment work.</p>
+      <p>These are the smaller compatibility snippets for admin deployment work, not the full theme sections.</p>
       <div id="deploy-grid" class="grid"></div>
     </section>
 
     <p class="meta-note">
-      Tip: if you want the real Embrace credentials baked into the copyable blocks, run `python3 scripts/render_templates.py`
-      first so the local `dist/` files exist.
+      Tip: run `python3 scripts/render_templates.py` first if you want the real Embrace credentials baked into the copyable blocks.
+      `theme-preview.html` is the visual check, while this workbench is the copy/paste surface.
     </p>
   </div>
 
