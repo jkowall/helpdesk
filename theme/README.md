@@ -25,3 +25,6 @@ python3 scripts/check_sync.py
 
 Rendered local copies with secrets injected are written to `dist/`.
 The sync check verifies that the canonical `theme/` widget, preview surface, deploy snippets, and standalone widget snippet have not drifted on key copy and behavior.
+
+If the user is deploying from the hosted GitHub Pages workbench at
+`https://jkowall.github.io/helpdesk/copy-paste-workbench.html`, verify that the hosted raw file URLs or the workbench panels reflect the latest source changes before telling them to paste.

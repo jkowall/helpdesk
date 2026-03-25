@@ -366,6 +366,13 @@
     </section>
 
     <section class="section">
+      <h2>Copy Path Rules</h2>
+      <p>
+        When this page is opened from GitHub Pages, panels intentionally prefer the tracked source files over `dist/` so the hosted copy/paste path follows the latest committed repo state. Check the badge and path shown in each panel before copying.
+      </p>
+    </section>
+
+    <section class="section">
       <h2>Theme Editor Sections</h2>
       <p>Paste these into the matching Freshdesk theme sections.</p>
       <div id="theme-grid" class="grid"></div>
@@ -383,6 +390,8 @@
   </div>
 
   <script>
+    const preferSourceOnHostedPages = window.location.hostname.endsWith('github.io');
+
     const groups = {
       theme: [
         { title: 'CSS', source: 'theme/styles.css', rendered: 'dist/theme/styles.css' },
@@ -445,17 +454,31 @@
       let activePath = config.source;
       let mode = 'source';
 
-      try {
-        text = await fetchText(config.rendered);
-        activePath = config.rendered;
-        mode = 'rendered';
-      } catch (error) {
+      const preferredPaths = preferSourceOnHostedPages
+        ? [
+            { path: config.source, mode: 'source' },
+            { path: config.rendered, mode: 'rendered' }
+          ]
+        : [
+            { path: config.rendered, mode: 'rendered' },
+            { path: config.source, mode: 'source' }
+          ];
+
+      let loaded = false;
+      for (const candidate of preferredPaths) {
         try {
-          text = await fetchText(config.source);
-        } catch (sourceError) {
-          mode = 'missing';
-          text = `Could not load:\n- ${config.rendered}\n- ${config.source}\n\nMake sure you are viewing this over a local HTTP server.`;
+          text = await fetchText(candidate.path);
+          activePath = candidate.path;
+          mode = candidate.mode;
+          loaded = true;
+          break;
+        } catch (error) {
         }
+      }
+
+      if (!loaded) {
+        mode = 'missing';
+        text = `Could not load:\n- ${config.rendered}\n- ${config.source}\n\nMake sure you are viewing this over a local HTTP server or GitHub Pages.`;
       }
 
       const head = document.createElement('div');

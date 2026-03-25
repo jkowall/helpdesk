@@ -37,6 +37,8 @@ This is the standalone code designed to be pasted into the Freshdesk portal foot
   - `deploy/2-header-widget.html`
   - `deploy/4-footer-script.html`
 - **Do not treat previews as optional**: if the user is likely to validate a change in the preview, the preview must reflect the same visible behavior as the canonical theme.
+- **Always verify the hosted copy/paste path** after deploy-fragment changes. The user pastes from `https://jkowall.github.io/helpdesk/copy-paste-workbench.html`, so do not consider a change ready until the hosted workbench or its raw file URLs reflect the updated deploy files.
+- **Do not rely on repo sync alone**: passing `scripts/check_sync.py` is necessary but not sufficient when the user is copying from the GitHub Pages workbench.
 
 ## AI Widget Branding
 

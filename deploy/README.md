@@ -8,6 +8,7 @@ The latest rollout code now lives in [`theme/`](../theme/). The files in `deploy
 - Put `EMBRACE_ORG_ID` and `EMBRACE_CLIENT_ID` in `.env`
 - Run `python3 scripts/render_templates.py` to create local rendered copies in `dist/`
 - Run `python3 scripts/check_sync.py` after widget changes to confirm preview and deploy surfaces still match the canonical theme widget
+- If the deployment path is the hosted workbench at `https://jkowall.github.io/helpdesk/copy-paste-workbench.html`, verify the hosted panels or raw deploy URLs before telling anyone the snippets are ready to paste
 
 ## Deploy Files
 
