@@ -5,43 +5,27 @@
 
   <div class="chat-wrapper">
     <div class="chat-window">
-      <div class="chat-window-chrome">
-        <div class="chat-window-controls" aria-hidden="true">
-          <span class="chat-window-control-dot red"></span>
-          <span class="chat-window-control-dot amber"></span>
-          <span class="chat-window-control-dot green"></span>
-        </div>
-        <div class="chat-window-title-block">
-          <div class="chat-window-kicker">AI Support Workspace</div>
-          <div class="chat-window-heading">Max Assistant</div>
-        </div>
-        <div class="chat-window-meta">Secure Session</div>
-      </div>
-      <div class="chat-window-body">
-        <div class="chat-splash">
-          <div class="chat-splash-card">
-            <div class="chat-splash-title-row">
-              <div class="chat-splash-title">Hi, I'm Max! Your AI support guide.</div>
-              <div class="chat-splash-status">
-                <span class="chat-splash-status-dot"></span>
-                Online and ready to help
-              </div>
-            </div>
-            <div class="chat-splash-claim">
-              I can help you with PRTG setup, troubleshooting, and answer your questions instantly. Available 24/7.
+      <div class="chat-splash">
+        <div class="chat-splash-card">
+          <div class="chat-splash-title-row">
+            <div class="chat-splash-title">Hi, I'm Max! Your AI support guide.</div>
+            <div class="chat-splash-status">
+              <span class="chat-splash-status-dot"></span>
+              Online and ready to help
             </div>
           </div>
-        </div>
-        <div class="chat-conversation-frame">
-          <embrace-chat org-id="__EMBRACE_ORG_ID__" client-id="__EMBRACE_CLIENT_ID__" external-id="paessler-freshdesk-portal"{% if portal.user.email %} data-fd_email='{{portal.user.email}}'{% endif %}>
-            <template>
-              <div slot="initial-message"></div>
-              <div slot="input-placeholder">Ask Max a question...</div>
-            </template>
-          </embrace-chat>
-          <div class="chat-disclaimer">You’re chatting with Max, our AI assistant built to help you get answers quickly. If needed, he’ll guide you to the next best step.</div>
+          <div class="chat-splash-claim">
+            I can help you with PRTG setup, troubleshooting, and answer your questions instantly. Available 24/7.
+          </div>
         </div>
       </div>
+      <embrace-chat org-id="__EMBRACE_ORG_ID__" client-id="__EMBRACE_CLIENT_ID__" external-id="paessler-freshdesk-portal"{% if portal.user.email %} data-fd_email='{{portal.user.email}}'{% endif %}>
+        <template>
+          <div slot="initial-message"></div>
+          <div slot="input-placeholder">Ask Max a question...</div>
+        </template>
+      </embrace-chat>
+      <div class="chat-disclaimer">You’re chatting with Max, our AI assistant built to help you get answers quickly. If needed, he’ll guide you to the next best step.</div>
     </div>
   </div>
 
