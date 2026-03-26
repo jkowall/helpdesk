@@ -95,23 +95,22 @@
                   <li class="topbar__tab-item">
                     <div class="dropdown" id="action-bar-toggle">
                       <ul class="topbar__tab-menu dropdown-menu" role="menu" aria-labelledby="dLabel">
-                        <a href="/support/tickets" class="hide btn btn-topbar pae-header-link" style='text-align: left !important; text-transform: none !important;'>My Tickets</a>
-                        <a href="{{ portal.new_ticket_url }}" class="btn btn-topbar" style='text-align: left !important; text-transform: none !important;'>New Ticket</a>
-                        <a href="{{ portal.ticket_export_url }}" data-target="#export-modal" id="ticket-export-button" rel="freshdialog" class="hide btn btn-topbar"
-                          style='text-align: left !important; text-transform: none !important;'
+                        <li class="hide"><a href="/support/tickets" class="topbar__dropdown-link">My Tickets</a></li>
+                        <li><a href="{{ portal.new_ticket_url }}" class="topbar__dropdown-link">New Ticket</a></li>
+                        <li class="hide"><a href="{{ portal.ticket_export_url }}" data-target="#export-modal" id="ticket-export-button" rel="freshdialog" class="topbar__dropdown-link"
                           data-submit-label="{% translate portal.tickets.submit_export %}"
                           title="{% translate portal.tickets.export_ticket_data %}">
                           Export Tickets
-                        </a>
+                        </a></li>
                       </ul>
                     </div>
                   </li>
                   <li class="topbar__tab-item">
                     <div class="dropdown" id="action-bar-toggle">
-                      <a style='margin-left: 14px !important;' class="dropdown-toggle profile-name btn btn-topbar pae-header-link" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">{{ current_user.name }}<b class="caret"></b></a>
+                      <button type="button" class="topbar__profile-toggle dropdown-toggle" id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ current_user.name }}<b class="caret"></b></button>
                       <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                        <li><a style='text-transform: capitalize !important;' href="{{ portal.profile_url }}">Edit Profile</a></li>
-                        <li><a style='text-transform: capitalize !important;' href="{{ portal.logout_url }}">Sign out</a></li>
+                        <li><a href="{{ portal.profile_url }}" class="topbar__dropdown-link">Edit Profile</a></li>
+                        <li><a href="{{ portal.logout_url }}" class="topbar__dropdown-link">Sign out</a></li>
                       </ul>
                     </div>
                   </li>
@@ -120,13 +119,13 @@
             {% else %}
               <ul class="topbar__tab-menu topbar__auth-menu">
                 {% if portal.can_signup_feature %}
-                  <li class="topbar__tab-item"><a href="{{ portal['signup_url'] }}" class="topbar__tab-link pae-header-link topbar__link">Register</a></li>
+                  <li class="topbar__tab-item"><a href="{{ portal['signup_url'] }}" class="topbar__tab-link pae-header-link">Register</a></li>
                 {% endif %}
-                <li class="topbar__tab-item"><a href="{{ portal.login_url }}" class="banner-language-selector portal-signin btn btn-primary btn-create-ticket btn-topbar">Sign in</a></li>
+                <li class="topbar__tab-item"><a href="{{ portal.login_url }}" class="topbar__signin-link">Sign in</a></li>
               </ul>
             {% endif %}
             <div class="container-inner search-box search-box--hero-unit" data-search-box></div>
-            <a class="topbar__tab-link topbar__link pae-site-link" style="margin-top: -15px; font-color: black !important; font-weight: normal !important; margin-left: 75px; margin-right: 0px;" href="https://www.paessler.com">www.paessler.com</a>
+            <a class="topbar__site-link" href="https://www.paessler.com">www.paessler.com</a>
           </div>
         </div>
       </div>

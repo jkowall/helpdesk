@@ -280,23 +280,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <li class="topbar__tab-item">
                     <div class="dropdown" id="action-bar-toggle">
                       <ul class="topbar__tab-menu dropdown-menu" role="menu" aria-labelledby="dLabel">
-                        <a href="/support/tickets" class="hide btn btn-topbar pae-header-link" style='text-align: left !important; text-transform: none !important;'>My Tickets</a>
-                        <a href="{{ portal.new_ticket_url }}" class="btn btn-topbar" style='text-align: left !important; text-transform: none !important;'>New Ticket</a>
-                        <a href="{{ portal.ticket_export_url }}" data-target="#export-modal" id="ticket-export-button" rel="freshdialog" class="hide btn btn-topbar"
-                          style='text-align: left !important; text-transform: none !important;'
+                        <li class="hide"><a href="/support/tickets" class="topbar__dropdown-link">My Tickets</a></li>
+                        <li><a href="{{ portal.new_ticket_url }}" class="topbar__dropdown-link">New Ticket</a></li>
+                        <li class="hide"><a href="{{ portal.ticket_export_url }}" data-target="#export-modal" id="ticket-export-button" rel="freshdialog" class="topbar__dropdown-link"
                           data-submit-label="{% translate portal.tickets.submit_export %}"
                           title="{% translate portal.tickets.export_ticket_data %}">
                           Export Tickets
-                        </a>
+                        </a></li>
                       </ul>
                     </div>
                   </li>
                   <li class="topbar__tab-item">
                     <div class="dropdown" id="action-bar-toggle">
-                      <a style='margin-left: 14px !important;' class="dropdown-toggle profile-name btn btn-topbar pae-header-link" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">{{ current_user.name }}<b class="caret"></b></a>
+                      <button type="button" class="topbar__profile-toggle dropdown-toggle" id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ current_user.name }}<b class="caret"></b></button>
                       <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                        <li><a style='text-transform: capitalize !important;' href="{{ portal.profile_url }}">Edit Profile</a></li>
-                        <li><a style='text-transform: capitalize !important;' href="{{ portal.logout_url }}">Sign out</a></li>
+                        <li><a href="{{ portal.profile_url }}" class="topbar__dropdown-link">Edit Profile</a></li>
+                        <li><a href="{{ portal.logout_url }}" class="topbar__dropdown-link">Sign out</a></li>
                       </ul>
                     </div>
                   </li>
@@ -305,13 +304,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             {% else %}
               <ul class="topbar__tab-menu topbar__auth-menu">
                 {% if portal.can_signup_feature %}
-                  <li class="topbar__tab-item"><a href="{{ portal['signup_url'] }}" class="topbar__tab-link pae-header-link topbar__link">Register</a></li>
+                  <li class="topbar__tab-item"><a href="{{ portal['signup_url'] }}" class="topbar__tab-link pae-header-link">Register</a></li>
                 {% endif %}
-                <li class="topbar__tab-item"><a href="{{ portal.login_url }}" class="banner-language-selector portal-signin btn btn-primary btn-create-ticket btn-topbar">Sign in</a></li>
+                <li class="topbar__tab-item"><a href="{{ portal.login_url }}" class="topbar__signin-link">Sign in</a></li>
               </ul>
             {% endif %}
             <div class="container-inner search-box search-box--hero-unit" data-search-box></div>
-            <a class="topbar__tab-link topbar__link pae-site-link" style="margin-top: -15px; font-color: black !important; font-weight: normal !important; margin-left: 75px; margin-right: 0px;" href="https://www.paessler.com">www.paessler.com</a>
+            <a class="topbar__site-link" href="https://www.paessler.com">www.paessler.com</a>
           </div>
         </div>
       </div>
@@ -1028,26 +1027,95 @@ div.home {
   left: 50%;
 }
 
-.btn-create-ticket {
-  position: relative;
+.topbar__signin-link {
   display: inline-block;
-  color: #fff !important;
-  background-color: #f5900c !important;
-  padding: 4px 12px !important;
-  text-transform: uppercase !important;
-  font-size: 16px !important;
-  font-weight: 400 !important;
-  font-family: roboto, sans-serif !important;
-  border-radius: 100px !important;
-  border: 1px solid orange;
-  transition: all 0.15s cubic-bezier(.4, 0, .2, 1);
-  margin-top: -12px !important;
+  color: #fff;
+  background-color: #f5900c;
+  padding: 4px 12px;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Roboto", sans-serif;
+  border-radius: 100px;
+  border: 1px solid #e8920a;
+  text-decoration: none;
+  transition: background-color 0.15s cubic-bezier(.4, 0, .2, 1), transform 0.15s;
   margin-left: 28px;
+  white-space: nowrap;
 }
 
-.btn-create-ticket:hover {
-  background-color: #dc8c00 !important;
+.topbar__signin-link:hover {
+  background-color: #dc8c00;
+  color: #fff;
   transform: scale(1.03);
+  text-decoration: none;
+}
+
+.topbar__profile-toggle {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0 0 10px;
+  margin-left: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Roboto", sans-serif;
+  color: #050f34;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+.topbar__profile-toggle::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background-color: #00aeef;
+  transition: width 0.3s ease, left 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.topbar__profile-toggle:hover {
+  color: #00aeef;
+}
+
+.topbar__profile-toggle:hover::after {
+  width: 100%;
+  left: 50%;
+}
+
+.topbar__dropdown-link {
+  display: block;
+  padding: 6px 16px;
+  color: #050f34;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.topbar__dropdown-link:hover {
+  color: #00aeef;
+  text-decoration: none;
+}
+
+.topbar__site-link {
+  margin-left: 75px;
+  margin-top: -15px;
+  font-weight: 400;
+  color: #050f34;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.topbar__site-link:hover {
+  color: #00aeef;
+  text-decoration: none;
 }
 
 .hero-unit.background-blackblue {
@@ -1715,9 +1783,9 @@ embrace-chat {
     font-size: 18px !important;
   }
 
-  .btn-create-ticket,
-  .pae-site-link {
-    margin-left: 0 !important;
+  .topbar__signin-link,
+  .topbar__site-link {
+    margin-left: 0;
   }
 
   .home-card-grid {
