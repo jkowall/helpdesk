@@ -1385,7 +1385,9 @@ div#fallback-footer .bottom-container .social-wrapper a.social svg {
   padding: 0;
   flex-direction: column;
   align-items: stretch;
-  background: linear-gradient(180deg, #f7fafc 0%, #edf3f8 100%);
+  background: rgba(8, 30, 55, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   box-shadow: none;
 }
 
@@ -1424,8 +1426,24 @@ div#fallback-footer .bottom-container .social-wrapper a.social svg {
 
 #embrace-widget-container.widget-fullscreen .widget-controls {
   position: absolute;
-  top: 18px;
-  right: 24px;
+  top: 20px;
+  right: 32px;
+}
+
+#embrace-widget-container.widget-fullscreen .widget-btn.primary {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  border-radius: 8px;
+  padding: 8px 16px;
+  transition: all 0.2s;
+}
+
+#embrace-widget-container.widget-fullscreen .widget-btn.primary:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .widget-btn {
@@ -1469,14 +1487,14 @@ div#fallback-footer .bottom-container .social-wrapper a.social svg {
   display: flex;
   align-items: stretch;
   justify-content: center;
-  padding: 80px 24px 28px;
+  padding: 80px 32px 36px;
 }
 
 .chat-window {
   position: relative;
   width: 100%;
-  max-width: 1100px;
-  height: calc(100vh - 108px);
+  max-width: 960px;
+  height: calc(100vh - 116px);
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -1484,8 +1502,11 @@ div#fallback-footer .bottom-container .social-wrapper a.social svg {
   border-radius: 26px;
   overflow: hidden;
   background: #ffffff;
-  border: 1px solid rgba(19, 57, 92, 0.08);
-  box-shadow: 0 28px 60px rgba(16, 40, 66, 0.16);
+  border: 1px solid rgba(19, 57, 92, 0.1);
+  box-shadow:
+    0 4px 12px rgba(16, 40, 66, 0.06),
+    0 20px 48px rgba(16, 40, 66, 0.12),
+    0 0 0 1px rgba(255, 255, 255, 0.6) inset;
 }
 
 .chat-splash {
@@ -1593,6 +1614,8 @@ embrace-chat {
   max-width: none;
   margin: 0;
   height: auto;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(0, 75, 135, 0.02) 0%, transparent 70%);
 }
 
 @media (max-width: 1000px) {
@@ -1667,11 +1690,11 @@ embrace-chat {
   }
 
   #embrace-widget-container.widget-fullscreen .chat-wrapper {
-    padding: 62px 10px 10px;
+    padding: 62px 12px 16px;
   }
 
   .chat-window {
-    height: calc(100vh - 74px);
+    height: calc(100vh - 78px);
     border-radius: 18px;
     padding: 22px 18px 16px;
   }
