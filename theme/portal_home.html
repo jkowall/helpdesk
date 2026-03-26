@@ -97,7 +97,7 @@
 
       <div class="hero-chat-input">
         <input type="text" id="hero-chat-field" placeholder="{{ hero_input_placeholder }}" autocomplete="off">
-        <button type="button" id="hero-chat-submit" title="Send">
+        <button type="button" id="hero-chat-submit" aria-label="Send">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>
@@ -123,8 +123,8 @@
     {% else %}
       <h1 class="white">{{ here_to_help }}</h1>
       <h2 class="white">{{ claim }}<br><br></h2>
-      <div style="text-align: center;">
-        <a class="btn btn-primary extralarge" href="/login">{{ loginmsg }}</a>
+      <div class="hero-cta-wrapper">
+        <a class="hero-cta-btn" href="/login">{{ loginmsg }}</a>
       </div>
     {% endif %}
   </div>
@@ -138,12 +138,12 @@
       <a class="home-card-link" href="/support/tickets">
         <div class="box-segment column column--sm-3">
           <div class="box-image">
-            <img src="https://paessler.canto.global/direct/image/4nm8teekqh11p6uvadhjs4qg62/JEA7rMfXu_DfAyth4zncCcjqI8Q/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_Ticket-Overview.svg" alt="">
+            <img src="https://paessler.canto.global/direct/image/4nm8teekqh11p6uvadhjs4qg62/JEA7rMfXu_DfAyth4zncCcjqI8Q/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_Ticket-Overview.svg" alt="Ticket overview illustration">
           </div>
           <div class="box-content">
             <h3>{{all_your_tickets}}</h3>
-            <p style='min-height: 100px !important;'>{{all_your_tickets_desc}}</p>
-            <span class="btn btn-primary">{{ my_tickets }}</span>
+            <p class="box-content__desc">{{all_your_tickets_desc}}</p>
+            <span class="home-card-btn">{{ my_tickets }}</span>
           </div>
         </div>
       </a>
@@ -152,38 +152,38 @@
       <a class="home-card-link" href="https://helpdesk.paessler.com/en/support/solutions">
         <div class="box-segment column column--sm-3">
           <div class="box-image">
-            <img src="https://paessler.canto.global/direct/image/7oi7f9t3g17v1a2q6ge7vuqf67/P_RX2hwNtJZkPS8nnqYBmtVSvyA/original?content-type=image%2Fsvg%2Bxml&name=Preview_Category_KnowledgeBase.svg" alt="">
+            <img src="https://paessler.canto.global/direct/image/7oi7f9t3g17v1a2q6ge7vuqf67/P_RX2hwNtJZkPS8nnqYBmtVSvyA/original?content-type=image%2Fsvg%2Bxml&name=Preview_Category_KnowledgeBase.svg" alt="Knowledge base illustration">
           </div>
           <div class="box-content">
             <h3>{{knowledge_base}}</h3>
-            <p style='min-height: 100px !important;'>{{knowledge_base_desc}}</p>
-            <span class="btn btn-primary">{{knowledge_base}}</span>
+            <p class="box-content__desc">{{knowledge_base_desc}}</p>
+            <span class="home-card-btn">{{knowledge_base}}</span>
           </div>
         </div>
       </a>
 
-      <a class="home-card-link" href="https://www.paessler.com/support" target='_blank'>
+      <a class="home-card-link" href="https://www.paessler.com/support" target="_blank" rel="noopener">
         <div class="box-segment column column--sm-3">
           <div class="box-image">
-            <img src="https://paessler.canto.global/direct/image/ilih5m88v569f7ojatp4g2se7s/hm4Tni1cy9NJAXVx514Hck-DZXU/original?content-type=image%2Fsvg%2Bxml&name=Preview_Resources-Support.svg" alt="">
+            <img src="https://paessler.canto.global/direct/image/ilih5m88v569f7ojatp4g2se7s/hm4Tni1cy9NJAXVx514Hck-DZXU/original?content-type=image%2Fsvg%2Bxml&name=Preview_Resources-Support.svg" alt="Support resources illustration">
           </div>
           <div class="box-content">
             <h3>{{other_ressources}}</h3>
-            <p style='min-height: 100px !important;'>{{other_ressources_desc}}{% if portal.user.id %}<br>{% endif %}</p>
-            <span class="btn btn-primary">{{other_ressources}}</span>
+            <p class="box-content__desc">{{other_ressources_desc}}{% if portal.user.id %}<br>{% endif %}</p>
+            <span class="home-card-btn">{{other_ressources}}</span>
           </div>
         </div>
       </a>
 
-      <a class="home-card-link" href="https://uservoice.paessler.com/" target='_blank'>
+      <a class="home-card-link" href="https://uservoice.paessler.com/" target="_blank" rel="noopener">
         <div class="box-segment column column--sm-3">
           <div class="box-image">
-            <img src="https://paessler.canto.global/direct/image/p00t8i1lc97nt0r3botvmpup4k/2-w4qEm7JG6DCSJCzgylqcsoh5c/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_UserVoice.svg" alt="">
+            <img src="https://paessler.canto.global/direct/image/p00t8i1lc97nt0r3botvmpup4k/2-w4qEm7JG6DCSJCzgylqcsoh5c/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_UserVoice.svg" alt="Feature request illustration">
           </div>
           <div class="box-content">
             <h3>{{feature_request}}</h3>
-            <p style='min-height: 100px !important;'>{{feature_request_desc}}{% if portal.user.id %}<br><br />{% endif %}</p>
-            <span class="btn btn-primary">{{feature_request}}</span>
+            <p class="box-content__desc">{{feature_request_desc}}{% if portal.user.id %}<br><br />{% endif %}</p>
+            <span class="home-card-btn">{{feature_request}}</span>
           </div>
         </div>
       </a>
@@ -192,12 +192,12 @@
       <a class="home-card-link" href="{{ portal.new_ticket_url }}">
         <div class="box-segment column column--sm-3">
           <div class="box-image">
-            <img src="https://paessler.canto.global/direct/image/l8gbjkqkh55upeeq63l6t6d32e/eNmJCkqGp1aSYejjtBhBUeIxLdM/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_Performance.svg" alt="">
+            <img src="https://paessler.canto.global/direct/image/l8gbjkqkh55upeeq63l6t6d32e/eNmJCkqGp1aSYejjtBhBUeIxLdM/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_Performance.svg" alt="Performance check illustration">
           </div>
           <div class="box-content">
             <h3>{{performance_check_service}}</h3>
-            <p style='min-height: 100px !important;'>{{performance_check_service_desc}}</p>
-            <span class="btn btn-primary">{{performance_check_btn}}</span>
+            <p class="box-content__desc">{{performance_check_service_desc}}</p>
+            <span class="home-card-btn">{{performance_check_btn}}</span>
           </div>
         </div>
       </a>

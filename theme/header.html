@@ -35,7 +35,7 @@
 </div>
 {% endif %}
 
-<header class="topbar container" data-topbar style='margin-top: 50px;'>
+<header class="topbar container" data-topbar>
   <div class="container-inner">
     <div class="topbar__inner">
       <div class="topbar__logo-wrapper">
@@ -57,13 +57,12 @@
 
         <button
           type="button"
-          role="button"
           aria-label="Toggle Navigation"
           class="topbar__burger visible-xs visible-sm"
           data-toggle-menu
         >
           <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path style="fill:#00aeef" d="M21.5 6.5h-19c-.3 0-.7-.4-.7-.7V4.4c0-.4.4-.7.7-.7h19c.3 0 .7.3.7.7v1.4c0 .3-.4.7-.7.7zm0 6.8h-19c-.3 0-.7-.3-.7-.7v-1.3c0-.4.4-.7.7-.7h19c.3 0 .7.3.7.7v1.4c0 .3-.4.6-.7.6zm0 7h-19c-.3 0-.7-.3-.7-.7v-1.4c0-.3.4-.7.7-.7h19c.3 0 .7.4.7.7v1.4c0 .4-.4.7-.7.7z"></path>
+            <path d="M21.5 6.5h-19c-.3 0-.7-.4-.7-.7V4.4c0-.4.4-.7.7-.7h19c.3 0 .7.3.7.7v1.4c0 .3-.4.7-.7.7zm0 6.8h-19c-.3 0-.7-.3-.7-.7v-1.3c0-.4.4-.7.7-.7h19c.3 0 .7.3.7.7v1.4c0 .3-.4.6-.7.6zm0 7h-19c-.3 0-.7-.3-.7-.7v-1.4c0-.3.4-.7.7-.7h19c.3 0 .7.4.7.7v1.4c0 .4-.4.7-.7.7z"></path>
           </svg>
         </button>
 
@@ -74,7 +73,7 @@
                 {% for tab in portal.tabs %}
                   {% if tab.url %}
                     <li class="topbar__tab-item">
-                      <a class="topbar__tab-link pae-header-link topbar__link {% if tab.tab_type == portal.current_tab %}is-active{% endif %}" href="{{tab.url}}">
+                      <a class="topbar__tab-link pae-header-link {% if tab.tab_type == portal.current_tab %}is-active{% endif %}" href="{{tab.url}}">
                         {% if tab.name == "solutions" %}
                           Knowledge Base
                         {% else %}
@@ -93,11 +92,11 @@
               <div class="topbar__account-controls">
                 <ul class="topbar__tab-menu">
                   <li class="topbar__tab-item">
-                    <div class="dropdown" id="action-bar-toggle">
-                      <ul class="topbar__tab-menu dropdown-menu" role="menu" aria-labelledby="dLabel">
-                        <li class="hide"><a href="/support/tickets" class="topbar__dropdown-link">My Tickets</a></li>
+                    <div class="dropdown" id="tickets-menu-toggle">
+                      <ul class="topbar__tab-menu topbar__dropdown-menu dropdown-menu" role="menu" aria-labelledby="tickets-menu-label">
+                        <li hidden><a href="/support/tickets" class="topbar__dropdown-link">My Tickets</a></li>
                         <li><a href="{{ portal.new_ticket_url }}" class="topbar__dropdown-link">New Ticket</a></li>
-                        <li class="hide"><a href="{{ portal.ticket_export_url }}" data-target="#export-modal" id="ticket-export-button" rel="freshdialog" class="topbar__dropdown-link"
+                        <li hidden><a href="{{ portal.ticket_export_url }}" data-target="#export-modal" id="ticket-export-button" rel="freshdialog" class="topbar__dropdown-link"
                           data-submit-label="{% translate portal.tickets.submit_export %}"
                           title="{% translate portal.tickets.export_ticket_data %}">
                           Export Tickets
@@ -106,9 +105,9 @@
                     </div>
                   </li>
                   <li class="topbar__tab-item">
-                    <div class="dropdown" id="action-bar-toggle">
-                      <button type="button" class="topbar__profile-toggle dropdown-toggle" id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ current_user.name }}<b class="caret"></b></button>
-                      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <div class="dropdown" id="profile-menu-toggle">
+                      <button type="button" class="topbar__profile-toggle dropdown-toggle" id="profile-menu-label" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ current_user.name }}<b class="caret"></b></button>
+                      <ul class="topbar__dropdown-menu dropdown-menu" role="menu" aria-labelledby="profile-menu-label">
                         <li><a href="{{ portal.profile_url }}" class="topbar__dropdown-link">Edit Profile</a></li>
                         <li><a href="{{ portal.logout_url }}" class="topbar__dropdown-link">Sign out</a></li>
                       </ul>

@@ -220,7 +220,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 {% endif %}
 
-<header class="topbar container" data-topbar style='margin-top: 50px;'>
+<header class="topbar container" data-topbar>
   <div class="container-inner">
     <div class="topbar__inner">
       <div class="topbar__logo-wrapper">
@@ -242,13 +242,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <button
           type="button"
-          role="button"
           aria-label="Toggle Navigation"
           class="topbar__burger visible-xs visible-sm"
           data-toggle-menu
         >
           <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path style="fill:#00aeef" d="M21.5 6.5h-19c-.3 0-.7-.4-.7-.7V4.4c0-.4.4-.7.7-.7h19c.3 0 .7.3.7.7v1.4c0 .3-.4.7-.7.7zm0 6.8h-19c-.3 0-.7-.3-.7-.7v-1.3c0-.4.4-.7.7-.7h19c.3 0 .7.3.7.7v1.4c0 .3-.4.6-.7.6zm0 7h-19c-.3 0-.7-.3-.7-.7v-1.4c0-.3.4-.7.7-.7h19c.3 0 .7.4.7.7v1.4c0 .4-.4.7-.7.7z"></path>
+            <path d="M21.5 6.5h-19c-.3 0-.7-.4-.7-.7V4.4c0-.4.4-.7.7-.7h19c.3 0 .7.3.7.7v1.4c0 .3-.4.7-.7.7zm0 6.8h-19c-.3 0-.7-.3-.7-.7v-1.3c0-.4.4-.7.7-.7h19c.3 0 .7.3.7.7v1.4c0 .3-.4.6-.7.6zm0 7h-19c-.3 0-.7-.3-.7-.7v-1.4c0-.3.4-.7.7-.7h19c.3 0 .7.4.7.7v1.4c0 .4-.4.7-.7.7z"></path>
           </svg>
         </button>
 
@@ -259,7 +258,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 {% for tab in portal.tabs %}
                   {% if tab.url %}
                     <li class="topbar__tab-item">
-                      <a class="topbar__tab-link pae-header-link topbar__link {% if tab.tab_type == portal.current_tab %}is-active{% endif %}" href="{{tab.url}}">
+                      <a class="topbar__tab-link pae-header-link {% if tab.tab_type == portal.current_tab %}is-active{% endif %}" href="{{tab.url}}">
                         {% if tab.name == "solutions" %}
                           Knowledge Base
                         {% else %}
@@ -278,11 +277,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <div class="topbar__account-controls">
                 <ul class="topbar__tab-menu">
                   <li class="topbar__tab-item">
-                    <div class="dropdown" id="action-bar-toggle">
-                      <ul class="topbar__tab-menu dropdown-menu" role="menu" aria-labelledby="dLabel">
-                        <li class="hide"><a href="/support/tickets" class="topbar__dropdown-link">My Tickets</a></li>
+                    <div class="dropdown" id="tickets-menu-toggle">
+                      <ul class="topbar__tab-menu topbar__dropdown-menu dropdown-menu" role="menu" aria-labelledby="tickets-menu-label">
+                        <li hidden><a href="/support/tickets" class="topbar__dropdown-link">My Tickets</a></li>
                         <li><a href="{{ portal.new_ticket_url }}" class="topbar__dropdown-link">New Ticket</a></li>
-                        <li class="hide"><a href="{{ portal.ticket_export_url }}" data-target="#export-modal" id="ticket-export-button" rel="freshdialog" class="topbar__dropdown-link"
+                        <li hidden><a href="{{ portal.ticket_export_url }}" data-target="#export-modal" id="ticket-export-button" rel="freshdialog" class="topbar__dropdown-link"
                           data-submit-label="{% translate portal.tickets.submit_export %}"
                           title="{% translate portal.tickets.export_ticket_data %}">
                           Export Tickets
@@ -291,9 +290,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
                   </li>
                   <li class="topbar__tab-item">
-                    <div class="dropdown" id="action-bar-toggle">
-                      <button type="button" class="topbar__profile-toggle dropdown-toggle" id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ current_user.name }}<b class="caret"></b></button>
-                      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <div class="dropdown" id="profile-menu-toggle">
+                      <button type="button" class="topbar__profile-toggle dropdown-toggle" id="profile-menu-label" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ current_user.name }}<b class="caret"></b></button>
+                      <ul class="topbar__dropdown-menu dropdown-menu" role="menu" aria-labelledby="profile-menu-label">
                         <li><a href="{{ portal.profile_url }}" class="topbar__dropdown-link">Edit Profile</a></li>
                         <li><a href="{{ portal.logout_url }}" class="topbar__dropdown-link">Sign out</a></li>
                       </ul>
@@ -321,7 +320,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- FOOTER -->
 <div id="fallback-footer">
-  <footer class="footer-container container" style='margin-top: 146px !important; width: 100% !important;'>
+  <footer class="footer-container container">
     <div class="container-inner footer-container__inner">
       <div class="row clearfix">
         <div class="column column--sm-4">
@@ -705,7 +704,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="hero-chat-input">
         <input type="text" id="hero-chat-field" placeholder="{{ hero_input_placeholder }}" autocomplete="off">
-        <button type="button" id="hero-chat-submit" title="Send">
+        <button type="button" id="hero-chat-submit" aria-label="Send">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>
@@ -731,8 +730,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     {% else %}
       <h1 class="white">{{ here_to_help }}</h1>
       <h2 class="white">{{ claim }}<br><br></h2>
-      <div style="text-align: center;">
-        <a class="btn btn-primary extralarge" href="/login">{{ loginmsg }}</a>
+      <div class="hero-cta-wrapper">
+        <a class="hero-cta-btn" href="/login">{{ loginmsg }}</a>
       </div>
     {% endif %}
   </div>
@@ -746,12 +745,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a class="home-card-link" href="/support/tickets">
         <div class="box-segment column column--sm-3">
           <div class="box-image">
-            <img src="https://paessler.canto.global/direct/image/4nm8teekqh11p6uvadhjs4qg62/JEA7rMfXu_DfAyth4zncCcjqI8Q/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_Ticket-Overview.svg" alt="">
+            <img src="https://paessler.canto.global/direct/image/4nm8teekqh11p6uvadhjs4qg62/JEA7rMfXu_DfAyth4zncCcjqI8Q/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_Ticket-Overview.svg" alt="Ticket overview illustration">
           </div>
           <div class="box-content">
             <h3>{{all_your_tickets}}</h3>
-            <p style='min-height: 100px !important;'>{{all_your_tickets_desc}}</p>
-            <span class="btn btn-primary">{{ my_tickets }}</span>
+            <p class="box-content__desc">{{all_your_tickets_desc}}</p>
+            <span class="home-card-btn">{{ my_tickets }}</span>
           </div>
         </div>
       </a>
@@ -760,38 +759,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a class="home-card-link" href="https://helpdesk.paessler.com/en/support/solutions">
         <div class="box-segment column column--sm-3">
           <div class="box-image">
-            <img src="https://paessler.canto.global/direct/image/7oi7f9t3g17v1a2q6ge7vuqf67/P_RX2hwNtJZkPS8nnqYBmtVSvyA/original?content-type=image%2Fsvg%2Bxml&name=Preview_Category_KnowledgeBase.svg" alt="">
+            <img src="https://paessler.canto.global/direct/image/7oi7f9t3g17v1a2q6ge7vuqf67/P_RX2hwNtJZkPS8nnqYBmtVSvyA/original?content-type=image%2Fsvg%2Bxml&name=Preview_Category_KnowledgeBase.svg" alt="Knowledge base illustration">
           </div>
           <div class="box-content">
             <h3>{{knowledge_base}}</h3>
-            <p style='min-height: 100px !important;'>{{knowledge_base_desc}}</p>
-            <span class="btn btn-primary">{{knowledge_base}}</span>
+            <p class="box-content__desc">{{knowledge_base_desc}}</p>
+            <span class="home-card-btn">{{knowledge_base}}</span>
           </div>
         </div>
       </a>
 
-      <a class="home-card-link" href="https://www.paessler.com/support" target='_blank'>
+      <a class="home-card-link" href="https://www.paessler.com/support" target="_blank" rel="noopener">
         <div class="box-segment column column--sm-3">
           <div class="box-image">
-            <img src="https://paessler.canto.global/direct/image/ilih5m88v569f7ojatp4g2se7s/hm4Tni1cy9NJAXVx514Hck-DZXU/original?content-type=image%2Fsvg%2Bxml&name=Preview_Resources-Support.svg" alt="">
+            <img src="https://paessler.canto.global/direct/image/ilih5m88v569f7ojatp4g2se7s/hm4Tni1cy9NJAXVx514Hck-DZXU/original?content-type=image%2Fsvg%2Bxml&name=Preview_Resources-Support.svg" alt="Support resources illustration">
           </div>
           <div class="box-content">
             <h3>{{other_ressources}}</h3>
-            <p style='min-height: 100px !important;'>{{other_ressources_desc}}{% if portal.user.id %}<br>{% endif %}</p>
-            <span class="btn btn-primary">{{other_ressources}}</span>
+            <p class="box-content__desc">{{other_ressources_desc}}{% if portal.user.id %}<br>{% endif %}</p>
+            <span class="home-card-btn">{{other_ressources}}</span>
           </div>
         </div>
       </a>
 
-      <a class="home-card-link" href="https://uservoice.paessler.com/" target='_blank'>
+      <a class="home-card-link" href="https://uservoice.paessler.com/" target="_blank" rel="noopener">
         <div class="box-segment column column--sm-3">
           <div class="box-image">
-            <img src="https://paessler.canto.global/direct/image/p00t8i1lc97nt0r3botvmpup4k/2-w4qEm7JG6DCSJCzgylqcsoh5c/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_UserVoice.svg" alt="">
+            <img src="https://paessler.canto.global/direct/image/p00t8i1lc97nt0r3botvmpup4k/2-w4qEm7JG6DCSJCzgylqcsoh5c/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_UserVoice.svg" alt="Feature request illustration">
           </div>
           <div class="box-content">
             <h3>{{feature_request}}</h3>
-            <p style='min-height: 100px !important;'>{{feature_request_desc}}{% if portal.user.id %}<br><br />{% endif %}</p>
-            <span class="btn btn-primary">{{feature_request}}</span>
+            <p class="box-content__desc">{{feature_request_desc}}{% if portal.user.id %}<br><br />{% endif %}</p>
+            <span class="home-card-btn">{{feature_request}}</span>
           </div>
         </div>
       </a>
@@ -800,12 +799,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a class="home-card-link" href="{{ portal.new_ticket_url }}">
         <div class="box-segment column column--sm-3">
           <div class="box-image">
-            <img src="https://paessler.canto.global/direct/image/l8gbjkqkh55upeeq63l6t6d32e/eNmJCkqGp1aSYejjtBhBUeIxLdM/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_Performance.svg" alt="">
+            <img src="https://paessler.canto.global/direct/image/l8gbjkqkh55upeeq63l6t6d32e/eNmJCkqGp1aSYejjtBhBUeIxLdM/original?content-type=image%2Fsvg%2Bxml&name=Preview_Support_Performance.svg" alt="Performance check illustration">
           </div>
           <div class="box-content">
             <h3>{{performance_check_service}}</h3>
-            <p style='min-height: 100px !important;'>{{performance_check_service_desc}}</p>
-            <span class="btn btn-primary">{{performance_check_btn}}</span>
+            <p class="box-content__desc">{{performance_check_service_desc}}</p>
+            <span class="home-card-btn">{{performance_check_btn}}</span>
           </div>
         </div>
       </a>
@@ -875,6 +874,7 @@ div.home {
 
 .topbar {
   width: 100%;
+  margin-top: var(--fd-widget-height);
   padding-top: 30px !important;
   padding-bottom: 30px !important;
   margin-bottom: 0 !important;
@@ -1223,13 +1223,13 @@ section p.white {
 
 .hero-chat-input input {
   flex: 1;
-  border: none !important;
+  border: none;
   padding: 20px 28px;
   font-size: 1.15rem;
   font-family: inherit;
   outline: none;
   color: #333;
-  box-shadow: none !important;
+  box-shadow: none;
 }
 
 .hero-chat-input input::placeholder {
@@ -1237,7 +1237,7 @@ section p.white {
 }
 
 .hero-chat-input button {
-  background-color: #005c9e !important;
+  background-color: #005c9e;
   border: 3px solid #ffffff;
   color: #fff;
   width: 64px;
@@ -1253,7 +1253,7 @@ section p.white {
 }
 
 .hero-chat-input button:hover {
-  background-color: #004b87 !important;
+  background-color: #004b87;
 }
 
 .suggested-topics {
@@ -1273,18 +1273,8 @@ section p.white {
   justify-content: center;
 }
 
-.topic-group-label {
-  flex-basis: 100%;
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 0.86rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  text-align: left;
-}
-
 .topic-pill {
-  background-color: rgba(255, 255, 255, 0.15) !important;
+  background-color: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.4);
   color: #fff;
   padding: 10px 20px;
@@ -1297,8 +1287,8 @@ section p.white {
 }
 
 .topic-pill:hover {
-  background-color: rgba(255, 255, 255, 0.25) !important;
-  transform: scale(1.02) !important;
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: scale(1.02);
 }
 
 .hero-secondary-link {
@@ -1308,15 +1298,40 @@ section p.white {
 }
 
 .hero-secondary-link a {
-  color: #ffffff !important;
-  text-decoration: none !important;
+  color: #ffffff;
+  text-decoration: none;
   font-weight: 700;
   transition: color 0.2s ease;
 }
 
 .hero-secondary-link a:hover {
-  color: #dff4ff !important;
-  text-decoration: none !important;
+  color: #dff4ff;
+  text-decoration: none;
+}
+
+.hero-cta-wrapper {
+  text-align: center;
+}
+
+.hero-cta-btn {
+  display: inline-block;
+  color: #fff;
+  background-color: var(--fd-brand-blue);
+  padding: 12px 32px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-family: "Roboto", sans-serif;
+  border-radius: 100px;
+  border: none;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.15s;
+}
+
+.hero-cta-btn:hover {
+  background-color: #0098d0;
+  color: #fff;
+  transform: scale(1.03);
+  text-decoration: none;
 }
 
 .home-card-grid {
@@ -1348,7 +1363,7 @@ section p.white {
 .box-segment {
   background-color: #ffffff;
   border-radius: 5px;
-  padding: 0 !important;
+  padding: 0;
   box-shadow: 0 0 5px 0 rgba(153, 153, 153, 0.5);
 }
 
@@ -1358,14 +1373,39 @@ section p.white {
 
 .box-segment .box-content {
   padding: 15px 15px 25px 15px;
-  min-height: 220px !important;
+  min-height: 220px;
   text-align: center;
 }
 
 .box-segment .box-content h3 {
   font-family: Roboto, sans-serif;
   font-weight: 300;
-  color: #050f34 !important;
+  color: var(--pae-dark);
+}
+
+.box-content__desc {
+  min-height: 100px;
+}
+
+.home-card-btn {
+  display: inline-block;
+  color: #fff;
+  background-color: var(--fd-brand-blue);
+  padding: 6px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.home-card-link:hover .home-card-btn {
+  background-color: #0098d0;
+}
+
+.topbar__dropdown-menu {
+  min-width: 160px;
 }
 
 div.box-image > img {
@@ -1381,7 +1421,8 @@ div#fallback-footer .footer-container {
   color: #ffffff;
   background-color: #050f34;
   padding: 50px 0;
-  margin-top: 50px;
+  margin-top: 146px;
+  width: 100%;
   font-weight: 400;
 }
 
@@ -1465,10 +1506,6 @@ div#fallback-footer .bottom-container .social-wrapper a.social svg {
   display: flex;
   align-items: center;
   gap: 8px;
-}
-
-.bar-label::before {
-  content: "";
 }
 
 .ai-disclosure {
@@ -1846,3 +1883,4 @@ embrace-chat {
     font-size: 1rem;
   }
 }
+

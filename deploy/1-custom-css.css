@@ -29,6 +29,7 @@ div.home {
 
 .topbar {
   width: 100%;
+  margin-top: var(--fd-widget-height);
   padding-top: 30px !important;
   padding-bottom: 30px !important;
   margin-bottom: 0 !important;
@@ -313,6 +314,13 @@ div.home {
   }
 }
 
+section h1.white,
+section h2.white,
+section p.white {
+  color: #ffffff !important;
+  text-align: center !important;
+}
+
 .hero-unit h1.white {
   font-size: clamp(2.45rem, 4vw, 3.3rem);
   font-weight: 700;
@@ -327,13 +335,6 @@ div.home {
   color: rgba(255, 255, 255, 0.88) !important;
   margin: 0 auto;
   max-width: 760px;
-}
-
-section h1.white,
-section h2.white,
-section p.white {
-  color: #ffffff !important;
-  text-align: center !important;
 }
 
 .hero-status-pill {
@@ -377,13 +378,13 @@ section p.white {
 
 .hero-chat-input input {
   flex: 1;
-  border: none !important;
+  border: none;
   padding: 20px 28px;
   font-size: 1.15rem;
   font-family: inherit;
   outline: none;
   color: #333;
-  box-shadow: none !important;
+  box-shadow: none;
 }
 
 .hero-chat-input input::placeholder {
@@ -391,7 +392,7 @@ section p.white {
 }
 
 .hero-chat-input button {
-  background-color: #005c9e !important;
+  background-color: #005c9e;
   border: 3px solid #ffffff;
   color: #fff;
   width: 64px;
@@ -407,7 +408,7 @@ section p.white {
 }
 
 .hero-chat-input button:hover {
-  background-color: #004b87 !important;
+  background-color: #004b87;
 }
 
 .suggested-topics {
@@ -427,18 +428,8 @@ section p.white {
   justify-content: center;
 }
 
-.topic-group-label {
-  flex-basis: 100%;
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 0.86rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  text-align: left;
-}
-
 .topic-pill {
-  background-color: rgba(255, 255, 255, 0.15) !important;
+  background-color: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.4);
   color: #fff;
   padding: 10px 20px;
@@ -451,8 +442,8 @@ section p.white {
 }
 
 .topic-pill:hover {
-  background-color: rgba(255, 255, 255, 0.25) !important;
-  transform: scale(1.02) !important;
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: scale(1.02);
 }
 
 .hero-secondary-link {
@@ -462,15 +453,40 @@ section p.white {
 }
 
 .hero-secondary-link a {
-  color: #ffffff !important;
-  text-decoration: none !important;
+  color: #ffffff;
+  text-decoration: none;
   font-weight: 700;
   transition: color 0.2s ease;
 }
 
 .hero-secondary-link a:hover {
-  color: #dff4ff !important;
-  text-decoration: none !important;
+  color: #dff4ff;
+  text-decoration: none;
+}
+
+.hero-cta-wrapper {
+  text-align: center;
+}
+
+.hero-cta-btn {
+  display: inline-block;
+  color: #fff;
+  background-color: var(--fd-brand-blue);
+  padding: 12px 32px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-family: "Roboto", sans-serif;
+  border-radius: 100px;
+  border: none;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.15s;
+}
+
+.hero-cta-btn:hover {
+  background-color: #0098d0;
+  color: #fff;
+  transform: scale(1.03);
+  text-decoration: none;
 }
 
 .home-card-grid {
@@ -502,7 +518,7 @@ section p.white {
 .box-segment {
   background-color: #ffffff;
   border-radius: 5px;
-  padding: 0 !important;
+  padding: 0;
   box-shadow: 0 0 5px 0 rgba(153, 153, 153, 0.5);
 }
 
@@ -512,14 +528,39 @@ section p.white {
 
 .box-segment .box-content {
   padding: 15px 15px 25px 15px;
-  min-height: 220px !important;
+  min-height: 220px;
   text-align: center;
 }
 
 .box-segment .box-content h3 {
   font-family: Roboto, sans-serif;
   font-weight: 300;
-  color: #050f34 !important;
+  color: var(--pae-dark);
+}
+
+.box-content__desc {
+  min-height: 100px;
+}
+
+.home-card-btn {
+  display: inline-block;
+  color: #fff;
+  background-color: var(--fd-brand-blue);
+  padding: 6px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.home-card-link:hover .home-card-btn {
+  background-color: #0098d0;
+}
+
+.topbar__dropdown-menu {
+  min-width: 160px;
 }
 
 div.box-image > img {
@@ -535,7 +576,8 @@ div#fallback-footer .footer-container {
   color: #ffffff;
   background-color: #050f34;
   padding: 50px 0;
-  margin-top: 50px;
+  margin-top: 146px;
+  width: 100%;
   font-weight: 400;
 }
 
@@ -619,10 +661,6 @@ div#fallback-footer .bottom-container .social-wrapper a.social svg {
   display: flex;
   align-items: center;
   gap: 8px;
-}
-
-.bar-label::before {
-  content: "";
 }
 
 .ai-disclosure {
